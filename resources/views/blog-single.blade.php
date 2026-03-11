@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Om shanti Travels</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -26,7 +26,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container">
-        <a class="navbar-brand" href="{{ url('index.html') }}">Car<span>Book</span></a>
+        <a class="navbar-brand" href="{{ url('index.html') }}">Om Shanti <span>Travels</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="oi oi-menu"></span> Menu
         </button>
@@ -46,7 +46,7 @@
     </nav>
     <!-- END nav -->
     
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/bg_3.jpg') }}');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/bg_3.jpg') }}');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
@@ -60,51 +60,292 @@
           </div>
         </div>
       </div>
-    </section>
+</section>
 
-    <section class="ftco-section ftco-degree-bg">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 ftco-animate">
-            <h2 class="mb-3">It is a long established fact a reader be distracted</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-            <p>
-              <img src="{{ asset('images/image_7.jpg') }}" alt="" class="img-fluid">
-            </p>
-            <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
-            <h2 class="mb-3 mt-5">#2. Creative WordPress Themes</h2>
-            <p>Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
-            <p>
-              <img src="{{ asset('images/image_8.jpg') }}" alt="" class="img-fluid">
-            </p>
-            <p>Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.</p>
-            <p>Odit voluptatibus, eveniet vel nihil cum ullam dolores laborum, quo velit commodi rerum eum quidem pariatur! Quia fuga iste tenetur, ipsa vel nisi in dolorum consequatur, veritatis porro explicabo soluta commodi libero voluptatem similique id quidem? Blanditiis voluptates aperiam non magni. Reprehenderit nobis odit inventore, quia laboriosam harum excepturi ea.</p>
-            <p>Adipisci vero culpa, eius nobis soluta. Dolore, maxime ullam ipsam quidem, dolor distinctio similique asperiores voluptas enim, exercitationem ratione aut adipisci modi quod quibusdam iusto, voluptates beatae iure nemo itaque laborum. Consequuntur et pariatur totam fuga eligendi vero dolorum provident. Voluptatibus, veritatis. Beatae numquam nam ab voluptatibus culpa, tenetur recusandae!</p>
-            <p>Voluptas dolores dignissimos dolorum temporibus, autem aliquam ducimus at officia adipisci quasi nemo a perspiciatis provident magni laboriosam repudiandae iure iusto commodi debitis est blanditiis alias laborum sint dolore. Dolores, iure, reprehenderit. Error provident, pariatur cupiditate soluta doloremque aut ratione. Harum voluptates mollitia illo minus praesentium, rerum ipsa debitis, inventore?</p>
-            
-            <!-- Author, comments, form, sidebar, etc. -->
-            <!-- Just wrap all images with asset() and internal links with url() -->
-            <img src="{{ asset('images/person_1.jpg') }}" alt="Image placeholder" class="img-fluid mb-4">
-            <!-- ... repeat for all other images in comments, sidebar, etc. ... -->
+<section class="ftco-section ftco-about">
+			<div class="container">
+				<div class="row no-gutters">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('images/image_1.jpg');">
+					</div>
+					<div class="col-md-6 wrap-about ftco-animate">
+	          <div class="heading-section heading-section-white pl-md-5">
+	          	<span class="subheading">Blog</span>
+	            <h2 class="mb-4">Top Weekend Getaways from Ahmedabad for a Perfect Road Trip</h2>
 
-          </div> <!-- .col-md-8 -->
+	            <p>Ahmedabad is surrounded by many beautiful destinations that are perfect for a short weekend trip. Whether you enjoy nature, wildlife, mountains, or historical places, there are several amazing locations within a few hours of driving. Traveling by car makes the journey more comfortable and flexible, allowing you to explore these destinations at your own pace.</p>
 
-          <div class="col-md-4 sidebar ftco-animate">
-            <!-- Sidebar content -->
-            <a class="blog-img mr-4" style="background-image: url('{{ asset('images/image_1.jpg') }}');"></a>
-            <a class="blog-img mr-4" style="background-image: url('{{ asset('images/image_2.jpg') }}');"></a>
-            <a class="blog-img mr-4" style="background-image: url('{{ asset('images/image_3.jpg') }}');"></a>
+                <p>Here are the top 5 weekend getaways from Ahmedabad.</p>
+	          </div>
+			</div>
+		</div>
+	</div>
+</section> <!-- .section -->
+
+<section class="ftco-section ftco-no-pt bg-light">
+    	<div class="container">
+    		<div class="row justify-content-center">
+          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          	<span class="subheading">weekend getaways</span>
+            <h2 class="mb-2">Here are the top 5 weekend getaways from Ahmedabad</h2>
           </div>
         </div>
-      </div>
-    </section> <!-- .section -->
+    		<div class="row">
+    			<div class="col-md-12">
+    				<div class="carousel-car owl-carousel">
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/mount-abu.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Mount Abu</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">Nakki Lake,Dilwara Jain Temples,Guru Shikhar (highest point in Rajasthan),Sunset Point,Mount Abu Wildlife Sanctuary</span>
+		    						</div>
+		    						
+		    					</div>
+		    				</div>
+    					</div>
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/kutch.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Rann of Kutch (White Desert)</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">ultural programs, camel rides, handicraft shopping, and traditional Gujarati food</span>
+			    						
+		    						</div>
+		    						
+		    					</div>
+		    				</div>
+    					</div>
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/saputara.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Saputara Hill Station</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">Saputara Lake, Sunset Point, Ropeway Ride, and Artist Village</span>
+			    						
+		    						</div>
+		    						
+		    					</div>
+		    				</div>
+    					</div>
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/somnath.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Somnath Temple (Somnath)</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">one of the 12 Jyotirlinga temples of Lord Shiva</span>
+			    						
+		    						</div>
+		    					
+		    					</div>
+		    				</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+</section>
+
+<!-- 2 nd   -->
+ <section class="ftco-section ftco-about">
+			<div class="container">
+				<div class="row no-gutters">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('images/image_1.jpg');">
+					</div>
+					<div class="col-md-6 wrap-about ftco-animate">
+	          <div class="heading-section heading-section-white pl-md-5">
+	          	<span class="subheading">Blog</span>
+	            <h2 class="mb-4">Reasons Why Renting a Car is the Best Choice for Your Trip</h2>
+
+	            <p>Traveling is one of the best ways to relax and explore new places. While buses and trains are common transportation options, renting a car offers many advantages that make your journey more comfortable and enjoyable. Whether you are traveling with family, friends, or alone, a rental car gives you the freedom and flexibility to travel at your own pace.</p>
+              <p>Here are important reasons why renting a car is the best choice for your trip.</p>
+	          </div>
+			</div>
+		</div>
+	</div>
+</section> <!-- .section -->
+
+<section class="ftco-section ftco-no-pt bg-light">
+    	<div class="container">
+    		<div class="row justify-content-center">
+          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          	<span class="subheading">Why Renting a Car is the Best Choice</span>
+            <h2 class="mb-2">Here are important reasons why renting a car is the best choice for your trip.</h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-12">
+    				<div class="carousel-car owl-carousel">
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/comfort.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Comfortable Travel</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">One of the biggest benefits of renting a car is comfort</span>
+		    						</div>
+		    						
+		    					</div>
+		    				</div>
+    					</div>
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/time.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Flexible Travel Timing</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">You can start your journey whenever you want, take breaks whenever needed, and explore places</span>
+			    						
+		    						</div>
+		    						
+		    					</div>
+		    				</div>
+    					</div>
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/family.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Perfect for Family Trips</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">Everyone can sit comfortably, carry necessary luggage, and enjoy the journey together without worrying about crowded transport.</span>
+			    						
+		    						</div>
+		    						
+		    					</div>
+		    				</div>
+    					</div>
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/freedom.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Freedom to Explore More Places</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">This freedom makes your travel experience more exciting and memorable.</span>
+			    						
+		    						</div>
+		    					
+		    					</div>
+		    				</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+</section>
+
+
+<!-- 3rd -->
+ <section class="ftco-section ftco-about">
+			<div class="container">
+				<div class="row no-gutters">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('images/image_1.jpg');">
+					</div>
+					<div class="col-md-6 wrap-about ftco-animate">
+	          <div class="heading-section heading-section-white pl-md-5">
+	          	<span class="subheading">Blog</span>
+	            <h2 class="mb-4">Essential Travel Tips for a Safe and Comfortable Journey</h2>
+
+	            <p>Traveling is a wonderful way to explore new places, relax, and create memorable experiences. However, a successful trip requires good planning and preparation. By following a few simple travel tips, you can ensure that your journey is safe, comfortable, and enjoyable.</p>
+              <p>Here are essential travel tips every traveler should follow..</p>
+	          </div>
+			</div>
+		</div>
+	</div>
+</section> <!-- .section -->
+
+<section class="ftco-section ftco-no-pt bg-light">
+    	<div class="container">
+    		<div class="row justify-content-center">
+          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          	<span class="subheading">Essential Travel Tips for a Safe and Comfortable Journey</span>
+            <h2 class="mb-2">essential travel tips every traveler should follow...</h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-12">
+    				<div class="carousel-car owl-carousel">
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/document.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Carry Important Documents</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">ID proof, driving license, travel tickets, hotel booking details, and insurance documents.</span>
+		    						</div>
+		    						
+		    					</div>
+		    				</div>
+    					</div>
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/break.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Take Breaks During Long Trips</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">take regular breaks to relax and refresh</span>
+			    						
+		    						</div>
+		    						
+		    					</div>
+		    				</div>
+    					</div>
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/weather.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Check the Weather Forecast</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">Before traveling, check the weather conditions of your destination</span>
+			    						
+		    						</div>
+		    						
+		    					</div>
+		    				</div>
+    					</div>
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/vehical.jpg);">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">Choose the Right Vehicle</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">Selecting the right vehicle is very important for a comfortable journey..</span>
+			    						
+		    						</div>
+		    					
+		    					</div>
+		    				</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+</section>
+
+
+
+
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>book</span></a></h2>
+              <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>Renatal</span></a></h2>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             </div>
           </div>
