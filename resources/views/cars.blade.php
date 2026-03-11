@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Carbook</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -29,7 +29,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Car<span>Book</span></a>
+        <a class="navbar-brand" href="{{ url('/') }}">Om Shanti<span> Travels</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="oi oi-menu"></span> Menu
         </button>
@@ -48,6 +48,7 @@
       </div>
     </nav>
     <!-- END nav -->
+     
     
     <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/bg_3.jpg') }}');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -55,7 +56,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
             <p class="breadcrumbs"><span class="mr-2"><a href="{{ url('/') }}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Cars <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-3 bread">Choose Your Car</h1>
+            <h1 class="mb-3 bread">Choose Your Ride</h1>
           </div>
         </div>
       </div>
@@ -69,18 +70,60 @@
               <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-1.jpg') }}');">
               </div>
               <div class="text">
-                <h2 class="mb-0"><a href="{{ url('car-single') }}">Mercedes Grand Sedan</a></h2>
+                <h2 class="mb-0"><a href="{{ url('car-single') }}">Range Rover</a></h2>
                 <div class="d-flex mb-3">
                   <span class="cat">Cheverolet</span>
                   <p class="price ml-auto">$500 <span>/day</span></p>
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car/rangerover') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
           </div>
 
           <!-- Repeat the same for other cars, replacing image paths with asset() and links with url() -->
           <!-- Example for car-2 -->
+          <div class="col-md-4">
+            <div class="car-wrap rounded ftco-animate">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-2.jpg') }}');">
+              </div>
+              <div class="text">
+                <h2 class="mb-0"><a href="{{ url('car-single') }}">Honda</a></h2>
+                <div class="d-flex mb-3">
+                  <span class="cat">Subaru</span>
+                  <p class="price ml-auto">$500 <span>/day</span></p>
+                </div>
+                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+              </div>
+            </div>
+          </div>
+<div class="col-md-4">
+            <div class="car-wrap rounded ftco-animate">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-2.jpg') }}');">
+              </div>
+              <div class="text">
+                <h2 class="mb-0"><a href="{{ url('car-single') }}">Crysta</a></h2>
+                <div class="d-flex mb-3">
+                  <span class="cat">Subaru</span>
+                  <p class="price ml-auto">$500 <span>/day</span></p>
+                </div>
+                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+              </div>
+            </div>
+          </div>
+<div class="col-md-4">
+            <div class="car-wrap rounded ftco-animate">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-2.jpg') }}');">
+              </div>
+              <div class="text">
+                <h2 class="mb-0"><a href="{{ url('car-single') }}">Range Rover</a></h2>
+                <div class="d-flex mb-3">
+                  <span class="cat">Subaru</span>
+                  <p class="price ml-auto">$500 <span>/day</span></p>
+                </div>
+                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+              </div>
+            </div>
+          </div>
           <div class="col-md-4">
             <div class="car-wrap rounded ftco-animate">
               <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-2.jpg') }}');">
@@ -95,12 +138,29 @@
               </div>
             </div>
           </div>
+<div class="col-md-4">
+            <div class="car-wrap rounded ftco-animate">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-2.jpg') }}');">
+              </div>
+              <div class="text">
+                <h2 class="mb-0"><a href="{{ url('car-single') }}">Range Rover</a></h2>
+                <div class="d-flex mb-3">
+                  <span class="cat">Subaru</span>
+                  <p class="price ml-auto">$500 <span>/day</span></p>
+                </div>
+                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+              </div>
+            </div>
+          </div>
+
 
           <!-- Repeat all remaining car divs similarly -->
 
         </div>
       </div>
     </section>
+
+    
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">

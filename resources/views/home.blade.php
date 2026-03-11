@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Carbook</title>
+<title>Om Shanti Travels</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,11 +19,15 @@
 <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
 <link rel="stylesheet" href="{{ asset('css/icomoon.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 </head>
 
 <body>
 
+<!-- NAVBAR -->
+
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
+
 <div class="container">
 
 <a class="navbar-brand" href="{{ url('/') }}">Car<span>Book</span></a>
@@ -36,20 +40,43 @@
 
 <ul class="navbar-nav ml-auto">
 
-<li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
-<li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
-<li class="nav-item"><a href="{{ url('/services') }}" class="nav-link">Services</a></li>
-<li class="nav-item"><a href="{{ url('/pricing') }}" class="nav-link">Pricing</a></li>
-<li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
-<li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
-<li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
+<li class="nav-item active">
+<a href="{{ url('/') }}" class="nav-link">Home</a>
+</li>
+
+<li class="nav-item">
+<a href="{{ url('/about') }}" class="nav-link">About</a>
+</li>
+
+<li class="nav-item">
+<a href="{{ url('/services') }}" class="nav-link">Services</a>
+</li>
+
+<li class="nav-item">
+<a href="{{ url('/pricing') }}" class="nav-link">Pricing</a>
+</li>
+
+<li class="nav-item">
+<a href="{{ url('/cars') }}" class="nav-link">Cars</a>
+</li>
+
+<li class="nav-item">
+<a href="{{ url('/blog') }}" class="nav-link">Blog</a>
+</li>
+
+<li class="nav-item">
+<a href="{{ url('/contact') }}" class="nav-link">Contact</a>
+</li>
 
 </ul>
 
 </div>
 </div>
+
 </nav>
 
+
+<!-- HERO SECTION -->
 
 <section class="hero-wrap js-fullheight" style="background-image: url('{{ asset('images/bg_1.jpg') }}');">
 
@@ -63,13 +90,20 @@
 
 <h1 class="mb-4">Fast & Easy Way To Rent A Car</h1>
 
+<p style="color:white;">
+Find the best rental cars for your journey.
+</p>
+
 </div>
 
 </div>
+
 </div>
 
 </section>
 
+
+<!-- JS FILES -->
 
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>

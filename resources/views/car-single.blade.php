@@ -30,7 +30,7 @@
     
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Car<span>Book</span></a>
+	      <a class="navbar-brand" href="index.html">Om Shanti<span> Travels</span></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -71,11 +71,58 @@
       				<div class="text text-center">
       					<span class="subheading">Cheverolet</span>
       					<h2>Mercedes Grand Sedan</h2>
+
+<div class="mt-4">
+  <h4>Car Details</h4>
+
+  <p><b>Brand:</b> Mercedes-Benz</p>
+  <p><b>Fuel Type:</b> Petrol</p>
+  <p><b>Transmission:</b> Automatic</p>
+  <p><b>Seats:</b> 5 Persons</p>
+  <p><b>Price:</b> ₹5000 / Day</p>
+  <p><b>Driver:</b> Available</p>
+
+  <p>
+    Mercedes Grand Sedan is a luxury car perfect for city travel,
+    weddings, and long-distance journeys with premium comfort.
+  </p>
+</div>
       				</div>
       			</div>
       		</div>
       	</div>
+
         <!-- Rest of your code remains unchanged -->
+<section class="ftco-section ftco-car-details">
+      <div class="container">
+      	<div class="row justify-content-center">
+      		<div class="col-md-12">
+      			<div class="car-details">
+      				<div class="img rounded" style="background-image: url('{{ asset('images/bg_2.jpg') }}');"></div>
+      				<div class="text text-center">
+      					<span class="subheading">Cheverolet</span>
+      					<h2>Mercedes Grand Sedan</h2>
+
+<div class="mt-4">
+  <h4>Car Details</h4>
+
+  <p><b>Brand:</b> Mercedes-Benz</p>
+  <p><b>Fuel Type:</b> Petrol</p>
+  <p><b>Transmission:</b> Automatic</p>
+  <p><b>Seats:</b> 5 Persons</p>
+  <p><b>Price:</b> ₹5000 / Day</p>
+  <p><b>Driver:</b> Available</p>
+
+  <p>
+    Mercedes Grand Sedan is a luxury car perfect for city travel,
+    weddings, and long-distance journeys with premium comfort.
+  </p>
+</div>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+        
       </div>
     </section>
 

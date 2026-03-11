@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('home');
 });
 
 Route::get('/about', function () {
@@ -30,10 +30,11 @@ Route::get('/blog-single', function () {
     return view('blog-single');
 });
 
-Route::get('/cars-single', function () {
-    return view('cars-single');
+Route::get('/car/{name}', function ($name) {
+    return view('car-single', compact('name'));
 });
 
 Route::get('/contact', function () {
     return view('contact');
 });
+
