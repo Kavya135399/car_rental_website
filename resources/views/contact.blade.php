@@ -29,7 +29,8 @@
     
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container">
-<a class="navbar-brand" href="{{ url('/') }}">Om Shanti <span> Travels</span></a>        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+<a class="navbar-brand" href="{{ url('/') }}">Om Shanti <span> Travels</span></a>        
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
           <span class="oi oi-menu"></span> Menu
         </button>
 
@@ -37,6 +38,8 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
+<!-- <li class="nav-item"><a href="{{ url('/services') }}" class="nav-link">Services</a></li> -->
+<!-- <li class="nav-item"><a href="{{ url('/pricing') }}" class="nav-link">Pricing</a></li> -->
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
@@ -68,7 +71,9 @@
                   <div class="icon mr-3">
                     <span class="icon-map-o"></span>
                   </div>
+
                   <p><span>Address:</span> 602,Floor No. 6, The 132 Complex, Nr.Indraprasth Saptak,Nr.AEC Flyover,Naranpura, Ahmedabad, Gujarat-380013</p>
+
                 </div>
               </div>
               <div class="col-md-12">
@@ -76,7 +81,9 @@
                   <div class="icon mr-3">
                     <span class="icon-mobile-phone"></span>
                   </div>
+
                   <p><span>Phone:</span> <a href="tel://1234567920">+91 99090 35336</a></p>
+
                 </div>
               </div>
               <div class="col-md-12">
