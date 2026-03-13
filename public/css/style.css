@@ -9113,6 +9113,13 @@ textarea.form-control {
   opacity: 0;
   visibility: hidden; }
 
+.ftco-animate h1{
+  color: white;
+}
+
+.ftco-animate p{
+  color: white;
+}
 .bg-primary {
   background: #1089ff !important; }
 

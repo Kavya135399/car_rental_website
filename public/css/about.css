@@ -1,0 +1,49 @@
+.contact-btn{
+    background-color:#007bff;
+    color:white;
+    padding:12px 28px;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.contact-btn:hover{
+    background-color:#0056b3;
+}
+
+.serach-vehical{
+    background-color:#007bff;
+    color:white;
+    padding:12px 28px;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+    scroll-behavior: smooth;
+}
+
+.serach-vehical:hover{
+    background-color:#0a6ad1;
+}
+
+/* SECOND SECTION FIX */
+
+.about-reverse:after{
+    left:0;
+    right:auto;
+}
+
+.text-side{
+    padding:60px;
+}
+
+.text-side h1{
+    font-size:40px;
+    font-weight:600;
+    margin-bottom:20px;
+}

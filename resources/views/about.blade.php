@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Carbook</title>
+<title>Om Shanti Travels</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
 <link rel="stylesheet" href="{{ asset('css/icomoon.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/about.css') }}">
+
 </head>
 
 <body>
@@ -27,7 +29,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 <div class="container">
 
-<a class="navbar-brand" href="{{ url('/') }}">Car<span>Book</span></a>
+<a class="navbar-brand" href="{{ url('/') }}">om shanti<span>travels</span></a>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
 <span class="oi oi-menu"></span> Menu
@@ -74,7 +76,7 @@
 
 <!-- HERO SECTION -->
 <section class="hero-wrap hero-wrap-2 js-fullheight"
-style="background-image: url('{{ asset('images/bg_3.jpg') }}');">
+style="background-image: url('{{ asset('images/about2.jpg') }}');">
 
 <div class="overlay"></div>
 
@@ -85,11 +87,15 @@ style="background-image: url('{{ asset('images/bg_3.jpg') }}');">
 <div class="col-md-9 ftco-animate pb-5">
 
 <p class="breadcrumbs">
-<span class="mr-2"><a href="{{ url('/') }}">Home <i class="ion-ios-arrow-forward"></i></a></span>
-<span>About <i class="ion-ios-arrow-forward"></i></span>
+<!-- <span class="mr-2"><a href="{{ url('/') }}">Home <i class="ion-ios-arrow-forward"></i></a></span>
+<span>About <i class="ion-ios-arrow-forward"></i></span> -->
+<h1>Hire a professional chauffeur service that serves Pan India</h1>
+<p>Om Shanti Travels is a leading provider of professional chauffeur services in India.
+    With years of experience in the industry, we have become a trusted and reliable partner for individuals and businesses seeking luxury ground transportation Pan India.</p>
 </p>
+<button class="contact-btn">Contact Now</button>
 
-<h1 class="mb-3 bread">About Us</h1>
+<!-- <h1 class="mb-3 bread">About Us</h1> -->
 
 </div>
 
@@ -101,29 +107,53 @@ style="background-image: url('{{ asset('images/bg_3.jpg') }}');">
 
 <!-- ABOUT SECTION -->
 <section class="ftco-section ftco-about">
-
 <div class="container">
-
 <div class="row no-gutters">
-
 <div class="col-md-6 p-md-5 img img-2"
-style="background-image: url('{{ asset('images/about.jpg') }}');">
+style="background-image: url('{{ asset('images/houly2.jpg') }}');">
 </div>
 
 <div class="col-md-6 wrap-about ftco-animate">
+<!-- <div> -->
+<h1>Hourly Services</h1>
 
-<h2 class="mb-4">Welcome to Carbook</h2>
+<p class="p-text">Travel on your schedule with our flexible hourly chauffeur service—ideal for meetings, events, or exploring the city in comfort and style.</p>
+<p class="p-text">Your time, your ride—book a chauffeur by the hour and travel with ease and elegance.</p>
+<!-- <a href="#" class="btn btn-primary py-3 px-4">Search Vehicle</a> -->
+<!-- <button class="serach-vehical">Contact Now</button> -->
+</div>
+</div>
+</div>
+</section>
 
-<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+<!-- SECOND ABOUT SECTION -->
+<section class="ftco-section ftco-about about-reverse">
 
-<p>On her way she met a copy. The copy warned the Little Blind Text.</p>
+<div class="container">
+<div class="row no-gutters">
 
-<a href="#" class="btn btn-primary py-3 px-4">Search Vehicle</a>
+<!-- LEFT SIDE TEXT -->
+<div class="col-md-6 wrap-about ftco-animate text-side">
+
+<h1>Airport Transfer</h1>
+
+<p class="p-text">
+Enjoy smooth and reliable airport transfers with our professional chauffeurs.
+We ensure timely pickups and comfortable rides to and from the airport.
+</p>
+
+<p class="p-text">
+Start or end your journey stress-free with Om Shanti Travels' trusted airport transportation service.
+</p>
 
 </div>
 
+<!-- RIGHT SIDE IMAGE -->
+<div class="col-md-6 p-md-5 img img-2"
+style="background-image: url('{{ asset('images/houly2.jpg') }}');">
 </div>
 
+</div>
 </div>
 
 </section>

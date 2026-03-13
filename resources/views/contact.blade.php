@@ -71,7 +71,7 @@
                   <div class="icon mr-3">
                     <span class="icon-map-o"></span>
                   </div>
-                  <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                  <p><span>Address:</span> 602, Floor No.6, The Complex, Nr. AEC Flyover, Naranpura, Ahmedabad, Gujrat-380013.</p>
                 </div>
               </div>
               <div class="col-md-12">
@@ -79,7 +79,7 @@
                   <div class="icon mr-3">
                     <span class="icon-mobile-phone"></span>
                   </div>
-                  <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                  <p><span>Phone:</span> <a href="tel://1234567920">+91 9099982336</a></p>
                 </div>
               </div>
               <div class="col-md-12">
@@ -87,7 +87,7 @@
                   <div class="icon mr-3">
                     <span class="icon-envelope-o"></span>
                   </div>
-                  <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                  <p><span>Email:</span> <a href="mailto:info@yoursite.com">omshanti.amd@gmail.com</a></p>
                 </div>
               </div>
             </div>
