@@ -139,38 +139,42 @@
                     
 <div class="row no-gutters">
   <div class="col-md-4 d-flex align-items-center">
-    <form action="contact.php" method="post" class="request-form ftco-animate bg-primary">
-      <h2>Contact Us</h2>
+    <form action="{{ route('contact.send') }}" method="POST" class="request-form ftco-animate bg-primary">
 
-      <div class="form-group">
-        <label class="label">Full Name</label>
-        <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
-      </div>
+@csrf
 
-      <div class="form-group">
-        <label class="label">Email</label>
-        <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
-      </div>
+<h2>Contact Us</h2>
 
-      <div class="form-group">
-        <label class="label">Phone Number</label>
-        <input type="text" name="phone" class="form-control" placeholder="Enter phone number" required>
-      </div>
+<div class="form-group">
+<label class="label">Full Name</label>
+<input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+</div>
 
-      <div class="form-group">
-        <label class="label">Subject</label>
-        <input type="text" name="subject" class="form-control" placeholder="Subject">
-      </div>
+<div class="form-group">
+<label class="label">Email</label>
+<input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+</div>
 
-      <div class="form-group">
-        <label class="label">Message</label>
-        <textarea name="message" class="form-control" rows="4" placeholder="Write your message"></textarea>
-      </div>
+<!-- <div class="form-group">
+<label class="label">Phone Number</label>
+<input type="text" name="phone" class="form-control" placeholder="Enter phone number" required>
+</div> -->
 
-      <div class="form-group">
-        <input type="submit" value="Send Message" class="btn btn-secondary py-3 px-4">
-      </div>
-    </form>
+<div class="form-group">
+<label class="label">Subject</label>
+<input type="text" name="subject" class="form-control" placeholder="Subject">
+</div>
+
+<div class="form-group">
+<label class="label">Message</label>
+<textarea name="message" class="form-control" rows="4" placeholder="Write your message"></textarea>
+</div>
+
+<div class="form-group">
+<input type="submit" value="Send Message" class="btn btn-secondary py-3 px-4">
+</div>
+
+</form>
   </div>
 
   <div class="col-md-8 d-flex align-items-center">
