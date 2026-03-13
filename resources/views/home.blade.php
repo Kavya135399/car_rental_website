@@ -459,7 +459,7 @@
     </section> -->
     
     
-    <section class="ftco-section">
+  <section class="ftco-section">
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
@@ -470,7 +470,7 @@
         <div class="row d-flex">
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="blog-single.blade.php" class="block-20" style="background-image: url('images/image_1.jpg');">
+              <a href="blog.blade.php" class="block-20" style="background-image: url('images/image_1.jpg');">
               </a>
               <div class="text pt-4">
               	<div class="meta mb-3">
@@ -479,15 +479,15 @@
                   <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
                 </div>
                 <h3 class="heading mt-2">
-<a href="{{ url('/blog-single') }}">Top 5 Weekend Getaways from Ahmedabad for a Perfect Road Trip</a>
+<a href="{{ url('/blog') }}">Top 5 Weekend Getaways from Ahmedabad for a Perfect Road Trip</a>
 </h3>
-                <p><a href="{{ url('/blog-single') }}" class="btn btn-primary">Read more</a></p>
+                <p><a href="{{ url('/blog') }}" class="btn btn-primary">Read more</a></p>
               </div>
             </div>
           </div>
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="blog-single.blade.php" class="block-20" style="background-image: url('images/image_2.jpg');">
+              <a href="blog.blade.php" class="block-20" style="background-image: url('images/image_2.jpg');">
               </a>
               <div class="text pt-4">
               	<div class="meta mb-3">
@@ -495,14 +495,14 @@
                   <div><a href="#">Admin</a></div>
                   <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
                 </div>
-                <h3 class="heading mt-2"><a href="{{ url('/blog-single') }}">5 Reasons Why Renting a Car is the Best Choice for Your Trip</a></h3>
-                <p><a href="{{ url('/blog-single') }}" class="btn btn-primary">Read more</a></p>
+                <h3 class="heading mt-2"><a href="{{ url('/blog') }}">5 Reasons Why Renting a Car is the Best Choice for Your Trip</a></h3>
+                <p><a href="{{ url('/blog') }}" class="btn btn-primary">Read more</a></p>
               </div>
             </div>
           </div>
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry">
-              <a href="blog-single.blade.php" class="block-20" style="background-image: url('images/image_3.jpg');">
+              <a href="blog.blade.php" class="block-20" style="background-image: url('images/image_3.jpg');">
               </a>
               <div class="text pt-4">
               	<div class="meta mb-3">
@@ -510,8 +510,8 @@
                   <div><a href="#">Admin</a></div>
                   <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
                 </div>
-                <h3 class="heading mt-2"><a href="{{ url('/blog-single') }}">10 Essential Travel Tips for a Safe and Comfortable Journey</a></h3>
-                <p><a href="{{ url('/blog-single') }}" class="btn btn-primary">Read more</a></p>
+                <h3 class="heading mt-2"><a href="{{ url('/blog') }}">10 Essential Travel Tips for a Safe and Comfortable Journey</a></h3>
+                <p><a href="{{ url('/blog') }}" class="btn btn-primary">Read more</a></p>
               </div>
             </div>
           </div>

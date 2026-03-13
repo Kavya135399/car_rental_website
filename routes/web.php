@@ -84,3 +84,19 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+use App\Http\Controllers\AdminController;
+
+Route::get('/admin', [AdminController::class,'login']);
+Route::post('/admin/login', [AdminController::class,'loginCheck']);
+
+Route::get('/admin/dashboard', [AdminController::class,'dashboard']);
+
+Route::get('/admin/cars', [AdminController::class,'cars']);
+Route::get('/admin/cars/add', [AdminController::class,'addCar']);
+Route::post('/admin/cars/save', [AdminController::class,'saveCar']);
+Route::get('/admin/cars/delete/{id}', [AdminController::class,'deleteCar']);
+
+Route::get('/admin/bookings', [AdminController::class,'bookings']);
+
+
+Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
