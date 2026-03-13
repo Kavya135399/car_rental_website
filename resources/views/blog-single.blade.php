@@ -35,8 +35,6 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
-<li class="nav-item"><a href="{{ url('/services') }}" class="nav-link">Services</a></li>
-<li class="nav-item"><a href="{{ url('/pricing') }}" class="nav-link">Pricing</a></li>
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
@@ -341,25 +339,87 @@
 
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>Renatal</span></a></h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            </div>
-          </div>
-          <!-- Other footer columns -->
+  <div class="container">
+    <div class="row mb-5">
+
+      <!-- Company Info -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">
+            OM SHANTI <span style="color:#01d28e;">TRAVELS</span>
+          </h2>
+          <p>
+            We provide the best car rental services for comfortable and safe travel.
+            Book your ride today and enjoy a smooth journey with Om Shanti Travels.
+          </p>
+          <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+            <!-- <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li> -->
+            <!-- <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li> -->
+            <!-- <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li> -->
+          </ul>
         </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <p>
-              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Template by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-            </p>
+      </div>
+
+      <!-- Information -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4 ml-md-5">
+          <h2 class="ftco-heading-2">Information</h2>
+          <ul class="list-unstyled">
+            <li><a href="{{ url('/about') }}" class="py-2 d-block">About</a></li>
+            <!-- <li><a href="{{ url('/services') }}" class="py-2 d-block">Services</a></li> -->
+            <li><a href="{{ url('/blog') }}" class="py-2 d-block">Blog</a></li>
+            <li><a href="{{ url('/cars') }}" class="py-2 d-block">Cars</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Customer Support -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">Customer Support</h2>
+          <ul class="list-unstyled">
+            <!-- <li><a href="#" class="py-2 d-block">FAQ</a></li> -->
+            <!-- <li><a href="#" class="py-2 d-block">Payment Option</a></li> -->
+            <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
+            <!-- <li><a href="#" class="py-2 d-block">How it works</a></li> -->
+            <li><a href="{{ url('/contact') }}" class="py-2 d-block">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">Have a Questions?</h2>
+          <div class="block-23 mb-3">
+            <ul>
+              <li>
+                <span class="icon icon-map-marker"></span>
+                <span class="text">602,Floor No. 6, The 132 Complex, Nr.Indraprasth Saptak,Nr.AEC Flyover,Naranpura, Ahmedabad, Gujarat-380013</span>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="icon icon-phone"></span>
+                  <span class="text">+91 99090 35336</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="icon icon-envelope"></span>
+                  <span class="text">omshanti.amd@gmail.com</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </footer>
+
+    </div>
+
+    
+
+  </div>
+</footer>
 
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen">
