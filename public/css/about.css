@@ -1,49 +1,73 @@
-.contact-btn{
-    background-color:#007bff;
-    color:white;
-    padding:12px 28px;
-    border:none;
-    border-radius:6px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
+/* our car */
+
+.our-cars-section{
+    padding:80px 0;
+    background:#f8f9fa;
 }
 
-.contact-btn:hover{
-    background-color:#0056b3;
-}
-
-.serach-vehical{
-    background-color:#007bff;
-    color:white;
-    padding:12px 28px;
-    border:none;
-    border-radius:6px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
-    scroll-behavior: smooth;
-}
-
-.serach-vehical:hover{
-    background-color:#0a6ad1;
-}
-
-/* SECOND SECTION FIX */
-
-.about-reverse:after{
-    left:0;
-    right:auto;
-}
-
-.text-side{
-    padding:60px;
-}
-
-.text-side h1{
+.section-title{
+    text-align:center;
     font-size:40px;
+    font-weight:700;
+    margin-bottom:60px;
+    color:#222;
+}
+
+.section-title span{
+    color: rgb(54, 177, 136);   
+    margin-left: 8px;
+}
+
+.car-row{
+    margin-bottom:70px;
+}
+
+.car-img{
+    width:100%;
+    border-radius:10px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.car-details{
+    padding:20px;
+}
+
+.car-details h3{
+    font-size:28px;
     font-weight:600;
+    margin-bottom:15px;
+    color:#111;
+}
+
+.car-details p{
+    font-size:16px;
+    color:#666;
+    line-height:1.7;
     margin-bottom:20px;
+}
+
+.car-details ul{
+    padding-left:20px;
+    margin-bottom:25px;
+}
+
+.car-details ul li{
+    margin-bottom:8px;
+    color:#444;
+}
+
+@media (max-width:768px){
+
+.car-row{
+    margin-bottom:50px;
+}
+
+.car-details{
+    margin-top:20px;
+}
+
+.section-title{
+    font-size:32px;
+}
+
 }
