@@ -56,7 +56,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
             <p class="breadcrumbs"><span class="mr-2"><a href="{{ url('/') }}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Cars <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-3 bread">Choose Your Ride</h1>
+            <h1 class="mb-3 bread">Choose Your Car</h1>
           </div>
         </div>
       </div>
@@ -70,12 +70,13 @@
               <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-1.jpg') }}');">
               </div>
               <div class="text">
-                <h2 class="mb-0"><a href="{{ url('car-single') }}">Range Rover</a></h2>
+                <h2 class="mb-0"><a href="{{ url('car-single?id=1') }}">Range Rover</a></h2>
                 <div class="d-flex mb-3">
                   <span class="cat">Cheverolet</span>
                   <p class="price ml-auto">$500 <span>/day</span></p>
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car/rangerover') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+              <a href="{{ url('car-single?id=1') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
           </div>
@@ -87,12 +88,13 @@
               <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-2.jpg') }}');">
               </div>
               <div class="text">
-                <h2 class="mb-0"><a href="{{ url('car-single') }}">Honda</a></h2>
+                <h2 class="mb-0"><a href="{{ url('car-single?id=2') }}">Honda</a></h2>
                 <div class="d-flex mb-3">
                   <span class="cat">Subaru</span>
                   <p class="price ml-auto">$500 <span>/day</span></p>
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+              <a href="{{ url('car-single?id=2') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
           </div>
@@ -101,12 +103,13 @@
               <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-2.jpg') }}');">
               </div>
               <div class="text">
-                <h2 class="mb-0"><a href="{{ url('car-single') }}">Crysta</a></h2>
+                <h2 class="mb-0"><a href="{{ url('car-single?id=3') }}">Crysta</a></h2>
                 <div class="d-flex mb-3">
                   <span class="cat">Subaru</span>
                   <p class="price ml-auto">$500 <span>/day</span></p>
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+              <a href="{{ url('car-single?id=3') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
           </div>
@@ -120,7 +123,8 @@
                   <span class="cat">Subaru</span>
                   <p class="price ml-auto">$500 <span>/day</span></p>
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+              <a href="{{ url('car-single?id=4') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
           </div>
@@ -134,7 +138,7 @@
                   <span class="cat">Subaru</span>
                   <p class="price ml-auto">$500 <span>/day</span></p>
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Contact Us </a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
           </div>
@@ -148,7 +152,7 @@
                   <span class="cat">Subaru</span>
                   <p class="price ml-auto">$500 <span>/day</span></p>
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Contact Us</a> <a href="{{ url('car-single') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
           </div>
@@ -163,18 +167,87 @@
     
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container">
-        <!-- Footer content remains the same -->
-        <div class="row mb-5">
-          <!-- Footer widgets -->
+  <div class="container">
+    <div class="row mb-5">
+
+      <!-- Company Info -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">
+            OM SHANTI <span style="color:#01d28e;">TRAVELS</span>
+          </h2>
+          <p>
+            We provide the best car rental services for comfortable and safe travel.
+            Book your ride today and enjoy a smooth journey with Om Shanti Travels.
+          </p>
+          <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+            <!-- <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li> -->
+            <!-- <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li> -->
+            <!-- <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li> -->
+          </ul>
         </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <p>&copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Template by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+      </div>
+
+      <!-- Information -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4 ml-md-5">
+          <h2 class="ftco-heading-2">Information</h2>
+          <ul class="list-unstyled">
+            <li><a href="{{ url('/about') }}" class="py-2 d-block">About</a></li>
+            <!-- <li><a href="{{ url('/services') }}" class="py-2 d-block">Services</a></li> -->
+            <li><a href="{{ url('/blog') }}" class="py-2 d-block">Blog</a></li>
+            <li><a href="{{ url('/cars') }}" class="py-2 d-block">Cars</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Customer Support -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">Customer Support</h2>
+          <ul class="list-unstyled">
+            <!-- <li><a href="#" class="py-2 d-block">FAQ</a></li> -->
+            <!-- <li><a href="#" class="py-2 d-block">Payment Option</a></li> -->
+            <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
+            <!-- <li><a href="#" class="py-2 d-block">How it works</a></li> -->
+            <li><a href="{{ url('/contact') }}" class="py-2 d-block">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">Have a Questions?</h2>
+          <div class="block-23 mb-3">
+            <ul>
+              <li>
+                <span class="icon icon-map-marker"></span>
+                <span class="text">602,Floor No. 6, The 132 Complex, Nr.Indraprasth Saptak,Nr.AEC Flyover,Naranpura, Ahmedabad, Gujarat-380013</span>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="icon icon-phone"></span>
+                  <span class="text">+91 99090 35336</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="icon icon-envelope"></span>
+                  <span class="text">omshanti.amd@gmail.com</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </footer>
+
+    </div>
+
+    
+
+  </div>
+</footer>
 
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
