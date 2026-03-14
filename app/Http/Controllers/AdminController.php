@@ -57,9 +57,11 @@ class AdminController extends Controller
         return back();
     }
 
-    public function bookings(){
-        $bookings = DB::table('bookings')->get();
-        return view('admin.bookings',compact('bookings'));
-    }
+    public function bookings()
+{
+    $messages = DB::table('contacts')->get();
+
+    return view('admin.bookings', compact('messages'));
+}
 
 }

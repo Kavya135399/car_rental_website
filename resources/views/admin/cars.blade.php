@@ -1,90 +1,135 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Manage Cars - Om Shanti Travels</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background:#f4f6f9;
-    margin:0;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 }
 
-/* Header */
+body{
+display:flex;
+background:#0f172a;
+color:white;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:220px;
+height:100vh;
+background:#020617;
+padding:25px;
+position:fixed;
+}
+
+.sidebar h2{
+margin-bottom:40px;
+}
+
+.sidebar a{
+display:block;
+color:#cbd5f5;
+padding:12px;
+margin-bottom:10px;
+text-decoration:none;
+border-radius:6px;
+transition:0.3s;
+}
+
+.sidebar a:hover{
+background:#1e293b;
+}
+
+/* MAIN CONTENT */
+
+.main{
+margin-left:220px;
+width:100%;
+padding:40px;
+}
+
+/* HEADER */
 
 .header{
-    background:#2c3e50;
-    color:white;
-    padding:20px;
-    font-size:22px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
 }
 
-/* Container */
-
-.container{
-    padding:40px;
+.header h1{
+font-weight:500;
 }
 
-/* Add Button */
+/* ADD BUTTON */
 
 .add-btn{
-    display:inline-block;
-    margin-bottom:20px;
-    padding:12px 20px;
-    background:#27ae60;
-    color:white;
-    text-decoration:none;
-    border-radius:6px;
-    transition:0.3s;
+padding:10px 18px;
+background:#22c55e;
+color:white;
+text-decoration:none;
+border-radius:6px;
+transition:0.3s;
 }
 
 .add-btn:hover{
-    background:#1e8449;
-    transform:scale(1.05);
+background:#16a34a;
+transform:scale(1.05);
 }
 
-/* Table */
+/* TABLE */
+
+.table-box{
+background:#020617;
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+}
 
 table{
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+width:100%;
+border-collapse:collapse;
 }
 
-th, td{
-    padding:15px;
-    text-align:center;
+th,td{
+padding:14px;
+text-align:center;
 }
 
 th{
-    background:#34495e;
-    color:white;
+background:#1e293b;
 }
 
-tr:nth-child(even){
-    background:#f2f2f2;
+tr{
+border-bottom:1px solid #1e293b;
 }
 
 tr:hover{
-    background:#ecf0f1;
+background:#1e293b;
 }
 
-/* Delete Button */
+/* DELETE BUTTON */
 
 .delete-btn{
-    padding:8px 15px;
-    background:#e74c3c;
-    color:white;
-    text-decoration:none;
-    border-radius:5px;
-    transition:0.3s;
+background:#ef4444;
+padding:6px 12px;
+border-radius:5px;
+text-decoration:none;
+color:white;
+transition:0.3s;
 }
 
 .delete-btn:hover{
-    background:#c0392b;
-    transform:scale(1.1);
+background:#dc2626;
 }
 
 </style>
@@ -93,15 +138,29 @@ tr:hover{
 
 <body>
 
-<div class="header">
-Om Shanti Travels - Manage Cars
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h2>🚗 Admin</h2>
+
+<a href="/admin/dashboard">Dashboard</a>
+<a href="/admin/cars">Manage Cars</a>
+<a href="/admin/bookings">Customers</a>
+<a href="/admin">Logout</a>
 </div>
 
-<div class="container">
+<!-- MAIN CONTENT -->
 
-<h2>Cars List</h2>
+<div class="main">
+
+<div class="header">
+<h1>Manage Cars</h1>
 
 <a href="/admin/cars/add" class="add-btn">+ Add Car</a>
+</div>
+
+<div class="table-box">
 
 <table>
 
@@ -115,6 +174,7 @@ Om Shanti Travels - Manage Cars
 @foreach($cars as $car)
 
 <tr>
+
 <td>{{ $car->id }}</td>
 <td>{{ $car->name }}</td>
 <td>₹{{ $car->price }}</td>
@@ -128,6 +188,8 @@ Om Shanti Travels - Manage Cars
 @endforeach
 
 </table>
+
+</div>
 
 </div>
 

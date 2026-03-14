@@ -1,86 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Bookings - Om Shanti Travels</title>
+<title>Contact Messages - Om Shanti Travels</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
 body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background:#f4f6f9;
+display:flex;
+background:#0f172a;
+color:white;
 }
 
-/* Header */
+/* SIDEBAR */
 
-.header{
-    background:#2c3e50;
-    color:white;
-    padding:20px;
-    font-size:22px;
+.sidebar{
+width:220px;
+height:100vh;
+background:#020617;
+padding:25px;
+position:fixed;
 }
 
-/* Container */
-
-.container{
-    padding:40px;
+.sidebar h2{
+margin-bottom:40px;
 }
 
-/* Table */
+.sidebar a{
+display:block;
+color:#cbd5f5;
+padding:12px;
+margin-bottom:10px;
+text-decoration:none;
+border-radius:6px;
+transition:0.3s;
+}
+
+.sidebar a:hover{
+background:#1e293b;
+}
+
+/* MAIN */
+
+.main{
+margin-left:220px;
+width:100%;
+padding:40px;
+}
+
+/* TABLE */
+
+.table-box{
+background:#020617;
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+}
 
 table{
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+width:100%;
+border-collapse:collapse;
 }
 
-th, td{
-    padding:15px;
-    text-align:center;
+th,td{
+padding:14px;
+text-align:center;
 }
 
 th{
-    background:#34495e;
-    color:white;
+background:#1e293b;
 }
 
-tr:nth-child(even){
-    background:#f2f2f2;
+tr{
+border-bottom:1px solid #1e293b;
 }
 
 tr:hover{
-    background:#ecf0f1;
+background:#1e293b;
 }
 
-/* Buttons */
+/* BUTTONS */
 
-.view-btn{
-    padding:8px 14px;
-    background:#3498db;
-    color:white;
-    text-decoration:none;
-    border-radius:5px;
-    transition:0.3s;
-}
-
-.view-btn:hover{
-    background:#2980b9;
-    transform:scale(1.05);
+.reply-btn{
+background:#22c55e;
+padding:6px 12px;
+border-radius:5px;
+color:white;
+text-decoration:none;
+margin-right:5px;
 }
 
 .delete-btn{
-    padding:8px 14px;
-    background:#e74c3c;
-    color:white;
-    text-decoration:none;
-    border-radius:5px;
-    transition:0.3s;
-}
-
-.delete-btn:hover{
-    background:#c0392b;
-    transform:scale(1.05);
+background:#ef4444;
+padding:6px 12px;
+border-radius:5px;
+color:white;
+text-decoration:none;
 }
 
 </style>
@@ -88,35 +111,52 @@ tr:hover{
 
 <body>
 
-<div class="header">
-Om Shanti Travels - Booking Management
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h2>🚗 Admin</h2>
+
+<a href="/admin/dashboard">Dashboard</a>
+<a href="/admin/cars">Manage Cars</a>
+<a href="/admin/bookings">Customers</a>
+<a href="/admin">Logout</a>
 </div>
 
-<div class="container">
+<!-- MAIN -->
 
-<h2>Customer Bookings</h2>
+<div class="main">
+<h1 style="margin-bottom:25px;">Customer Contact Messages</h1>
+
+<div class="table-box">
 
 <table>
 
 <tr>
 <th>ID</th>
-<th>Customer Name</th>
-<th>Car</th>
-<th>Booking Date</th>
+<th>Name</th>
+<th>Email</th>
+<th>Subject</th>
+<th>Message</th>
 <th>Action</th>
 </tr>
 
-@foreach($bookings as $booking)
+@foreach($messages as $msg)
 
 <tr>
-<td>{{ $booking->id }}</td>
-<td>{{ $booking->name }}</td>
-<td>{{ $booking->car }}</td>
-<td>{{ $booking->date }}</td>
+
+<td>{{ $msg->id }}</td>
+<td>{{ $msg->name }}</td>
+<td>{{ $msg->email }}</td>
+<td>{{ $msg->subject }}</td>
+<td>{{ $msg->message }}</td>
 
 <td>
-<a href="#" class="view-btn">View</a>
-<a href="/admin/bookings/delete/{{$booking->id}}" class="delete-btn">Delete</a>
+
+<a href="/admin/reply/{{$msg->id}}" class="reply-btn">Reply</a>
+
+<a href="/admin/messages/delete/{{$msg->id}}" class="delete-btn">Delete</a>
+
 </td>
 
 </tr>
@@ -124,6 +164,8 @@ Om Shanti Travels - Booking Management
 @endforeach
 
 </table>
+
+</div>
 
 </div>
 
