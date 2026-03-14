@@ -163,6 +163,108 @@ target="_blank">
 
 </a>
 
+
+<style>
+.review-box{
+width:420px;
+margin:50px auto;
+background:#fff;
+padding:30px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+font-family:Arial;
+}
+
+.review-box h2{
+margin-bottom:10px;
+}
+
+.review-box p{
+color:#666;
+font-size:14px;
+margin-bottom:20px;
+}
+
+.review-box input,
+.review-box textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.star-rating{
+font-size:30px;
+margin:15px 0;
+color:#ffc107;
+}
+
+.star-rating input{
+display:none;
+}
+
+.star-rating label{
+cursor:pointer;
+font-size:30px;
+}
+
+button{
+margin-top:15px;
+background:#ffb84d;
+border:none;
+padding:10px 30px;
+border-radius:20px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#ffa726;
+}
+</style>
+
+
+<div class="review-box">
+
+<h2>Rate your experience</h2>
+
+<p>We highly value your feedback. Kindly rate your experience.</p>
+
+<form method="post" action="/review/save">
+@csrf
+
+<input type="text" name="name" placeholder="Your Name">
+
+<div class="star-rating">
+
+<input type="radio" name="rating" value="5" id="5">
+<label for="5">⭐</label>
+
+<input type="radio" name="rating" value="4" id="4">
+<label for="4">⭐</label>
+
+<input type="radio" name="rating" value="3" id="3">
+<label for="3">⭐</label>
+
+<input type="radio" name="rating" value="2" id="2">
+<label for="2">⭐</label>
+
+<input type="radio" name="rating" value="1" id="1">
+<label for="1">⭐</label>
+
+</div>
+
+<textarea name="message" placeholder="Write your feedback"></textarea>
+
+<button type="submit">Send</button>
+
+</form>
+
+</div>
+
+    
     <footer class="ftco-footer ftco-bg-dark ftco-section">
   <div class="container">
     <div class="row mb-5">

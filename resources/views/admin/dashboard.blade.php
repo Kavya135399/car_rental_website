@@ -142,6 +142,49 @@ border-bottom:1px solid #1e293b;
 color:#cbd5f5;
 }
 
+
+.review-card{
+    background:#0b1324;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.4);
+    margin-top:20px;
+}
+
+.review-table{
+    width:100%;
+    border-collapse:collapse;
+    color:white;
+}
+
+.review-table thead{
+    background:#111c34;
+}
+
+.review-table th{
+    padding:12px;
+    text-align:left;
+    font-weight:600;
+}
+
+.review-table td{
+    padding:12px;
+    border-top:1px solid #1f2a44;
+}
+
+.review-table tr:hover{
+    background:#0f1a30;
+}
+
+.rating{
+    background:#1e293b;
+    padding:5px 10px;
+    border-radius:8px;
+    color:#ffd700;
+    font-weight:bold;
+}
+
+
 </style>
 </head>
 
@@ -216,18 +259,35 @@ color:#cbd5f5;
 
 <!-- ACTIVITY -->
 
-<div class="activity">
+<h2 style="margin-top:30px;color:white;">Customer Reviews</h2>
 
-<h3>Recent Customer Activity</h3>
+<div class="review-card">
 
-<ul>
-<li>Rahul booked Toyota Fortuner</li>
-<li>Priya sent contact message</li>
-<li>Amit booked Swift Dzire</li>
-<li>Neha registered new account</li>
-</ul>
+<table class="review-table">
 
-</div>
+<thead>
+<tr>
+<th>Name</th>
+<th>Rating</th>
+<th>Message</th>
+</tr>
+</thead>
+
+<tbody>
+@foreach($reviews as $review)
+
+<tr>
+<td>{{$review->name}}</td>
+<td>
+<span class="rating">{{$review->rating}} ⭐</span>
+</td>
+<td>{{$review->message}}</td>
+</tr>
+
+@endforeach
+</tbody>
+
+</table>
 
 </div>
 

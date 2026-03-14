@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReviewController;
+
+Route::post('/review/save',[ReviewController::class,'saveReview']);
+Route::get('/admin/messages/delete/{id}', [AdminController::class, 'deleteMessage']);
+
+
 
 Route::get('/', function () {
     return view('home');
