@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Carbook</title>
+<title>Om Shanti Travels</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
 <link rel="stylesheet" href="{{ asset('css/icomoon.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/about.css') }}">
+
 </head>
 
 <body>
@@ -27,7 +29,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 <div class="container">
 
-<a class="navbar-brand" href="{{ url('/') }}">Car<span>Book</span></a>
+<a class="navbar-brand" href="{{ url('/') }}">om shanti<span> travels</span></a>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
 <span class="oi oi-menu"></span> Menu
@@ -67,7 +69,7 @@
 
 <!-- HERO SECTION -->
 <section class="hero-wrap hero-wrap-2 js-fullheight"
-style="background-image: url('{{ asset('images/bg_3.jpg') }}');">
+style="background-image: url('{{ asset('images/about2.jpg') }}');">
 
 <div class="overlay"></div>
 
@@ -78,12 +80,13 @@ style="background-image: url('{{ asset('images/bg_3.jpg') }}');">
 <div class="col-md-9 ftco-animate pb-5">
 
 <p class="breadcrumbs">
-<span class="mr-2"><a href="{{ url('/') }}">Home <i class="ion-ios-arrow-forward"></i></a></span>
-<span>About <i class="ion-ios-arrow-forward"></i></span>
+<!-- <span class="mr-2"><a href="{{ url('/') }}">Home <i class="ion-ios-arrow-forward"></i></a></span>
+<span>About <i class="ion-ios-arrow-forward"></i></span> -->
+<h1>Hire a professional chauffeur service that serves Pan India</h1>
+<p>Om Shanti Travels is a leading provider of professional chauffeur services in India.
+    With years of experience in the industry, we have become a trusted and reliable partner for individuals and businesses seeking luxury ground transportation Pan India.</p>
 </p>
-
-<h1 class="mb-3 bread">About Us</h1>
-
+<a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1" >Contact Now</a>
 </div>
 
 </div>
@@ -91,36 +94,218 @@ style="background-image: url('{{ asset('images/bg_3.jpg') }}');">
 
 </section>
 
-
-<!-- ABOUT SECTION -->
+    
 <section class="ftco-section ftco-about">
+			<div class="container">
+				<div class="row no-gutters">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);">
+					</div>
+					<div class="col-md-6 wrap-about ftco-animate">
+	          <div class="heading-section heading-section-white pl-md-5">
+	          	<span class="subheading">About us</span>
+	            <h2 class="mb-4">Welcome to Om Shanti Travels</h2>
 
+	            <p>Om Shanti Travels has been a trusted travel service provider since 1989, offering reliable and comfortable travel solutions. With years of experience in the travel industry, we are committed to providing safe, convenient, and affordable journeys for our customers.</p>
+
+                <p>Whether you need a car rental, city travel, or long-distance trip, our goal is to make every journey smooth and enjoyable.</p>
+                <p>Let us show you the way — travel with us!</p>
+                <a href="{{ url('/cars') }}" class="btn btn-primary py-2 mr-1" >Search Vehicles</a>
+	          </div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- our cars -->
+<section class="our-cars-section">
 <div class="container">
 
-<div class="row no-gutters">
+<h2 class="section-title text-center">Our<span> Cars</span></h2>
 
-<div class="col-md-6 p-md-5 img img-2"
-style="background-image: url('{{ asset('images/about.jpg') }}');">
+<!-- INNOVA CRYSTA -->
+<div class="row align-items-center car-row">
+
+<div class="col-md-6">
+<img src="images/car1.png" class="img-fluid car-img">
 </div>
 
-<div class="col-md-6 wrap-about ftco-animate">
+<div class="col-md-6 car-details">
+<h3>Innova Crysta</h3>
 
-<h2 class="mb-4">Welcome to Carbook</h2>
+<p>
+The Toyota Innova Crysta is a premium and spacious MPV perfect for family trips,
+airport transfers, and long-distance travel. It offers superior comfort,
+powerful performance, and a smooth driving experience.
+</p>
 
-<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+<ul>
+<li>7 Seater</li>
+<li>Air Conditioned</li>
+<li>Comfortable Seating</li>
+<li>Large Luggage Space</li>
+</ul>
 
-<p>On her way she met a copy. The copy warned the Little Blind Text.</p>
+<!-- <a href="#" class="btn-book">Book Now</a> -->
+</div>
 
-<a href="#" class="btn btn-primary py-3 px-4">Search Vehicle</a>
+</div>
+
+
+<!-- KIA CARENS -->
+<div class="row align-items-center car-row">
+
+<div class="col-md-6 order-md-1 car-details">
+
+<h3>Kia Carens</h3>
+
+<p>
+Kia Carens is a stylish and modern MPV designed for comfortable city and
+long-distance travel. It provides advanced features, spacious interiors,
+and smooth performance for a premium ride experience.
+</p>
+
+<ul>
+<li>6 / 7 Seater</li>
+<li>Luxury Interior</li>
+<li>Air Conditioned</li>
+<li>Smooth Ride</li>
+</ul>
+
+<!-- <a href="#" class="btn-book">Book Now</a> -->
+
+</div>
+
+<div class="col-md-6 order-md-2">
+<img src="images/car2.png" class="img-fluid car-img">
+</div>
+
+</div>
+
+<!-- DZIRE -->
+<div class="row align-items-center car-row">
+
+<div class="col-md-6">
+<img src="images/car3.jpg" class="img-fluid car-img">
+</div>
+
+<div class="col-md-6 car-details">
+<h3>Maruti Suzuki Dzire</h3>
+
+<p>
+Maruti Suzuki Dzire is a reliable and fuel-efficient sedan ideal for city
+rides and business travel. It offers comfortable seating and a smooth
+driving experience for daily or long-distance journeys.
+</p>
+
+<ul>
+<li>5 Seater</li>
+<li>Air Conditioned</li>
+<li>Excellent Mileage</li>
+<li>Comfortable Interior</li>
+</ul>
+
+<!-- <a href="#" class="btn-book">Book Now</a> -->
+</div>
+
+</div>
+
+
+<!-- HONDA CITY -->
+<div class="row align-items-center car-row">
+
+<div class="col-md-6 order-md-1 car-details">
+
+<h3>Honda City</h3>
+
+<p>
+Honda City is a premium sedan known for its luxury design, smooth
+performance, and spacious interior. Perfect for corporate travel,
+airport transfers, and comfortable long-distance rides.
+</p>
+
+<ul>
+<li>5 Seater</li>
+<li>Luxury Interior</li>
+<li>Air Conditioned</li>
+<li>Smooth Performance</li>
+</ul>
+
+<!-- <a href="#" class="btn-book">Book Now</a> -->
+
+</div>
+
+<div class="col-md-6 order-md-2">
+<img src="images/car4.jpg" class="img-fluid car-img">
+</div>
+
+</div>
+
+<!-- TOYOTA FORTUNER -->
+<div class="row align-items-center car-row">
+
+<div class="col-md-6">
+<img src="images/car5.jpg" class="img-fluid car-img">
+</div>
+
+<div class="col-md-6 car-details">
+
+<h3>Toyota Fortuner</h3>
+
+<p>
+Toyota Fortuner is a powerful and premium SUV designed for luxury,
+comfort, and performance. It is perfect for long journeys, VIP travel,
+and group trips with a stylish and commanding road presence.
+</p>
+
+<ul>
+<li>7 Seater</li>
+<li>Luxury SUV</li>
+<li>Air Conditioned</li>
+<li>Powerful Performance</li>
+</ul>
+
+<!-- <a href="#" class="btn-book">Book Now</a> -->
 
 </div>
 
 </div>
 
+
+<!-- Innova hycross -->
+<div class="row align-items-center car-row">
+
+<div class="col-md-6 order-md-1 car-details">
+
+<h3>Innova Hycross</h3>
+
+<p>
+Toyota Innova Hycross is a premium MPV that combines luxury, space,
+and advanced hybrid technology. It is perfect for family trips,
+airport transfers, and long-distance travel, offering a smooth
+and comfortable ride experience.
+</p>
+
+<ul>
+<li>7 / 8 Seater</li>
+<li>Hybrid Technology</li>
+<li>Luxury Interior</li>
+<li>Air Conditioned</li>
+<li>Smooth & Powerful Ride</li>
+</ul>
+
+<!-- <a href="#" class="btn-book">Book Now</a> -->
+
 </div>
+
+<div class="col-md-6 order-md-2">
+<img src="images/car6.jpg" class="img-fluid car-img">
+</div>
+
+</div>
+</div>
+
 
 </section>
-
 
 <!-- FOOTER -->
 <footer class="ftco-footer ftco-bg-dark ftco-section">

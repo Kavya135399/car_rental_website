@@ -8187,13 +8187,13 @@ h1, h2, h3, h4, h5,
     .ftco-navbar-light .navbar-nav {
       padding-bottom: 10px; } }
   .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
-    font-size: 15px;
+    font-size: 20px;
     padding-top: .9rem;
     padding-bottom: .9rem;
     padding-left: 20px;
     padding-right: 20px;
     color: #fff;
-    font-weight: 400;
+    font-weight: 500;
     opacity: 1 !important; }
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
       color: #01d28e; }
@@ -8336,7 +8336,7 @@ h1, h2, h3, h4, h5,
 
 .navbar-brand {
   font-weight: 800;
-  font-size: 20px;
+  font-size: 25px;
   text-transform: uppercase; }
 
 .hero-wrap {
@@ -9113,6 +9113,13 @@ textarea.form-control {
   opacity: 0;
   visibility: hidden; }
 
+.ftco-animate h1{
+  color: white;
+}
+
+.ftco-animate p{
+  color: white;
+}
 .bg-primary {
   background: #1089ff !important; }
 

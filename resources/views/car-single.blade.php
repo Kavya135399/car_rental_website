@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Carbook - Car Details</title>
+    <title>Om shanti Travels</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -33,8 +33,8 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="{{ url('/services') }}" class="nav-link">Services</a></li>
-            <li class="nav-item"><a href="{{ url('/pricing') }}" class="nav-link">Pricing</a></li>
+            <!-- <li class="nav-item"><a href="{{ url('/services') }}" class="nav-link">Services</a></li> -->
+            <!-- <li class="nav-item"><a href="{{ url('/pricing') }}" class="nav-link">Pricing</a></li> -->
             <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
             <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
             <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
@@ -83,9 +83,7 @@
 
                   <h2 class="mb-3 font-weight-bold">{{ $car['name'] }}</h2>
 
-                  <h3 class="text-primary mb-4">
-                    ${{ $car['price'] }} <small>/ Day</small>
-                  </h3>
+                  
 
                   <div class="row text-center mb-4">
 

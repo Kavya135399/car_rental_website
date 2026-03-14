@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Om Shanti Travels</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -29,8 +29,8 @@
     
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Car<span>Book</span></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+<a class="navbar-brand" href="{{ url('/') }}">Om Shanti <span> Travels</span></a>        
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
           <span class="oi oi-menu"></span> Menu
         </button>
 
@@ -38,6 +38,8 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
+<!-- <li class="nav-item"><a href="{{ url('/services') }}" class="nav-link">Services</a></li> -->
+<!-- <li class="nav-item"><a href="{{ url('/pricing') }}" class="nav-link">Pricing</a></li> -->
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
@@ -69,7 +71,9 @@
                   <div class="icon mr-3">
                     <span class="icon-map-o"></span>
                   </div>
-                  <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+
+                  <p><span>Address:</span> 602,Floor No. 6, The 132 Complex, Nr.Indraprasth Saptak,Nr.AEC Flyover,Naranpura, Ahmedabad, Gujarat-380013</p>
+
                 </div>
               </div>
               <div class="col-md-12">
@@ -77,7 +81,9 @@
                   <div class="icon mr-3">
                     <span class="icon-mobile-phone"></span>
                   </div>
-                  <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+
+                  <p><span>Phone:</span> <a href="tel://1234567920">+91 99090 35336</a></p>
+
                 </div>
               </div>
               <div class="col-md-12">
@@ -85,30 +91,48 @@
                   <div class="icon mr-3">
                     <span class="icon-envelope-o"></span>
                   </div>
-                  <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                  <p><span>Email:</span> <a href="mailto:info@yoursite.com">omshanti.amd@gmail.com</a></p>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-md-8 block-9 mb-md-5">
-            <form action="#" class="bg-light p-5 contact-form">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
-              </div>
-              <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-              </div>
-            </form>
-          </div>
+
+
+@if(session('success'))
+<div class="alert alert-success">
+{{ session('success') }}
+</div>
+@endif
+
+<form action="{{ route('contact.send') }}" method="POST" class="bg-light p-5 contact-form">
+
+@csrf
+
+<div class="form-group">
+<input type="text" name="name" class="form-control" placeholder="Your Name" required>
+</div>
+
+<div class="form-group">
+<input type="email" name="email" class="form-control" placeholder="Your Email" required>
+</div>
+
+<div class="form-group">
+<input type="text" name="subject" class="form-control" placeholder="Subject" required>
+</div>
+
+<div class="form-group">
+<textarea name="message" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
+</div>
+
+<div class="form-group">
+<input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+</div>
+
+</form>
+
+</div>
+            
         </div>
         <div class="row justify-content-center">
           <div class="col-md-12">
