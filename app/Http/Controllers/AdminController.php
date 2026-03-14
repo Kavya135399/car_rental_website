@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use DB;
+use App\Models\Contact;
+use App\Models\Review;
 
 class AdminController extends Controller
 {
@@ -14,21 +16,33 @@ class AdminController extends Controller
     }
 
     // Logout
-    public function logout(Request $request) {
-        Session::flush(); // destroy session
-        return redirect('/admin');
-    }
+    public function logout()
+{
+    session()->forget('admin_login');
+    return redirect('/admin');
+}
 
     // Login check
-    public function loginCheck(Request $request) {
-        if ($request->email == "admin@gmail.com" && $request->password == "1234") {
-            return redirect('/admin/dashboard');
-        }
-        return back()->with('error','Invalid Login');
+    public function loginCheck(Request $request)
+{
+    if($request->email == "admin@gmail.com" && $request->password == "1234"){
+
+        session(['admin_login' => true]); // create admin session
+
+        return redirect('/admin/dashboard');
     }
+
+    return back()->with('error','Invalid Login');
+}
 
     // Dashboard
     public function dashboard() {
+        if(!session()->has('admin_login')){
+        return redirect('/admin'); // redirect to login
+    }
+    $reviews = Review::latest()->take(5)->get();
+
+    return view('admin.dashboard',compact('reviews'));
 
         // CARD COUNTS
         $totalCars = DB::table('cars')->count();
@@ -79,6 +93,9 @@ class AdminController extends Controller
 
     // Cars
     public function cars() {
+        if(!session()->has('admin_login')){
+        return redirect('/admin');
+    }
         $cars = DB::table('cars')->get();
         return view('admin.cars', compact('cars'));
     }
@@ -117,7 +134,25 @@ class AdminController extends Controller
 
     // Bookings / Contacts
     public function bookings() {
+        if(!session()->has('admin_login')){
+        return redirect('/admin');
+    }
         $messages = DB::table('contacts')->get();
         return view('admin.bookings', compact('messages'));
     }
+    public function deleteMessage($id)
+{
+    $msg = Contact::find($id);
+
+    if($msg){
+        $msg->delete();
+    }
+
+    return redirect()->back()->with('success','Message Deleted Successfully');
 }
+}
+
+
+
+
+

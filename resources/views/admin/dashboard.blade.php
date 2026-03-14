@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
+<<<<<<< HEAD
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:#0f172a;color:white;display:flex;}
 .sidebar{width:230px;height:100vh;background:#020617;padding:20px;position:fixed;}
@@ -27,6 +28,182 @@ body{background:#0f172a;color:white;display:flex;}
 .activity h3{margin-bottom:15px;}
 .activity ul{list-style:none;}
 .activity li{padding:10px 0;border-bottom:1px solid #1e293b;color:#cbd5f5;}
+=======
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:230px;
+height:100vh;
+background:#020617;
+padding:20px;
+position:fixed;
+}
+
+.sidebar h2{
+margin-bottom:40px;
+}
+
+.sidebar a{
+display:block;
+color:#cbd5f5;
+padding:12px;
+margin-bottom:10px;
+text-decoration:none;
+border-radius:6px;
+transition:0.3s;
+}
+
+.sidebar a:hover{
+background:#1e293b;
+}
+
+/* MAIN */
+
+.main{
+margin-left:230px;
+padding:30px;
+width:100%;
+}
+
+/* HERO */
+
+.hero{
+height:200px;
+background:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70') center/cover;
+border-radius:12px;
+display:flex;
+align-items:end;
+padding:20px;
+margin-bottom:30px;
+}
+
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+margin-bottom:30px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+background:rgba(255,255,255,0.1);
+}
+
+.card h3{
+font-size:28px;
+margin-bottom:5px;
+}
+
+.card p{
+color:#94a3b8;
+}
+
+/* CHARTS */
+
+.charts{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+margin-bottom:30px;
+}
+
+.chart-box{
+background:#020617;
+padding:20px;
+border-radius:12px;
+}
+
+/* ACTIVITY */
+
+.activity{
+background:#020617;
+padding:20px;
+border-radius:12px;
+}
+
+.activity h3{
+margin-bottom:15px;
+}
+
+.activity ul{
+list-style:none;
+}
+
+.activity li{
+padding:10px 0;
+border-bottom:1px solid #1e293b;
+color:#cbd5f5;
+}
+
+
+.review-card{
+    background:#0b1324;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.4);
+    margin-top:20px;
+}
+
+.review-table{
+    width:100%;
+    border-collapse:collapse;
+    color:white;
+}
+
+.review-table thead{
+    background:#111c34;
+}
+
+.review-table th{
+    padding:12px;
+    text-align:left;
+    font-weight:600;
+}
+
+.review-table td{
+    padding:12px;
+    border-top:1px solid #1f2a44;
+}
+
+.review-table tr:hover{
+    background:#0f1a30;
+}
+
+.rating{
+    background:#1e293b;
+    padding:5px 10px;
+    border-radius:8px;
+    color:#ffd700;
+    font-weight:bold;
+}
+
+
+>>>>>>> 75503aca18290e7675fdd261fbd2df5ac394240c
 </style>
 </head>
 
@@ -55,6 +232,7 @@ body{background:#0f172a;color:white;display:flex;}
 <div class="chart-box"><canvas id="revenueChart"></canvas></div>
 </div>
 
+<<<<<<< HEAD
 <div class="activity">
 <h3>Recent Customer Activity</h3>
 <ul>
@@ -63,6 +241,50 @@ body{background:#0f172a;color:white;display:flex;}
 @endforeach
 </ul>
 </div>
+=======
+<div class="chart-box">
+<canvas id="customerChart"></canvas>
+</div>
+
+<div class="chart-box">
+<canvas id="revenueChart"></canvas>
+</div>
+
+</div>
+
+<!-- ACTIVITY -->
+
+<h2 style="margin-top:30px;color:white;">Customer Reviews</h2>
+
+<div class="review-card">
+
+<table class="review-table">
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Rating</th>
+<th>Message</th>
+</tr>
+</thead>
+
+<tbody>
+@foreach($reviews as $review)
+
+<tr>
+<td>{{$review->name}}</td>
+<td>
+<span class="rating">{{$review->rating}} ⭐</span>
+</td>
+<td>{{$review->message}}</td>
+</tr>
+
+@endforeach
+</tbody>
+
+</table>
+
+>>>>>>> 75503aca18290e7675fdd261fbd2df5ac394240c
 </div>
 
 <script>
