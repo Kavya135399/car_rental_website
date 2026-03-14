@@ -8,7 +8,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-<<<<<<< HEAD
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:#0f172a;color:white;display:flex;}
 .sidebar{width:230px;height:100vh;background:#020617;padding:20px;position:fixed;}
@@ -28,7 +27,7 @@ body{background:#0f172a;color:white;display:flex;}
 .activity h3{margin-bottom:15px;}
 .activity ul{list-style:none;}
 .activity li{padding:10px 0;border-bottom:1px solid #1e293b;color:#cbd5f5;}
-=======
+
 
 *{
 margin:0;
@@ -203,7 +202,6 @@ color:#cbd5f5;
 }
 
 
->>>>>>> 75503aca18290e7675fdd261fbd2df5ac394240c
 </style>
 </head>
 
@@ -232,25 +230,34 @@ color:#cbd5f5;
 <div class="chart-box"><canvas id="revenueChart"></canvas></div>
 </div>
 
-<<<<<<< HEAD
-<div class="activity">
-<h3>Recent Customer Activity</h3>
-<ul>
-@foreach($recentActivities as $activity)
-<li>{{ $activity }}</li>
-@endforeach
-</ul>
-</div>
-=======
-<div class="chart-box">
-<canvas id="customerChart"></canvas>
-</div>
 
-<div class="chart-box">
-<canvas id="revenueChart"></canvas>
-</div>
 
-</div>
+
+<script>
+/* BOOKINGS CHART */
+new Chart(document.getElementById("bookingChart"),{
+type:"line",
+data:{
+labels: {!! json_encode($bookingMonths) !!},
+datasets:[{label:"Monthly Bookings",data:{!! json_encode($bookingTotals) !!},borderColor:"#38bdf8",backgroundColor:"rgba(56,189,248,0.2)",tension:0.3}]
+},
+options:{responsive:true}
+});
+
+/* CUSTOMER CHART */
+new Chart(document.getElementById("customerChart"),{
+type:"bar",
+data:{labels:{!! json_encode($months) !!},datasets:[{label:"Customer Growth",data:{!! json_encode($totals) !!},backgroundColor:"#22c55e"}]},
+options:{responsive:true,plugins:{legend:{display:true},title:{display:true,text:"Monthly Customer Growth"}}}
+});
+
+/* REVENUE CHART */
+new Chart(document.getElementById("revenueChart"),{
+type:"doughnut",
+data:{labels:["Cars","Customers"],datasets:[{data:[{{ $totalCars }},{{ $totalCustomers }}],backgroundColor:["#3b82f6","#22c55e","#f59e0b"]}]}
+});
+</script>
+
 
 <!-- ACTIVITY -->
 
@@ -284,32 +291,6 @@ color:#cbd5f5;
 
 </table>
 
->>>>>>> 75503aca18290e7675fdd261fbd2df5ac394240c
 </div>
-
-<script>
-/* BOOKINGS CHART */
-new Chart(document.getElementById("bookingChart"),{
-type:"line",
-data:{
-labels: {!! json_encode($bookingMonths) !!},
-datasets:[{label:"Monthly Bookings",data:{!! json_encode($bookingTotals) !!},borderColor:"#38bdf8",backgroundColor:"rgba(56,189,248,0.2)",tension:0.3}]
-},
-options:{responsive:true}
-});
-
-/* CUSTOMER CHART */
-new Chart(document.getElementById("customerChart"),{
-type:"bar",
-data:{labels:{!! json_encode($months) !!},datasets:[{label:"Customer Growth",data:{!! json_encode($totals) !!},backgroundColor:"#22c55e"}]},
-options:{responsive:true,plugins:{legend:{display:true},title:{display:true,text:"Monthly Customer Growth"}}}
-});
-
-/* REVENUE CHART */
-new Chart(document.getElementById("revenueChart"),{
-type:"doughnut",
-data:{labels:["Cars","Customers"],datasets:[{data:[{{ $totalCars }},{{ $totalCustomers }}],backgroundColor:["#3b82f6","#22c55e","#f59e0b"]}]}
-});
-</script>
 </body>
 </html>

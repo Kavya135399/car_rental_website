@@ -10,53 +10,56 @@ use App\Models\Review;
 
 class AdminController extends Controller
 {
+    // =========================
     // Login view
+    // =========================
     public function login() {
         return view('admin.login');
     }
 
+    // =========================
     // Logout
-    public function logout()
-{
-    session()->forget('admin_login');
-    return redirect('/admin');
-}
+    // =========================
+    public function logout() {
+        session()->forget('admin_login');
+        return redirect('/admin');
+    }
 
+    // =========================
     // Login check
-    public function loginCheck(Request $request)
-{
-    if($request->email == "admin@gmail.com" && $request->password == "1234"){
-
-        session(['admin_login' => true]); // create admin session
-
-        return redirect('/admin/dashboard');
+    // =========================
+    public function loginCheck(Request $request) {
+        if ($request->email == "admin@gmail.com" && $request->password == "1234") {
+            session(['admin_login' => true]); // create admin session
+            return redirect('/admin/dashboard');
+        }
+        return back()->with('error', 'Invalid Login');
     }
 
-    return back()->with('error','Invalid Login');
-}
-
+    // =========================
     // Dashboard
+    // =========================
     public function dashboard() {
-        if(!session()->has('admin_login')){
-        return redirect('/admin'); // redirect to login
-    }
-    $reviews = Review::latest()->take(5)->get();
-
-    return view('admin.dashboard',compact('reviews'));
+        if (!session()->has('admin_login')) {
+            return redirect('/admin'); // redirect to login
+        }
 
         // CARD COUNTS
         $totalCars = DB::table('cars')->count();
-        $totalBookings = DB::table('contacts')->count(); // Using contacts as "bookings"
-        $totalCustomers = DB::table('contacts')->count(); // Contacts as customers
-        $totalMessages = DB::table('contacts')->count(); // Messages from contacts
+        $totalBookings = DB::table('contacts')->count();
+        $totalCustomers = DB::table('contacts')->count();
+        $totalMessages = DB::table('contacts')->count();
 
-        // RECENT ACTIVITIES (last 5 interactions)
+        // LATEST REVIEWS
+        $reviews = Review::latest()->take(5)->get();
+
+        // RECENT ACTIVITIES
         $recentActivities = [];
         $latestContacts = DB::table('contacts')
                             ->orderBy('created_at', 'desc')
                             ->limit(5)
                             ->get(['name']);
-        foreach($latestContacts as $c) {
+        foreach ($latestContacts as $c) {
             $recentActivities[] = "{$c->name} sent a contact message";
         }
 
@@ -69,20 +72,22 @@ class AdminController extends Controller
 
         $months = [];
         $totals = [];
-        foreach($customers as $c) {
+        foreach ($customers as $c) {
             $months[] = date("M", mktime(0,0,0,$c->month,10));
             $totals[] = $c->total;
         }
 
-        // BOOKINGS CHART (same as customers, since no bookings table)
+        // BOOKINGS CHART (reuse same data)
         $bookingMonths = $months;
         $bookingTotals = $totals;
 
+        // RETURN VIEW WITH ALL VARIABLES
         return view('admin.dashboard', compact(
             'totalCars',
             'totalBookings',
             'totalCustomers',
             'totalMessages',
+            'reviews',
             'recentActivities',
             'months',
             'totals',
@@ -91,11 +96,14 @@ class AdminController extends Controller
         ));
     }
 
-    // Cars
+    // =========================
+    // Cars CRUD
+    // =========================
     public function cars() {
-        if(!session()->has('admin_login')){
-        return redirect('/admin');
-    }
+        if (!session()->has('admin_login')) {
+            return redirect('/admin');
+        }
+
         $cars = DB::table('cars')->get();
         return view('admin.cars', compact('cars'));
     }
@@ -132,27 +140,25 @@ class AdminController extends Controller
         return back();
     }
 
+    // =========================
     // Bookings / Contacts
+    // =========================
     public function bookings() {
-        if(!session()->has('admin_login')){
-        return redirect('/admin');
-    }
+        if (!session()->has('admin_login')) {
+            return redirect('/admin');
+        }
+
         $messages = DB::table('contacts')->get();
         return view('admin.bookings', compact('messages'));
     }
-    public function deleteMessage($id)
-{
-    $msg = Contact::find($id);
 
-    if($msg){
-        $msg->delete();
+    public function deleteMessage($id) {
+        $msg = Contact::find($id);
+
+        if ($msg) {
+            $msg->delete();
+        }
+
+        return redirect()->back()->with('success', 'Message Deleted Successfully');
     }
-
-    return redirect()->back()->with('success','Message Deleted Successfully');
 }
-}
-
-
-
-
-

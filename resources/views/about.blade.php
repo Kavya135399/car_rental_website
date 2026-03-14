@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/about.css') }}">
 
+
 </head>
 
 <body>
@@ -69,7 +70,7 @@
 
 <!-- HERO SECTION -->
 <section class="hero-wrap hero-wrap-2 js-fullheight"
-style="background-image: url('{{ asset('images/about2.jpg') }}');">
+style="background-image: url('{{ asset('images/about1.jpg') }}');">
 
 <div class="overlay"></div>
 
@@ -80,13 +81,14 @@ style="background-image: url('{{ asset('images/about2.jpg') }}');">
 <div class="col-md-9 ftco-animate pb-5">
 
 <p class="breadcrumbs">
-<!-- <span class="mr-2"><a href="{{ url('/') }}">Home <i class="ion-ios-arrow-forward"></i></a></span>
-<span>About <i class="ion-ios-arrow-forward"></i></span> -->
+
 <h1>Hire a professional chauffeur service that serves Pan India</h1>
 <p>Om Shanti Travels is a leading provider of professional chauffeur services in India.
     With years of experience in the industry, we have become a trusted and reliable partner for individuals and businesses seeking luxury ground transportation Pan India.</p>
 </p>
 <a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1" >Contact Now</a>
+<br><br><span class="mr-2"><a href="{{ url('/') }}">Home <i class="ion-ios-arrow-forward"></i></a></span>
+<span>About <i class="ion-ios-arrow-forward"></i></span>
 </div>
 
 </div>
@@ -94,7 +96,7 @@ style="background-image: url('{{ asset('images/about2.jpg') }}');">
 
 </section>
 
-    
+<!-- about us  -->
 <section class="ftco-section ftco-about">
 			<div class="container">
 				<div class="row no-gutters">
@@ -116,34 +118,65 @@ style="background-image: url('{{ asset('images/about2.jpg') }}');">
 	</div>
 </section>
 
-<!-- our cars -->
+<!-- our service -->
 <section class="our-cars-section">
 <div class="container">
 
-<h2 class="section-title text-center">Our<span> Cars</span></h2>
+<h2 class="section-title text-center">Our<span> Services</span></h2>
 
-<!-- INNOVA CRYSTA -->
+<!-- hours service -->
 <div class="row align-items-center car-row">
 
 <div class="col-md-6">
-<img src="images/car1.png" class="img-fluid car-img">
+<img src="images/services.jpeg" class="img-fluid car-img">
 </div>
 
 <div class="col-md-6 car-details">
-<h3>Innova Crysta</h3>
+<h1><b>Hourly Services</b></h1>
 
-<p>
-The Toyota Innova Crysta is a premium and spacious MPV perfect for family trips,
-airport transfers, and long-distance travel. It offers superior comfort,
-powerful performance, and a smooth driving experience.
-</p>
+<h5>
+We provide hourly chauffeur services, allowing you to hire a private chauffeur for a few hours or an entire day. This service is ideal for attending multiple meetings, visiting different locations, or simply exploring the city in comfort and style. With flexible timing, professional drivers, and well-maintained vehicles, Om Shanti Travels ensures a smooth and stress-free journey tailored to your schedule.
+</h5>
+</div>
 
-<ul>
-<li>7 Seater</li>
-<li>Air Conditioned</li>
-<li>Comfortable Seating</li>
-<li>Large Luggage Space</li>
-</ul>
+</div>
+
+
+<!-- private services -->
+<div class="row align-items-center car-row">
+
+<div class="col-md-6 order-md-1 car-details">
+
+<h1><b>Private Transfers</b></h1>
+
+<h5>
+In addition to our hourly chauffeur services, Om Shanti Travels offers private transfers across India, providing personalized and reliable transportation. Each trip comes with a dedicated chauffeur who ensures comfort, safety, and a smooth travel experience. Ideal for business trips, airport transfers, or long-distance journeys, our service guarantees punctuality, professionalism, and convenience tailored to your needs.</h5>
+
+
+
+</div>
+
+<div class="col-md-6 order-md-2">
+<img src="images/private_transfer.jpg" class="img-fluid car-img">
+</div>
+
+</div>
+
+<!-- other transfer -->
+<div class="row align-items-cente car-row">
+
+<div class="col-md-6">
+<img src="images/transfers.png" class="img-fluid car-img">
+</div>
+
+<div class="col-md-6 car-details">
+<h1><b>Other Transfers</b></h1>
+
+<h5>
+For weddings, birthdays, corporate events, and other special occasions, Om Shanti Travels offers reliable event chauffeur services across India. We provide well-maintained cars to ensure a comfortable, safe, and hassle-free ride. Our professional chauffeurs focus on punctuality, convenience, and personalized service, helping you reach your destination smoothly and on time—making every special occasion simple, stress-free, and enjoyable.
+</h5>
+
+
 
 <!-- <a href="#" class="btn-book">Book Now</a> -->
 </div>
@@ -151,160 +184,91 @@ powerful performance, and a smooth driving experience.
 </div>
 
 
-<!-- KIA CARENS -->
+<!-- customer satisfaction -->
 <div class="row align-items-center car-row">
 
 <div class="col-md-6 order-md-1 car-details">
 
-<h3>Kia Carens</h3>
+<h1><b>Customer Satisfaction First</b></h1>
 
-<p>
-Kia Carens is a stylish and modern MPV designed for comfortable city and
-long-distance travel. It provides advanced features, spacious interiors,
-and smooth performance for a premium ride experience.
-</p>
+<h5>
+What sets Om Shanti Travels apart is our unwavering commitment to customer satisfaction. Our chauffeurs are experienced, courteous, and professional, ensuring that every journey is safe, comfortable, and hassle-free. Beyond driving, they provide friendly guidance and support, making your travel experience smooth and enjoyable. With Om Shanti Travels, your comfort and convenience are always our top priority.
+</h5>
 
-<ul>
-<li>6 / 7 Seater</li>
-<li>Luxury Interior</li>
-<li>Air Conditioned</li>
-<li>Smooth Ride</li>
-</ul>
+</div>
+
+<div class="col-md-6 order-md-2">
+<img src="images/customer_satisfaction.jpg" class="img-fluid car-img">
+</div>
+
+</div>
+
+<!-- vehical requirement -->
+<div class="row align-items-center car-row">
+
+<div class="col-md-6">
+<img src="images/service4.jpg" class="img-fluid car-img">
+</div>
+
+<div class="col-md-6 car-details">
+
+<h1><b>Reliable Cars and Professional Chauffeurs for Every Need</b></h1>
+
+<h5>
+Whether it’s a business meeting, a day in the city, or a special occasion, Om Shanti Travels provides safe and dependable car services with professional chauffeurs. Sit back and enjoy a comfortable, hassle-free ride while our drivers take care of all the details, ensuring punctuality, convenience, and peace of mind every time.</h5>
+
+
+</div>
+
+</div>
+
+
+<!-- conclusion -->
+<div class="row align-items-center car-row">
+
+<div class="col-md-6 order-md-1 car-details">
+
+<h3><b>Conclusion</b></h3>
+
+<h5>
+Om Shanti Travels is a trusted provider of reliable chauffeur services across India, offering hourly, private, and event car services for both individuals and businesses. With experienced chauffeurs, well-maintained vehicles, and a strong commitment to customer satisfaction, we ensure every journey is safe, comfortable, and hassle-free. Om Shanti Travels has earned a reputation as a dependable partner for professional and convenient ground transportation throughout the country.
+</h5>
+
 
 <!-- <a href="#" class="btn-book">Book Now</a> -->
 
 </div>
 
 <div class="col-md-6 order-md-2">
-<img src="images/car2.png" class="img-fluid car-img">
-</div>
-
-</div>
-
-<!-- DZIRE -->
-<div class="row align-items-center car-row">
-
-<div class="col-md-6">
-<img src="images/car3.jpg" class="img-fluid car-img">
-</div>
-
-<div class="col-md-6 car-details">
-<h3>Maruti Suzuki Dzire</h3>
-
-<p>
-Maruti Suzuki Dzire is a reliable and fuel-efficient sedan ideal for city
-rides and business travel. It offers comfortable seating and a smooth
-driving experience for daily or long-distance journeys.
-</p>
-
-<ul>
-<li>5 Seater</li>
-<li>Air Conditioned</li>
-<li>Excellent Mileage</li>
-<li>Comfortable Interior</li>
-</ul>
-
-<!-- <a href="#" class="btn-book">Book Now</a> -->
-</div>
-
-</div>
-
-
-<!-- HONDA CITY -->
-<div class="row align-items-center car-row">
-
-<div class="col-md-6 order-md-1 car-details">
-
-<h3>Honda City</h3>
-
-<p>
-Honda City is a premium sedan known for its luxury design, smooth
-performance, and spacious interior. Perfect for corporate travel,
-airport transfers, and comfortable long-distance rides.
-</p>
-
-<ul>
-<li>5 Seater</li>
-<li>Luxury Interior</li>
-<li>Air Conditioned</li>
-<li>Smooth Performance</li>
-</ul>
-
-<!-- <a href="#" class="btn-book">Book Now</a> -->
-
-</div>
-
-<div class="col-md-6 order-md-2">
-<img src="images/car4.jpg" class="img-fluid car-img">
-</div>
-
-</div>
-
-<!-- TOYOTA FORTUNER -->
-<div class="row align-items-center car-row">
-
-<div class="col-md-6">
-<img src="images/car5.jpg" class="img-fluid car-img">
-</div>
-
-<div class="col-md-6 car-details">
-
-<h3>Toyota Fortuner</h3>
-
-<p>
-Toyota Fortuner is a powerful and premium SUV designed for luxury,
-comfort, and performance. It is perfect for long journeys, VIP travel,
-and group trips with a stylish and commanding road presence.
-</p>
-
-<ul>
-<li>7 Seater</li>
-<li>Luxury SUV</li>
-<li>Air Conditioned</li>
-<li>Powerful Performance</li>
-</ul>
-
-<!-- <a href="#" class="btn-book">Book Now</a> -->
-
-</div>
-
-</div>
-
-
-<!-- Innova hycross -->
-<div class="row align-items-center car-row">
-
-<div class="col-md-6 order-md-1 car-details">
-
-<h3>Innova Hycross</h3>
-
-<p>
-Toyota Innova Hycross is a premium MPV that combines luxury, space,
-and advanced hybrid technology. It is perfect for family trips,
-airport transfers, and long-distance travel, offering a smooth
-and comfortable ride experience.
-</p>
-
-<ul>
-<li>7 / 8 Seater</li>
-<li>Hybrid Technology</li>
-<li>Luxury Interior</li>
-<li>Air Conditioned</li>
-<li>Smooth & Powerful Ride</li>
-</ul>
-
-<!-- <a href="#" class="btn-book">Book Now</a> -->
-
-</div>
-
-<div class="col-md-6 order-md-2">
-<img src="images/car6.jpg" class="img-fluid car-img">
+<img src="images/service5.jpg" class="img-fluid car-img">
 </div>
 
 </div>
 </div>
 
+</section>
 
+
+<!-- contact now with img -->
+<section class="hero-box">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-inner">
+        <h1><b>
+            Travel with Comfort & Trust  
+            <span>Om Shanti Travels</span>
+        </b></h1>
+
+        <h5>
+            Experience reliable car services for city travel, airport transfers, and special
+            occasions. Our professional drivers ensure a safe, smooth, and pleasant journey
+            every time.
+        </h5>
+
+        <a href="{{ url('/contact') }}" class="btn btn-primary">
+            Contact Now
+        </a>
+    </div>
 </section>
 
 <!-- FOOTER -->
