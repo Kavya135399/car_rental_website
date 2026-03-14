@@ -138,11 +138,13 @@ transform:scale(1.03);
 <form method="post" action="/admin/cars/save">
 @csrf
 
-<input type="text" name="name" placeholder="Car Name" required>
+<input type="text" name="name" placeholder="Car Name">
 
-<input type="text" name="price" placeholder="Price (₹)" required>
+<input type="text" name="brand" placeholder="Car Brand">
 
-<input type="text" name="image" placeholder="Image URL">
+<!-- <input type="text" name="details" placeholder="Car Details"> -->
+
+<input type="text" name="image" placeholder="Image">
 
 <button type="submit">Save Car</button>
 

@@ -167,7 +167,8 @@ background:#dc2626;
 <tr>
 <th>ID</th>
 <th>Car Name</th>
-<th>Price</th>
+<th>Brand</th>
+<th>Image</th>
 <th>Action</th>
 </tr>
 
@@ -177,12 +178,26 @@ background:#dc2626;
 
 <td>{{ $car->id }}</td>
 <td>{{ $car->name }}</td>
-<td>₹{{ $car->price }}</td>
+<td>{{ $car->brand }}</td>
 
 <td>
-<a href="/admin/cars/delete/{{$car->id}}" class="delete-btn">Delete</a>
+<img src="/images/{{$car->image}}" width="80">
 </td>
 
+
+
+<td>
+
+<a href="/admin/cars/edit/{{$car->id}}" 
+style="background:#3b82f6;padding:6px 12px;border-radius:5px;color:white;text-decoration:none;">
+Edit
+</a>
+
+<a href="/admin/cars/delete/{{$car->id}}" class="delete-btn">
+Delete
+</a>
+
+</td>
 </tr>
 
 @endforeach
