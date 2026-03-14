@@ -134,13 +134,34 @@
 </div>
             
         </div>
-        <div class="row justify-content-center">
+        <!-- <div class="row justify-content-center">
           <div class="col-md-12">
             <div id="map" class="bg-white"></div>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
+<!-- map -->
+<div style="width:100%; height:450px;">
+<iframe
+width="100%"
+height="100%"
+style="border:0;"
+loading="lazy"
+allowfullscreen
+referrerpolicy="no-referrer-when-downgrade"
+src="https://www.google.com/maps?q=602,Floor No. 6, The 132 Complex, Nr.Indraprasth Saptak,Nr.AEC Flyover,Naranpura, Ahmedabad, Gujarat-380013&output=embed">
+</iframe>
+</div>   
+
+<!-- whatsapp -->
+<a href="https://wa.me/919099982336?text=Dear%20Om%20Shanti%20Travels,%0A%0AI%20would%20like%20to%20book%20a%20car%20for%20my%20travel.%20Kindly%20provide%20the%20available%20vehicle%20options,%20pricing%20details,%20and%20the%20booking%20procedure.%0A%0AThank%20you."
+class="whatsapp-float"
+target="_blank">
+
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+
+</a>
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
   <div class="container">
@@ -233,6 +254,7 @@
       </svg>
     </div>
 
+    
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
@@ -247,8 +269,8 @@
     <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('js/jquery.timepicker.min.js') }}"></script>
     <script src="{{ asset('js/scrollax.min.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="{{ asset('js/google-map.js') }}"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+    <!-- <script src="{{ asset('js/google-map.js') }}"></script> -->
     <script src="{{ asset('js/main.js') }}"></script>
     
   </body>
