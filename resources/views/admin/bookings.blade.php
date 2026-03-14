@@ -153,11 +153,18 @@ text-decoration:none;
 
 <td>
 
-<a href="/admin/reply/{{$msg->id}}" class="reply-btn">Reply</a>
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $msg->email }}&su=Reply%20to%20your%20message" 
+target="_blank" 
+class="reply-btn">
+Reply
+</a>
 
 <a href="/admin/messages/delete/{{$msg->id}}" class="delete-btn">Delete</a>
-
-</td>
+<!-- <form action="/admin/messages/delete/{{$msg->id}}" method="POST">
+@csrf
+<button class="delete-btn">Delete</button>
+</form>
+</td> -->
 
 </tr>
 
