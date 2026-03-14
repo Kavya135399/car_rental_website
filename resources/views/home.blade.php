@@ -246,13 +246,13 @@
 		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-1.jpg);">
 		    					</div>
 		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
+		    						<h2 class="mb-0"><a href="#">Swift Dzire</a></h2>
 		    						<div class="d-flex mb-3">
-			    						<span class="cat">Cheverolet</span>
-			    					  <span>/day</span></p>
+			    						<span class="cat">Maruti</span>
+			    					  <!-- <span>/day</span></p> -->
 		    						</div>
-		    						<p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a> <a href="{{ url('/cars') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
-		    					</div>
+<p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+              <a href="{{ url('car-single?id=1') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
 		    				</div>
     					</div>
     					<div class="item">
@@ -260,13 +260,13 @@
 		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-2.jpg);">
 		    					</div>
 		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
+		    						<h2 class="mb-0"><a href="#">Honda City</a></h2>
 		    						<div class="d-flex mb-3">
-			    						<span class="cat">Cheverolet</span>
-			    						<span>/day</span></p>
+			    						<span class="cat">Honda</span>
+			    					  <!-- <span>/day</span></p> -->
 		    						</div>
-		    						<p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a> <a href="{{ url('/cars') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
-		    					</div>
+<p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+              <a href="{{ url('car-single?id=2') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
 		    				</div>
     					</div>
     					<div class="item">
@@ -274,13 +274,13 @@
 		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-3.jpg);">
 		    					</div>
 		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
+		    						<h2 class="mb-0"><a href="#">Honda Amaze</a></h2>
 		    						<div class="d-flex mb-3">
-			    						<span class="cat">Cheverolet</span>
-			    						<span>/day</span></p>
+			    						<span class="cat">Honda</span>
+			    					  <!-- <span>/day</span></p> -->
 		    						</div>
-		    						<p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a> <a href="{{ url('/cars') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
-		    					</div>
+<p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+              <a href="{{ url('car-single?id=3') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
 		    				</div>
     					</div>
     					<div class="item">
@@ -288,16 +288,21 @@
 		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-4.jpg);">
 		    					</div>
 		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
+		    						<h2 class="mb-0"><a href="#">Kia Carens</a></h2>
 		    						<div class="d-flex mb-3">
-			    						<span class="cat">Cheverolet</span>
-			    						<span>/day</span></p>
+			    						<span class="cat">Kia</span>
+			    					  <!-- <span>/day</span></p> -->
 		    						</div>
-		    						<p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a> <a href="{{ url('/cars') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
-		    					</div>
+<p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+              <a href="{{ url('car-single?id=4') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
 		    				</div>
     					</div>
     				</div>
+
+
+            
+            
+
     			</div>
     		</div>
     	</div>
