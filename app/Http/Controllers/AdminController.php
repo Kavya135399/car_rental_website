@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Session;
 use DB;
 use App\Models\Contact;
 use App\Models\Review;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     // =========================
@@ -28,14 +29,45 @@ class AdminController extends Controller
     // =========================
     // Login check
     // =========================
-    public function loginCheck(Request $request) {
-        if ($request->email == "admin@gmail.com" && $request->password == "1234") {
-            session(['admin_login' => true]); // create admin session
-            return redirect('/admin/dashboard');
-        }
-        return back()->with('error', 'Invalid Login');
+    // public function loginCheck(Request $request) {
+    //     if ($request->email == "admin@gmail.com" && $request->password == "1234") {
+    //         session(['admin_login' => true]); // create admin session
+    //         return redirect('/admin/dashboard');
+    //     }
+    //     return back()->with('error', 'Invalid Login');
+    // }
+// public function loginCheck(Request $request)
+// {
+//     $user = User::where('email',$request->email)->first();
+
+//     // if($user && Hash::check($request->password,$user->password))
+//     if($user && $request->password == $user->password)
+//     {
+//         session(['admin_login'=>true]);
+//         return redirect('/admin/dashboard');
+//     }
+
+//     return back()->with('error','Invalid Email or Password');
+// }
+
+public function loginCheck(Request $request)
+{
+    $user = User::where('email', $request->email)->first();
+
+    if (!$user) {
+        return back()->with('error', 'User not found');
     }
 
+    // ✅ CORRECT WAY
+    if (!Hash::check($request->password, $user->password)) {
+        return back()->with('error', 'Wrong password');
+    }
+
+    // login success
+    session(['admin' => $user->id]);
+
+    return redirect('/admin/dashboard');
+}
     // =========================
     // Dashboard
     // =========================

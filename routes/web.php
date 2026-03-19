@@ -179,3 +179,16 @@ Route::get('/admin/cars/delete/{id}', [AdminController::class,'deleteCar']);
 Route::get('/admin/bookings', [AdminController::class,'bookings']);
 
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+
+
+use App\Http\Controllers\PasswordResetController;
+
+Route::get('/forgot-password',[PasswordResetController::class,'forgotForm']);
+Route::post('/send-otp',[PasswordResetController::class,'sendOtp']);
+
+Route::get('/verify-otp',[PasswordResetController::class,'verifyForm']);
+Route::post('/verify-otp',[PasswordResetController::class,'verifyOtp']);
+
+Route::get('/reset-password',[PasswordResetController::class,'resetForm']);
+Route::post('/reset-password',[PasswordResetController::class,'resetPassword']);

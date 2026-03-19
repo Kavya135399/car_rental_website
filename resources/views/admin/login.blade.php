@@ -123,7 +123,9 @@ color:white;
 <input type="password" name="password" placeholder="Password" required>
 
 <button type="submit">Login</button>
-
+<div style="margin-top:10px;">
+<a href="/forgot-password">Forgot Password?</a>
+</div>
 </form>
 
 </div>
