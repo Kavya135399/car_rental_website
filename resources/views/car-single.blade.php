@@ -33,9 +33,8 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
-            <!-- <li class="nav-item"><a href="{{ url('/services') }}" class="nav-link">Services</a></li> -->
-            <!-- <li class="nav-item"><a href="{{ url('/pricing') }}" class="nav-link">Pricing</a></li> -->
             <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
+            <li class="nav-item"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li>
             <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
             <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
           </ul>
@@ -45,7 +44,14 @@
     <!-- END Navbar -->
 
     <!-- Hero Section -->
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/' . $car['image']) }}');" data-stellar-background-ratio="0.5">
+    @php
+      // Choose hero image safely: use 'image' if exists, else first of 'images', else default
+      $heroImage = $car['image'] ?? ($car['images'][0] ?? 'default.jpg');
+      // For carousel: use 'images' if exists, else wrap 'image' in array
+      $carouselImages = $car['images'] ?? [$car['image'] ?? 'default.jpg'];
+    @endphp
+
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/' . $heroImage) }}');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
@@ -65,70 +71,69 @@
     <section class="ftco-section bg-light">
       <div class="container">
         <div class="row justify-content-center">
-
           <div class="col-md-10">
             <div class="card shadow-lg border-0 p-4" style="border-radius:15px;">
-
               <div class="row align-items-center">
 
-                <!-- Car Image -->
-                <div class="col-md-6">
-                  <img src="{{ asset('images/' . $car['image']) }}" class="img-fluid rounded shadow">
-                </div>
+                <!-- Car Image Carousel -->
+                <!-- Car Image Carousel -->
+<div class="col-md-6">
+  <div id="carImagesCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+
+    <!-- Indicators (dots) -->
+    <ol class="carousel-indicators">
+      @foreach($carouselImages as $index => $image)
+        <li data-target="#carImagesCarousel" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
+      @endforeach
+    </ol>
+
+    <!-- Carousel Items -->
+    <div class="carousel-inner">
+      @foreach($carouselImages as $index => $image)
+        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+          <img src="{{ asset('images/' . $image) }}" class="d-block w-100 rounded shadow" alt="Car Image">
+        </div>
+      @endforeach
+    </div>
+
+    <!-- Note: Removed Prev/Next controls -->
+
+  </div>
+</div>
 
                 <!-- Car Info -->
                 <div class="col-md-6">
-
                   <span class="badge badge-primary mb-2">{{ $car['brand'] }}</span>
-
                   <h2 class="mb-3 font-weight-bold">{{ $car['name'] }}</h2>
 
-                  
-
                   <div class="row text-center mb-4">
-
                     <div class="col-4">
                       <i class="ion-ios-people" style="font-size:28px;color:#f96d00;"></i>
                       <p class="mt-2">{{ $car['seats'] }} Seats</p>
                     </div>
-
                     <div class="col-4">
                       <i class="ion-ios-speedometer" style="font-size:28px;color:#f96d00;"></i>
                       <p class="mt-2">{{ $car['transmission'] }}</p>
                     </div>
-
                     <div class="col-4">
                       <i class="ion-ios-flame" style="font-size:28px;color:#f96d00;"></i>
                       <p class="mt-2">{{ $car['fuel_type'] }}</p>
                     </div>
-
                   </div>
 
                   <hr>
 
                   <p>{{ $car['description'] }}</p>
 
-                  <p>
-                    <strong>Driver:</strong>
-                    @if($car['driver'])
-                      <span class="text-success">Available</span>
-                    @else
-                      <span class="text-danger">Not Available</span>
-                    @endif
-                  </p>
-
                   <div class="mt-4">
                     <a href="{{ url('/cars') }}" class="btn btn-secondary mr-2">Back to Cars</a>
-                    <a href="{{ url('/contact') }}" class="btn btn-primary">Contact Us</a>
+                    <a href="{{ url('/booking') }}" class="btn btn-primary">Book Now</a>
                   </div>
-
                 </div>
 
               </div>
-
             </div>
           </div>
-
         </div>
       </div>
     </section>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Om Shanti Travels - Booking</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ asset('css/open-iconic-bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+<link rel="stylesheet" href="{{ asset('css/aos.css') }}">
+<link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css') }}">
+<link rel="stylesheet" href="{{ asset('css/jquery.timepicker.css') }}">
+<link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
+<link rel="stylesheet" href="{{ asset('css/icomoon.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+<style>
+.booking-card{
+    background:#fff;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+.booking-card h3{
+    text-align:center;
+    margin-bottom:30px;
+    font-weight:600;
+}
+.form-control{
+    height:48px;
+    border-radius:6px;
+}
+textarea.form-control{
+    height:auto;
+}
+.btn-book{
+    background:#01d28e;
+    border:none;
+    padding:12px 35px;
+    color:#fff;
+    border-radius:30px;
+    font-size:16px;
+}
+.btn-book:hover{
+    background:#000;
+    color:#fff;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+<div class="container">
+<a class="navbar-brand" href="{{ url('/') }}">Om Shanti<span> Travels</span></a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+<span class="oi oi-menu"></span> Menu
+</button>
+<div class="collapse navbar-collapse" id="ftco-nav">
+<ul class="navbar-nav ml-auto">
+<li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
+<li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
+<li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
+<li class="nav-item active"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li>
+<li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
+<li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/car-10.jpg') }}');">
+<div class="overlay"></div>
+<div class="container">
+<div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+<div class="col-md-9 ftco-animate pb-5">
+<p class="breadcrumbs">
+<span class="mr-2"><a href="{{ url('/') }}">Home <i class="ion-ios-arrow-forward"></i></a></span>
+<span>Booking <i class="ion-ios-arrow-forward"></i></span>
+</p>
+<h1 class="mb-3 bread">Book Your Ride</h1>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Booking Form -->
+<section class="ftco-section bg-light">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-8">
+<div class="booking-card">
+
+<h3>Car Booking Form</h3>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <strong>⚠ Please fix the following errors:</strong>
+    <ul style="margin-top:10px;">
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+@if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
+<form action="{{ url('/booking') }}" method="POST" enctype="multipart/form-data">
+
+@csrf
+<div class="row">
+
+<!-- Selected Car -->
+<div class="col-md-6">
+<label>Selected Car</label>
+<input type="text" name="car" value="{{ request('car') }}" class="form-control" readonly>
+</div>
+
+<div class="col-md-6">
+<label>Price Per Day</label>
+<input type="text" name="price_per_day" id="price_per_day" value="{{ request('price') }}" class="form-control" readonly>
+</div>
+
+<div class="col-md-6">
+<label>Car Seats</label>
+<input type="number" id="car_seats" value="{{ request('seats') }}" class="form-control" readonly>
+</div>
+
+<div class="col-md-12">
+<p id="carSuggestion" style="color:red;font-weight:500;"></p>
+</div>
+<div class="col-md-6">
+<label>Your Name</label>
+<input type="text" name="name" class="form-control" required>
+</div>
+
+<div class="col-md-6">
+<label>Phone Number</label>
+<input type="text" name="phone" class="form-control" required>
+</div>
+
+<div class="col-md-6">
+<label>Email</label>
+<input type="email" name="email" class="form-control">
+</div>
+
+<!-- Number of Passengers -->
+<div class="col-md-6">
+<label>Number of Passengers</label>
+<input type="number" name="passengers" class="form-control" min="1" required>
+</div>
+
+<div class="col-md-6">
+<label>Pickup Location</label>
+<input type="text" name="pickup" class="form-control">
+</div>
+
+<div class="col-md-6">
+<label>Drop Location</label>
+<input type="text" name="drop" class="form-control">
+</div>
+
+<!-- Pickup Date -->
+<div class="col-md-6">
+<label>Pickup Date</label>
+<input type="date" name="date" class="form-control" required min="{{ date('Y-m-d') }}">
+</div>
+
+<!-- Pickup Time -->
+<div class="col-md-6">
+<label>Pickup Time</label>
+<input type="time" name="pickup_time" class="form-control" required>
+</div>
+
+<!-- Return Date -->
+<div class="col-md-6">
+<label>Return Date</label>
+<input type="date" name="return_date" class="form-control">
+</div>
+<!-- Price Per Day -->
+<!-- <div class="col-md-6">
+<label>Price Per Day (₹)</label>
+<input type="number" name="price_per_day" id="price_per_day" class="form-control" value="1500" readonly>
+</div> -->
+
+<!-- Total Days -->
+<div class="col-md-6">
+<label>Total Days</label>
+<input type="number" name="total_days" id="total_days" class="form-control" readonly>
+</div>
+
+<!-- Total Amount -->
+<div class="col-md-6">
+<label>Total Amount (₹)</label>
+<input type="number" name="total_amount" id="total_amount" class="form-control" readonly>
+</div>
+
+<!-- Payment Method -->
+<div class="col-md-6">
+<div class="form-group">
+<label>Payment Method</label>
+<select name="payment_method" id="payment_method" class="form-control">
+<option value="">Select Payment Method</option>
+<option value="Cash">Cash</option>
+<option value="UPI">UPI</option>
+<option value="Online">Online</option>
+</select>
+</div>
+</div>
+
+<!-- UPI Payment Section -->
+<div class="col-md-12 text-center" id="upi_section" style="display:none;">
+<label>Scan & Pay</label><br>
+
+<img src="{{ asset('images/upi-qr1.jpeg') }}" width="200">
+
+<p class="mt-2">
+UPI ID : <strong>davekavya43@oksbi</strong>
+</p>
+
+<p style="color:green;">
+After payment upload screenshot below
+</p>
+</div>
+
+<!-- Upload Payment Screenshot -->
+<div class="col-md-12" id="payment_proof" style="display:none;">
+<label>Upload Payment Screenshot</label>
+<input type="file" name="payment_proof"
+class="form-control"
+accept="image/*" required>
+</div>
+<!-- Message -->
+<div class="col-md-12">
+<label>Message</label>
+<textarea name="message" class="form-control" rows="3"></textarea>
+</div>
+
+<div class="col-md-12 text-center mt-4">
+<button type="submit" class="btn-book">Confirm Booking</button>
+</div>
+
+</div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="ftco-footer ftco-bg-dark ftco-section">
+  <div class="container">
+    <div class="row mb-5">
+
+      <!-- Company Info -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">
+            OM SHANTI <span style="color:#01d28e;">TRAVELS</span>
+          </h2>
+          <p>
+            We provide the best car rental services for comfortable and safe travel.
+            Book your ride today and enjoy a smooth journey with Om Shanti Travels.
+          </p>
+          <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+            <!-- <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li> -->
+            <!-- <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li> -->
+            <!-- <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li> -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Information -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4 ml-md-5">
+          <h2 class="ftco-heading-2">Information</h2>
+          <ul class="list-unstyled">
+            <li><a href="{{ url('/about') }}" class="py-2 d-block">About</a></li>
+            <!-- <li><a href="{{ url('/services') }}" class="py-2 d-block">Services</a></li> -->
+            <li><a href="{{ url('/blog') }}" class="py-2 d-block">Blog</a></li>
+            <li><a href="{{ url('/cars') }}" class="py-2 d-block">Cars</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Customer Support -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">Customer Support</h2>
+          <ul class="list-unstyled">
+            <!-- <li><a href="#" class="py-2 d-block">FAQ</a></li> -->
+            <!-- <li><a href="#" class="py-2 d-block">Payment Option</a></li> -->
+            <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
+            <!-- <li><a href="#" class="py-2 d-block">How it works</a></li> -->
+            <li><a href="{{ url('/contact') }}" class="py-2 d-block">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">Have a Questions?</h2>
+          <div class="block-23 mb-3">
+            <ul>
+              <li>
+                <span class="icon icon-map-marker"></span>
+                <span class="text">602,Floor No. 6, The 132 Complex, Nr.Indraprasth Saptak,Nr.AEC Flyover,Naranpura, Ahmedabad, Gujarat-380013</span>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="icon icon-phone"></span>
+                  <span class="text">+91 99090 35336</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="icon icon-envelope"></span>
+                  <span class="text">omshanti.amd@gmail.com</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    
+
+  </div>
+</footer>
+
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
+<script src="{{ asset('js/popper.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+<script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
+<script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('js/aos.js') }}"></script>
+<script src="{{ asset('js/jquery.animateNumber.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('js/jquery.timepicker.min.js') }}"></script>
+<script src="{{ asset('js/scrollax.min.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    let paymentMethod = document.getElementById("payment_method");
+    let upiSection = document.getElementById("upi_section");
+    let paymentProof = document.getElementById("payment_proof");
+    let paymentInput = document.querySelector("input[name='payment_proof']");
+
+    paymentMethod.addEventListener("change", function(){
+
+        if(this.value === "UPI" || this.value === "Online"){
+            upiSection.style.display = "block";
+            paymentProof.style.display = "block";
+            paymentInput.required = true; // ✅ make required
+        }else{
+            upiSection.style.display = "none";
+            paymentProof.style.display = "none";
+            paymentInput.required = false; // ✅ not required
+        }
+
+    });
+
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+let pickupDate = document.querySelector("input[name='date']");
+let returnDate = document.querySelector("input[name='return_date']");
+let price = document.getElementById("price_per_day");
+let totalDays = document.getElementById("total_days");
+let totalAmount = document.getElementById("total_amount");
+
+function calculateAmount(){
+
+    let start = new Date(pickupDate.value);
+    let end = new Date(returnDate.value);
+
+    if(start && end && end >= start){
+
+        let diffTime = end - start;
+        let days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+        totalDays.value = days;
+
+        let amount = days * parseFloat(price.value || 0);
+        totalAmount.value = amount;
+    }
+}
+
+// trigger events
+pickupDate.addEventListener("change", calculateAmount);
+returnDate.addEventListener("change", calculateAmount);
+
+// auto set return date
+pickupDate.addEventListener("change", function(){
+    returnDate.value = pickupDate.value;
+});
+
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+let passengers = document.querySelector("input[name='passengers']");
+let seats = document.getElementById("car_seats");
+let suggestion = document.getElementById("carSuggestion");
+
+passengers.addEventListener("input", function(){
+
+let passengerCount = parseInt(this.value) || 0;
+let carSeats = parseInt(seats.value) || 0;
+
+if(passengerCount > carSeats){
+    suggestion.innerHTML =
+    "⚠ This car has only " + carSeats +
+    " seats. Please choose a bigger car.";
+}
+else if(passengerCount <= 4){
+    suggestion.innerHTML =
+    "💡 Suggested: 4 Seater (Swift Dzire, Honda City, Amaze)";
+}
+else{
+    suggestion.innerHTML =
+    "💡 Suggested: 6 Seater (Innova Crysta, Kia Carens, Toyota Fortuner,Invicto)";
+}
+
+});
+
+});
+</script>
+<script>
+document.querySelector("form").addEventListener("submit", function(e){
+
+    let method = document.getElementById("payment_method").value;
+    let fileInput = document.querySelector("input[name='payment_proof']");
+    let file = fileInput.files[0];
+
+    if(method === "UPI" || method === "Online"){
+
+        if(!file){
+            alert("⚠ Please upload payment screenshot!");
+            e.preventDefault();
+            return;
+        }
+
+        let allowedTypes = ["image/jpeg","image/png","image/jpg","image/webp"];
+
+        if(!allowedTypes.includes(file.type)){
+            alert("⚠ Only image files (JPG, PNG) are allowed!");
+            fileInput.value = "";
+            e.preventDefault();
+        }
+
+    }
+
+});
+</script>
+</body>
+</html>

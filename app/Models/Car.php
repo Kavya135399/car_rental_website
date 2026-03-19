@@ -11,4 +11,7 @@ class Car extends Model
         'brand',
         'image'
     ];
+    protected $casts = [
+    'images' => 'array',
+];
 }

@@ -39,6 +39,7 @@
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
+<li class="nav-item"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li>
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
           </ul>
@@ -65,7 +66,7 @@
         <div class="row">
           <div class="col-md-4">
             <div class="car-wrap rounded ftco-animate">
-              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-1.jpg') }}');">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/swift.jpg') }}');">
               </div>
               <div class="text">
                 <h2 class="mb-0"><a href="{{ url('car-single?id=1') }}">Swift Dzire</a></h2>
@@ -73,7 +74,8 @@
                   <span class="cat">Maruti</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Swift Dzire&price=3000&seats=4') }}" class="btn btn-primary py-2 mr-1">Book Now</a>
+
               <a href="{{ url('car-single?id=1') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -83,7 +85,7 @@
           <!-- Example for car-2 -->
           <div class="col-md-4">
             <div class="car-wrap rounded ftco-animate">
-              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-2.jpg') }}');">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/honda.jpg') }}');">
               </div>
               <div class="text">
                 <h2 class="mb-0"><a href="{{ url('car-single?id=2') }}">Honda City</a></h2>
@@ -91,7 +93,7 @@
                   <span class="cat">Honda</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Honda City&price=3000&seats=4') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
               <a href="{{ url('car-single?id=2') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -99,7 +101,7 @@
 
 <div class="col-md-4">
             <div class="car-wrap rounded ftco-animate">
-              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-3.jpg') }}');">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/amaze.jpg') }}');">
               </div>
               <div class="text">
                 <h2 class="mb-0"><a href="{{ url('car-single?id=3') }}">Honda Amaze</a></h2>
@@ -107,14 +109,14 @@
                   <span class="cat">Honda</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Honda Amaze&price=30000&seats=4') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
               <a href="{{ url('car-single?id=3') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
           </div>
 <div class="col-md-4">
             <div class="car-wrap rounded ftco-animate">
-              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-4.jpg') }}');">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/kia.jpg') }}');">
               </div>
               <div class="text">
                 <h2 class="mb-0"><a href="{{ url('car-single?id=4') }}">Kia Carens</a></h2>
@@ -122,14 +124,14 @@
                   <span class="cat">Kia</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Kia Carens&price=5500&seats=6') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
               <a href="{{ url('car-single?id=4') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="car-wrap rounded ftco-animate">
-              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-5.jpg') }}');">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/innova.jpg') }}');">
               </div>
               <div class="text">
                 <h2 class="mb-0"><a href="{{ url('car-single?id=5') }}">Innova Crysta</a></h2>
@@ -137,14 +139,14 @@
                   <span class="cat">Toyota</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Innova Crysta&price=5500&seats=6') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
               <a href="{{ url('car-single?id=5') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
           </div>
 <div class="col-md-4">
             <div class="car-wrap rounded ftco-animate">
-              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-6.avif') }}');">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/hycross.avif') }}');">
               </div>
               <div class="text">
                 <h2 class="mb-0"><a href="{{ url('car-single?id=6') }}">Innova Hycross</a></h2>
@@ -152,7 +154,7 @@
                   <span class="cat">Toyota</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Innova Hycross&price=5500&seats=6') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
               <a href="{{ url('car-single?id=6') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -160,7 +162,7 @@
 
 <div class="col-md-4">
             <div class="car-wrap rounded ftco-animate">
-              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-7.jpg') }}');">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/fortuner.jpg') }}');">
               </div>
               <div class="text">
                 <h2 class="mb-0"><a href="{{ url('car-single?id=7') }}">Fortuner</a></h2>
@@ -168,7 +170,7 @@
                   <span class="cat">Toyota</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Fortuner&price=6000&seats=6') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
               <a href="{{ url('car-single?id=7') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -178,7 +180,7 @@
 
           <div class="col-md-4">
             <div class="car-wrap rounded ftco-animate">
-              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-8.jpg') }}');">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/camry.jpg') }}');">
               </div>
               <div class="text">
                 <h2 class="mb-0"><a href="{{ url('car-single?id=8') }}">Camry</a></h2>
@@ -186,7 +188,7 @@
                   <span class="cat">Toyota</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Camry&price=6000&seats=4') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
               <a href="{{ url('car-single?id=8') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -197,7 +199,7 @@
 
           <div class="col-md-4">
             <div class="car-wrap rounded ftco-animate">
-              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/car-9.avif') }}');">
+              <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/invicto.avif') }}');">
               </div>
               <div class="text">
                 <h2 class="mb-0"><a href="{{ url('car-single?id=9') }}">Invicto</a></h2>
@@ -205,7 +207,7 @@
                   <span class="cat">Maruti</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="{{ url('/contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Invicto&price=5500&seats=6') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
               <a href="{{ url('car-single?id=9') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
