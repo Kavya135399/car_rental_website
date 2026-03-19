@@ -39,6 +39,7 @@
                 <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
+<li class="nav-item"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li>
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
             </ul>
@@ -47,7 +48,7 @@
 </nav>
 <!-- END nav -->
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/bg_3.jpg') }}');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/blog.jpg') }}');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
@@ -113,7 +114,7 @@
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Rann of Kutch (White Desert)</a></h2>
 		    						<div class="d-flex mb-3">
-			    						<span class="cat">ultural programs, camel rides, handicraft shopping, and traditional Gujarati food</span>
+			    						<span class="cat">cultural programs, camel rides, handicraft shopping, and traditional Gujarati food</span>
 			    						
 		    						</div>
 		    						
@@ -291,7 +292,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/break.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/family1.jpg);">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Take Breaks During Long Trips</a></h2>
