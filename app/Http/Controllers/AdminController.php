@@ -3,138 +3,103 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use DB;
-use App\Models\Contact;
+use Illuminate\Support\Facades\DB;
 use App\Models\Review;
+use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+
 class AdminController extends Controller
 {
-    // =========================
-    // Login view
-    // =========================
     public function login() {
         return view('admin.login');
     }
 
-    // =========================
-    // Logout
-    // =========================
     public function logout() {
-        session()->forget('admin_login');
+        session()->forget('admin');
         return redirect('/admin');
     }
 
-    // =========================
-    // Login check
-    // =========================
-    // public function loginCheck(Request $request) {
-    //     if ($request->email == "admin@gmail.com" && $request->password == "1234") {
-    //         session(['admin_login' => true]); // create admin session
-    //         return redirect('/admin/dashboard');
-    //     }
-    //     return back()->with('error', 'Invalid Login');
-    // }
-// public function loginCheck(Request $request)
-// {
-//     $user = User::where('email',$request->email)->first();
+    public function loginCheck(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
-//     // if($user && Hash::check($request->password,$user->password))
-//     if($user && $request->password == $user->password)
-//     {
-//         session(['admin_login'=>true]);
-//         return redirect('/admin/dashboard');
-//     }
+        $user = User::where('email', $request->email)->first();
 
-//     return back()->with('error','Invalid Email or Password');
-// }
+        if (!$user) {
+            return back()->with('error', 'User not found');
+        }
 
-public function loginCheck(Request $request)
-{
-    $user = User::where('email', $request->email)->first();
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->with('error', 'Wrong password');
+        }
 
-    if (!$user) {
-        return back()->with('error', 'User not found');
+        session(['admin' => $user->id]);
+        return redirect('/admin/dashboard');
     }
 
-    // ✅ CORRECT WAY
-    if (!Hash::check($request->password, $user->password)) {
-        return back()->with('error', 'Wrong password');
+public function dashboard() {
+    if (!session()->has('admin')) {
+        return redirect('/admin');
     }
 
-    // login success
-    session(['admin' => $user->id]);
+    $totalCars = DB::table('cars')->count();
+    $totalBookings = DB::table('contacts')->count();
+    $totalCustomers = DB::table('contacts')->count();
+    $totalMessages = DB::table('contacts')->count();
 
-    return redirect('/admin/dashboard');
+    $reviews = Review::latest()->take(5)->get();
+
+    $recentActivities = [];
+    $latestContacts = DB::table('contacts')
+        ->orderBy('created_at', 'desc')
+        ->limit(5)
+        ->get(['name']);
+    foreach ($latestContacts as $c) {
+        $recentActivities[] = "{$c->name} sent a contact message";
+    }
+
+    // Customer chart
+    $customers = DB::table('contacts')
+        ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(id) as total'))
+        ->groupBy('month')
+        ->orderBy('month', 'asc')
+        ->get();
+
+    $months = [];
+    $totals = [];
+    foreach ($customers as $c) {
+        $months[] = date("M", mktime(0,0,0,$c->month,10));
+        $totals[] = $c->total;
+    }
+
+    // Booking chart
+    $bookings = DB::table('contacts')  // or table you use for bookings
+        ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(id) as total'))
+        ->groupBy('month')
+        ->orderBy('month', 'asc')
+        ->get();
+
+    $bookingMonths = [];
+    $bookingTotals = [];
+    foreach ($bookings as $b) {
+        $bookingMonths[] = date("M", mktime(0,0,0,$b->month,10));
+        $bookingTotals[] = $b->total;
+    }
+
+    return view('admin.dashboard', compact(
+        'totalCars', 'totalBookings', 'totalCustomers', 'totalMessages',
+        'reviews', 'recentActivities', 'months', 'totals',
+        'bookingMonths', 'bookingTotals'   // <--- add these
+    ));
 }
-    // =========================
-    // Dashboard
-    // =========================
-    public function dashboard() {
-        if (!session()->has('admin_login')) {
-            return redirect('/admin'); // redirect to login
-        }
 
-        // CARD COUNTS
-        $totalCars = DB::table('cars')->count();
-        $totalBookings = DB::table('contacts')->count();
-        $totalCustomers = DB::table('contacts')->count();
-        $totalMessages = DB::table('contacts')->count();
-
-        // LATEST REVIEWS
-        $reviews = Review::latest()->take(5)->get();
-
-        // RECENT ACTIVITIES
-        $recentActivities = [];
-        $latestContacts = DB::table('contacts')
-                            ->orderBy('created_at', 'desc')
-                            ->limit(5)
-                            ->get(['name']);
-        foreach ($latestContacts as $c) {
-            $recentActivities[] = "{$c->name} sent a contact message";
-        }
-
-        // CUSTOMER GROWTH CHART (monthly)
-        $customers = DB::table('contacts')
-            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(id) as total'))
-            ->groupBy('month')
-            ->orderBy('month')
-            ->get();
-
-        $months = [];
-        $totals = [];
-        foreach ($customers as $c) {
-            $months[] = date("M", mktime(0,0,0,$c->month,10));
-            $totals[] = $c->total;
-        }
-
-        // BOOKINGS CHART (reuse same data)
-        $bookingMonths = $months;
-        $bookingTotals = $totals;
-
-        // RETURN VIEW WITH ALL VARIABLES
-        return view('admin.dashboard', compact(
-            'totalCars',
-            'totalBookings',
-            'totalCustomers',
-            'totalMessages',
-            'reviews',
-            'recentActivities',
-            'months',
-            'totals',
-            'bookingMonths',
-            'bookingTotals'
-        ));
-    }
-
-    // =========================
     // Cars CRUD
-    // =========================
     public function cars() {
-        if (!session()->has('admin_login')) {
-            return redirect('/admin');
-        }
+        if (!session()->has('admin')) return redirect('/admin');
 
         $cars = DB::table('cars')->get();
         return view('admin.cars', compact('cars'));
@@ -172,13 +137,8 @@ public function loginCheck(Request $request)
         return back();
     }
 
-    // =========================
-    // Bookings / Contacts
-    // =========================
     public function bookings() {
-        if (!session()->has('admin_login')) {
-            return redirect('/admin');
-        }
+        if (!session()->has('admin')) return redirect('/admin');
 
         $messages = DB::table('contacts')->get();
         return view('admin.bookings', compact('messages'));
@@ -186,11 +146,7 @@ public function loginCheck(Request $request)
 
     public function deleteMessage($id) {
         $msg = Contact::find($id);
-
-        if ($msg) {
-            $msg->delete();
-        }
-
-        return redirect()->back()->with('success', 'Message Deleted Successfully');
+        if ($msg) $msg->delete();
+        return back()->with('success', 'Message Deleted Successfully');
     }
 }

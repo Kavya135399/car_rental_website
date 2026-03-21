@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Review;
 use Illuminate\Http\Request;
+use App\Models\Review;
 
 class ReviewController extends Controller
 {
-    public function saveReview(Request $request)
+    // Show form
+    public function index()
     {
+        return view('feedback');
+    }
+
+    // Store data
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'rating' => 'required',
+            'message' => 'nullable'
+        ]);
+
         Review::create([
             'name' => $request->name,
             'rating' => $request->rating,
             'message' => $request->message
         ]);
 
-        return redirect()->back()->with('success','Review Submitted!');
+        return redirect()->back()->with('success', 'Review Submitted!');
     }
 }

@@ -5,8 +5,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\TestController;
 
-Route::post('/review/save',[ReviewController::class,'saveReview']);
+// Route::post('/review/save',[ReviewController::class,'saveReview']);
+Route::get('/feedback', [ReviewController::class, 'index']);
+Route::post('/feedback', [ReviewController::class, 'store']);
+
 Route::get('/admin/messages/delete/{id}', [AdminController::class, 'deleteMessage']);
 
 
@@ -177,29 +181,75 @@ Route::get('/car-single', function (Request $request) {
 
 /* ================= ADMIN ROUTES ================= */
 
+// Route::get('/admin', [AdminController::class,'login']);
+// Route::post('/admin/login', [AdminController::class,'loginCheck']);
+
+// Route::get('/admin/dashboard', [AdminController::class,'dashboard']);
+
+// Route::get('/admin/cars', [AdminController::class,'cars']);
+// Route::get('/admin/cars/add', [AdminController::class,'addCar']);
+// Route::post('/admin/cars/save', [AdminController::class,'saveCar']);
+// Route::get('/admin/cars/delete/{id}', [AdminController::class,'deleteCar']);
+
+// Route::get('/admin/bookings', [AdminController::class,'bookings']);
+
+// Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+
+
+// use App\Http\Controllers\PasswordResetController;
+
+// Route::get('/forgot-password',[PasswordResetController::class,'forgotForm']);
+// Route::post('/send-otp',[PasswordResetController::class,'sendOtp']);
+
+// Route::get('/verify-otp',[PasswordResetController::class,'verifyForm']);
+// Route::post('/verify-otp',[PasswordResetController::class,'verifyOtp']);
+
+// Route::get('/reset-password',[PasswordResetController::class,'resetForm']);
+// Route::post('/reset-password',[PasswordResetController::class,'resetPassword']);
+
+
 Route::get('/admin', [AdminController::class,'login']);
 Route::post('/admin/login', [AdminController::class,'loginCheck']);
-
+Route::post('/admin/logout', [AdminController::class,'logout'])->name('admin.logout');
 Route::get('/admin/dashboard', [AdminController::class,'dashboard']);
-
 Route::get('/admin/cars', [AdminController::class,'cars']);
 Route::get('/admin/cars/add', [AdminController::class,'addCar']);
 Route::post('/admin/cars/save', [AdminController::class,'saveCar']);
+Route::get('/admin/cars/edit/{id}', [AdminController::class,'editCar']);
+Route::post('/admin/cars/update/{id}', [AdminController::class,'updateCar']);
 Route::get('/admin/cars/delete/{id}', [AdminController::class,'deleteCar']);
-
 Route::get('/admin/bookings', [AdminController::class,'bookings']);
+Route::get('/admin/messages/delete/{id}', [AdminController::class,'deleteMessage']);
 
-Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
-
-
-
+// Password Reset
 use App\Http\Controllers\PasswordResetController;
 
-Route::get('/forgot-password',[PasswordResetController::class,'forgotForm']);
-Route::post('/send-otp',[PasswordResetController::class,'sendOtp']);
+Route::get('/forgot-password', [PasswordResetController::class,'forgotForm']);
+Route::post('/send-otp', [PasswordResetController::class,'sendOtp']);
 
-Route::get('/verify-otp',[PasswordResetController::class,'verifyForm']);
-Route::post('/verify-otp',[PasswordResetController::class,'verifyOtp']);
+Route::get('/verify-otp', [PasswordResetController::class,'verifyForm']);
+Route::post('/verify-otp', [PasswordResetController::class,'verifyOtp']);
 
-Route::get('/reset-password',[PasswordResetController::class,'resetForm']);
-Route::post('/reset-password',[PasswordResetController::class,'resetPassword']);
+Route::get('/reset-password', [PasswordResetController::class,'resetForm']);
+Route::post('/reset-password', [PasswordResetController::class,'resetPassword']);
+
+// test
+Route::get('/forgot', function() {
+    return view('test-forgot');
+});
+// Route::post('/test2', [TestController::class, ]);
+Route::post('/test-forgot', function(Request $request) {
+    dd('POST received!', $request->all());
+});
+
+
+// use App\Http\Controllers\AdminCarController;
+// use App\Http\Controllers\CarsController;
+
+// // Admin
+// Route::get('/admin/add-car', [AdminCarController::class, 'create']);
+// Route::post('/admin/add-car', [AdminCarController::class, 'store']);
+
+// // User
+// Route::get('/cars', [CarsController::class, 'index']);

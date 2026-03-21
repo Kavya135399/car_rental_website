@@ -162,70 +162,7 @@ target="_blank">
 
 </a>
 
-
-<style>
-.review-box{
-width:420px;
-margin:50px auto;
-background:#fff;
-padding:30px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,0.2);
-font-family:Arial;
-}
-
-.review-box h2{
-margin-bottom:10px;
-}
-
-.review-box p{
-color:#666;
-font-size:14px;
-margin-bottom:20px;
-}
-
-.review-box input,
-.review-box textarea{
-width:100%;
-padding:10px;
-margin-top:10px;
-border-radius:6px;
-border:1px solid #ccc;
-}
-
-.star-rating{
-font-size:30px;
-margin:15px 0;
-color:#ffc107;
-}
-
-.star-rating input{
-display:none;
-}
-
-.star-rating label{
-cursor:pointer;
-font-size:30px;
-}
-
-button{
-margin-top:15px;
-background:#ffb84d;
-border:none;
-padding:10px 30px;
-border-radius:20px;
-cursor:pointer;
-font-size:16px;
-}
-
-button:hover{
-background:#ffa726;
-}
-</style>
-
-
-<div class="review-box">
+<!-- <div class="review-box">
 
 <h2>Rate your experience</h2>
 
@@ -261,8 +198,144 @@ background:#ffa726;
 
 </form>
 
-</div>
+</div> -->
 
+ <style>
+/* Container */
+.box {
+    width: 500px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    text-align: center;
+     max-width: 90%; 
+}
+
+/* Heading */
+.box h1 {
+    margin-bottom: 5px;
+}
+
+.box p {
+    color: #777;
+    font-size: 14px;
+}
+
+/* Inputs */
+.input-field,
+.textarea-field {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+}
+
+.input-field:focus,
+.textarea-field:focus {
+    border-color: #ffb84d;
+}
+
+/* Textarea */
+.textarea-field {
+    height: 100px;
+    resize: none;
+}
+
+/* Button */
+button {
+    margin-top: 15px;
+    background: #ffb84d;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ffa726;
+}
+
+/* Stars */
+.stars {
+    direction: rtl;
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.stars input {
+    display: none;
+}
+
+.stars label {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Hover effect */
+.stars label:hover,
+.stars label:hover ~ label {
+    color: gold;
+}
+
+/* Selected */
+.stars input:checked ~ label {
+    color: gold;
+}
+
+.center-wrapper {
+    display: flex;
+    justify-content: center;   
+    align-items: center;       
+    height: 100vh;
+}
+
+</style> 
+
+<div class="center-wrapper">
+<div class="box">
+<h1>Rate your experience</h1>
+<p>We highly value your feedback. Kindly rate your experience.</p>
+{{-- ✅ Success Message --}}
+@if(session('success'))
+    <p style="color:green">{{ session('success') }}</p>
+@endif
+<form method="POST" action="{{ url('/feedback') }}">
+    @csrf
+ <input type="text" name="name" class="input-field" placeholder="Your Name" required>
+
+        <div class="stars">
+            <input type="radio" name="rating" value="5" id="star5">
+            <label for="star5" class="star-label">★</label>
+
+            <input type="radio" name="rating" value="4" id="star4">
+            <label for="star4" class="star-label">★</label>
+
+            <input type="radio" name="rating" value="3" id="star3">
+            <label for="star3" class="star-label">★</label>
+
+            <input type="radio" name="rating" value="2" id="star2">
+            <label for="star2" class="star-label">★</label>
+
+            <input type="radio" name="rating" value="1" id="star1">
+            <label for="star1" class="star-label">★</label>
+        </div>
+
+<textarea name="message" class="textarea-field"></textarea>
+<button type="submit">Send</button>
+
+</form>
+</div>
+</div>
     
     <footer class="ftco-footer ftco-bg-dark ftco-section">
   <div class="container">
