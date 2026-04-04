@@ -1,22 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Reset Password</title>
-</head>
-<body>
-<h2>Reset Your Password</h2>
-
-<form method="POST" action="{{ url('/reset-password') }}">
-    @csrf
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="New Password" required><br>
-    <input type="password" name="password_confirmation" placeholder="Confirm Password" required><br>
-    <button type="submit">Reset Password</button>
-</form>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html>
 
@@ -120,8 +101,8 @@
         <form method="POST" action="{{ url('/reset-password') }}">
             @csrf
 
-            <input type="email" name="email" placeholder="Email" required>
-
+            <!-- <input type="email" name="email" placeholder="Email" required> -->
+<input type="email" name="email" value="{{ session('reset_email') }}" readonly>
             <input type="password" name="password" placeholder="New Password" required>
 
             <input type="password" name="password_confirmation" placeholder="Confirm Password" required>

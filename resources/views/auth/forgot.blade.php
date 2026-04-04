@@ -1,24 +1,3 @@
-<!-- <style>
-    
-</style>
-<body>
-<h2>Forgot Password</h2>
-
-@if(session('success'))
-    <p style="color:green">{{ session('success') }}</p>
-@endif
-@if(session('error'))
-    <p style="color:red">{{ session('error') }}</p>
-@endif
-
-<form method="POST" action="{{ url('/send-otp') }}">
-    @csrf
-    <input type="email" name="email" placeholder="Enter Email" required>
-
-    <button type="submit">Send OTP</button>
-</form>
-</body> -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,7 +109,11 @@ text-decoration:none;
 <div class="login-box">
 
 <h2>Forgot Password</h2>
-
+@if ($errors->any())
+    <div class="error">
+        {{ $errors->first() }}
+    </div>
+@endif
 @if(session('success'))
     <p class="success">{{ session('success') }}</p>
 @endif

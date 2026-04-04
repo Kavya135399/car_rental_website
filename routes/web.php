@@ -6,7 +6,12 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TestController;
-
+use App\Http\Controllers\CarsesController;
+// user
+Route::get('/carss', [CarsesController::class, 'index']);
+// ADMIN
+Route::get('/admin/add-carss', [CarsesController::class, 'create']);
+Route::post('/admin/add-carss', [CarsesController::class, 'store']);
 // Route::post('/review/save',[ReviewController::class,'saveReview']);
 Route::get('/feedback', [ReviewController::class, 'index']);
 Route::post('/feedback', [ReviewController::class, 'store']);

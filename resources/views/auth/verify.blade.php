@@ -1,24 +1,3 @@
-<!-- <h2>Verify OTP</h2>
-
-@if(session('success'))
-<p style="color:green">{{ session('success') }}</p>
-@endif
-
-@if(session('error'))
-<p style="color:red">{{ session('error') }}</p>
-@endif
-
-@if(session('otp'))
-<p style="color:blue">Test OTP: {{ session('otp') }}</p>
-@endif
-
-<form method="POST" action="{{ url('/verify-otp') }}">
-    @csrf
-    <input type="email" name="email" value="{{ session('reset_email') }}" placeholder="Email" readonly>
-    <input type="text" name="otp" placeholder="Enter OTP" required>
-    <button type="submit">Verify OTP</button>
-</form> -->
-
 <!DOCTYPE html>
 <html>
 <head>

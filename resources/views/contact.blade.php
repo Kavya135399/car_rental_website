@@ -330,7 +330,7 @@ button:hover {
             <label for="star1" class="star-label">★</label>
         </div>
 
-<textarea name="message" class="textarea-field"></textarea>
+<textarea name="message" class="textarea-field" placeholder="Write your feedback"></textarea>
 <button type="submit">Send</button>
 
 </form>

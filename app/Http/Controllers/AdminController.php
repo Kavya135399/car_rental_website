@@ -22,6 +22,7 @@ class AdminController extends Controller
 
     public function loginCheck(Request $request)
     {
+            
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
