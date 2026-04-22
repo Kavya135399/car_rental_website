@@ -52,9 +52,9 @@
 <li class="nav-item">
 <a href="{{ url('/cars') }}" class="nav-link">Cars</a>
 </li>
-<li class="nav-item">
+<!-- <li class="nav-item">
 <a href="{{ url('/booking') }}" class="nav-link">Booking</a>
-</li>
+</li> -->
 
 <li class="nav-item">
 <a href="{{ url('/blog') }}" class="nav-link">Blog</a>

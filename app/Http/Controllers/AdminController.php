@@ -7,7 +7,11 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Review;
 use App\Models\Contact;
 use App\Models\User;
+use App\Models\Car;
+use App\Models\CarUnit;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 
 class AdminController extends Controller
 {
@@ -48,8 +52,8 @@ public function dashboard() {
     }
 
     $totalCars = DB::table('cars')->count();
-    $totalBookings = DB::table('contacts')->count();
-    $totalCustomers = DB::table('contacts')->count();
+    $totalBookings = DB::table('bookings')->count();
+    $totalCustomers = DB::table('bookings')->distinct('phone')->count('phone');
     $totalMessages = DB::table('contacts')->count();
 
     $reviews = Review::latest()->take(5)->get();
@@ -78,7 +82,7 @@ public function dashboard() {
     }
 
     // Booking chart
-    $bookings = DB::table('contacts')  // or table you use for bookings
+    $bookings = DB::table('bookings')
         ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(id) as total'))
         ->groupBy('month')
         ->orderBy('month', 'asc')
@@ -102,7 +106,12 @@ public function dashboard() {
     public function cars() {
         if (!session()->has('admin')) return redirect('/admin');
 
-        $cars = DB::table('cars')->get();
+        $cars = Car::query()
+            ->withCount(['units as units_total' => function ($q) {
+                $q->where('status', 'active');
+            }])
+            ->orderBy('id', 'desc')
+            ->get();
         return view('admin.cars', compact('cars'));
     }
 
@@ -111,12 +120,49 @@ public function dashboard() {
     }
 
     public function saveCar(Request $request) {
-        DB::table('cars')->insert([
-            'name' => $request->name,
-            'brand' => $request->brand,
-            'image' => $request->image
+        if (!session()->has('admin')) return redirect('/admin');
+
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'brand' => 'required|string|max:255',
+            'price_per_day' => 'nullable|numeric|min:0',
+            'seats' => 'nullable|integer|min:1|max:60',
+            'fuel_type' => 'nullable|string|max:50',
+            'transmission' => 'nullable|string|max:50',
+            'featured' => 'nullable|boolean',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp,avif|max:4096',
         ]);
-        return redirect('/admin/cars');
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            // Store on the public disk (storage/app/public). Works reliably on Windows.
+            // Make sure `php artisan storage:link` exists so `/storage/...` serves it.
+            $imagePath = $request->file('image')->store('cars_uploads', 'public');
+        }
+
+        $insert = [
+            'name' => $data['name'],
+            'brand' => $data['brand'],
+            'image' => $imagePath,
+            'price_per_day' => $data['price_per_day'] ?? null,
+            'seats' => $data['seats'] ?? null,
+            'fuel_type' => $data['fuel_type'] ?? null,
+            'transmission' => $data['transmission'] ?? null,
+            'featured' => (bool) ($data['featured'] ?? false),
+            'description' => $data['description'] ?? null,
+        ];
+
+        $safe = [];
+        foreach ($insert as $key => $value) {
+            if (Schema::hasColumn('cars', $key)) {
+                $safe[$key] = $value;
+            }
+        }
+
+        Car::create($safe);
+
+        return redirect('/admin/cars')->with('success', 'Car added successfully');
     }
 
     public function editCar($id) {
@@ -125,12 +171,38 @@ public function dashboard() {
     }
 
     public function updateCar(Request $request, $id) {
-        DB::table('cars')->where('id', $id)->update([
-            'name' => $request->name,
-            'brand' => $request->brand,
-            'image' => $request->image
+        if (!session()->has('admin')) return redirect('/admin');
+
+        $car = Car::findOrFail($id);
+
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'brand' => 'required|string|max:255',
+            'price_per_day' => 'nullable|numeric|min:0',
+            'seats' => 'nullable|integer|min:1|max:60',
+            'fuel_type' => 'nullable|string|max:50',
+            'transmission' => 'nullable|string|max:50',
+            'featured' => 'nullable|boolean',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp,avif|max:4096',
         ]);
-        return redirect('/admin/cars');
+
+        if ($request->hasFile('image')) {
+            $car->image = $request->file('image')->store('cars_uploads', 'public');
+        }
+
+        $car->name = $data['name'];
+        $car->brand = $data['brand'];
+
+        if (Schema::hasColumn('cars', 'price_per_day')) $car->price_per_day = $data['price_per_day'] ?? null;
+        if (Schema::hasColumn('cars', 'seats')) $car->seats = $data['seats'] ?? null;
+        if (Schema::hasColumn('cars', 'fuel_type')) $car->fuel_type = $data['fuel_type'] ?? null;
+        if (Schema::hasColumn('cars', 'transmission')) $car->transmission = $data['transmission'] ?? null;
+        if (Schema::hasColumn('cars', 'featured')) $car->featured = (bool) ($data['featured'] ?? false);
+        if (Schema::hasColumn('cars', 'description')) $car->description = $data['description'] ?? null;
+        $car->save();
+
+        return redirect('/admin/cars')->with('success', 'Car updated successfully');
     }
 
     public function deleteCar($id) {

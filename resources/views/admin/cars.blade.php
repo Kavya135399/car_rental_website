@@ -146,8 +146,10 @@ background:#dc2626;
 
 <a href="/admin/dashboard">Dashboard</a>
 <a href="/admin/cars">Manage Cars</a>
+<a href="/admin/rentals">Bookings</a>
+<a href="/admin/drivers">Drivers</a>
 <a href="/admin/bookings">Customers</a>
-<a href="/admin">Logout</a>
+<a href="/admin/logout">Logout</a>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -161,6 +163,11 @@ background:#dc2626;
 </div>
 
 <div class="table-box">
+@if(session('success'))
+<div style="background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.35);padding:12px;border-radius:10px;margin-bottom:14px;color:#bbf7d0;">
+{{ session('success') }}
+</div>
+@endif
 
 <table>
 
@@ -168,6 +175,8 @@ background:#dc2626;
 <th>ID</th>
 <th>Car Name</th>
 <th>Brand</th>
+<th>Price/Day</th>
+<th>Units</th>
 <th>Image</th>
 <th>Action</th>
 </tr>
@@ -179,9 +188,29 @@ background:#dc2626;
 <td>{{ $car->id }}</td>
 <td>{{ $car->name }}</td>
 <td>{{ $car->brand }}</td>
+<td>
+@if(!is_null($car->price_per_day))
+₹{{ number_format($car->price_per_day) }}
+@else
+—
+@endif
+</td>
+<td>{{ $car->units_total ?? 0 }}</td>
 
 <td>
-<img src="/images/{{$car->image}}" width="80">
+@php
+  $img = null;
+  if ($car->image) {
+    $img = \Illuminate\Support\Str::startsWith($car->image, ['cars_uploads/', 'cars/', 'public/'])
+      ? asset('storage/' . $car->image)
+      : asset('images/' . $car->image);
+  }
+@endphp
+@if($img)
+  <img src="{{ $img }}" width="80" style="border-radius:8px;border:1px solid #1e293b;">
+@else
+  <span style="color:#94a3b8;">No image</span>
+@endif
 </td>
 
 
@@ -191,6 +220,11 @@ background:#dc2626;
 <a href="/admin/cars/edit/{{$car->id}}" 
 style="background:#3b82f6;padding:6px 12px;border-radius:5px;color:white;text-decoration:none;">
 Edit
+</a>
+
+<a href="/admin/cars/{{$car->id}}/units"
+style="background:#f59e0b;padding:6px 12px;border-radius:5px;color:#0f172a;text-decoration:none;margin-left:6px;font-weight:600;">
+Units
 </a>
 
 <a href="/admin/cars/delete/{{$car->id}}" class="delete-btn">

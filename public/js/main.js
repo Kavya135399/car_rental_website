@@ -1,3 +1,102 @@
+// Dynamic Cars Page Rendering (runs early so it works even if other scripts fail)
+(function () {
+  function run() {
+    try {
+      var path = window.location.pathname || "";
+      if (!/^\/cars\/?$/.test(path)) return;
+
+      var row = document.querySelector(".ftco-section.bg-light .container .row");
+      if (!row) return;
+
+      row.innerHTML = '<div class="col-12" style="padding:18px 0;text-align:center;color:#777;">Loading cars...</div>';
+
+      fetch("/api/cars", { headers: { "Accept": "application/json" } })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data || !Array.isArray(data.cars)) {
+            row.innerHTML = '<div class="col-12" style="padding:18px 0;text-align:center;color:#777;">Unable to load cars.</div>';
+            return;
+          }
+          if (data.cars.length === 0) {
+            row.innerHTML = '<div class="col-12" style="padding:18px 0;text-align:center;color:#777;">No cars added yet. Please add cars from Admin Panel.</div>';
+            return;
+          }
+
+          function esc(s) {
+            return String(s == null ? "" : s)
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#039;");
+          }
+
+          function card(car) {
+            var name = car.name || "";
+            var brand = car.brand || "";
+            var price = car.price_per_day != null ? car.price_per_day : 0;
+            var seats = car.seats != null ? car.seats : 0;
+            var img = car.image_url || "/images/car-1.jpg";
+
+            var total = car.total_units || 0;
+            var avail = car.available_units || 0;
+            var stockReady = total > 0;
+            var isAvailable = !stockReady || avail > 0;
+
+            var bookingHref =
+              "/booking?car_id=" + encodeURIComponent(car.id) +
+              "&car=" + encodeURIComponent(name) +
+              "&price=" + encodeURIComponent(price) +
+              "&seats=" + encodeURIComponent(seats);
+
+            var detailsHref = "/car/" + encodeURIComponent(car.id);
+
+            var priceHtml = price ? ('<p class="price ml-auto">₹' + esc(price) + ' <span>/day</span></p>') : "";
+            var availHtml = "";
+            if (stockReady) {
+              availHtml = '<div style="margin-top:6px;font-size:12px;color:#01d28e;font-weight:600;">Available: ' + esc(avail) + " / " + esc(total) + "</div>";
+            }
+
+            var bookBtn = isAvailable
+              ? ('<a href="' + esc(bookingHref) + '" class="btn btn-primary py-2 mr-1">Book Now</a>')
+              : ('<a href="#" class="btn btn-primary py-2 mr-1 disabled" style="pointer-events:none;opacity:.6;">Not Available</a>');
+
+            return (
+              '<div class="col-md-4">' +
+                '<div class="car-wrap rounded">' +
+                  '<div class="img rounded d-flex align-items-end" style="background-image: url(\'' + esc(img) + '\');"></div>' +
+                  '<div class="text">' +
+                    '<h2 class="mb-0"><a href="' + esc(detailsHref) + '">' + esc(name) + '</a></h2>' +
+                    '<div class="d-flex mb-3">' +
+                      '<span class="cat">' + esc(brand) + '</span>' +
+                      priceHtml +
+                    '</div>' +
+                    availHtml +
+                    '<p class="d-flex mb-0 d-block">' +
+                      bookBtn +
+                      '<a href="' + esc(detailsHref) + '" class="btn btn-secondary py-2 ml-1">Details</a>' +
+                    '</p>' +
+                  "</div>" +
+                "</div>" +
+              "</div>"
+            );
+          }
+
+          row.innerHTML = data.cars.map(card).join("");
+        })
+        .catch(function () {
+          row.innerHTML = '<div class="col-12" style="padding:18px 0;text-align:center;color:#777;">Unable to load cars.</div>';
+        });
+    } catch (e) { /* ignore */ }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run);
+  } else {
+    run();
+  }
+})();
+
  AOS.init({
  	duration: 800,
  	easing: 'slide'
@@ -324,3 +423,97 @@
 
 })(jQuery);
 
+// Dynamic Cars Page Rendering (keeps cars.blade.php unchanged)
+(function () {
+  try {
+    var path = window.location.pathname || "";
+    if (!/^\/cars\/?$/.test(path)) return;
+
+    var row = document.querySelector(".ftco-section.bg-light .container .row");
+    if (!row) return;
+
+    // Always remove hardcoded cards. The page should show only admin-added cars.
+    row.innerHTML = '<div class="col-12" style="padding:18px 0;text-align:center;color:#777;">Loading cars...</div>';
+
+    fetch("/api/cars", { headers: { "Accept": "application/json" } })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !Array.isArray(data.cars)) {
+          row.innerHTML = '<div class="col-12" style="padding:18px 0;text-align:center;color:#777;">Unable to load cars.</div>';
+          return;
+        }
+
+        if (data.cars.length === 0) {
+          row.innerHTML = '<div class="col-12" style="padding:18px 0;text-align:center;color:#777;">No cars added yet. Please add cars from Admin Panel.</div>';
+          return;
+        }
+
+        function esc(s) {
+          return String(s == null ? "" : s)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+        }
+
+        function card(car) {
+          var name = car.name || "";
+          var brand = car.brand || "";
+          var price = car.price_per_day != null ? car.price_per_day : 0;
+          var seats = car.seats != null ? car.seats : 0;
+          var img = car.image_url || "/images/car-1.jpg";
+
+          var total = car.total_units || 0;
+          var avail = car.available_units || 0;
+          var stockReady = total > 0;
+          var isAvailable = !stockReady || avail > 0; // allow booking until stock is configured
+
+          var bookingHref =
+            "/booking?car_id=" + encodeURIComponent(car.id) +
+            "&car=" + encodeURIComponent(name) +
+            "&price=" + encodeURIComponent(price) +
+            "&seats=" + encodeURIComponent(seats);
+
+          var detailsHref = "/car/" + encodeURIComponent(car.id);
+
+          var priceHtml = price ? ('<p class="price ml-auto">₹' + esc(price) + ' <span>/day</span></p>') : "";
+          var availHtml = "";
+          if (stockReady) {
+            availHtml = '<div style="margin-top:6px;font-size:12px;color:#01d28e;font-weight:600;">Available: ' + esc(avail) + " / " + esc(total) + "</div>";
+          }
+
+          var bookBtn = isAvailable
+            ? ('<a href="' + esc(bookingHref) + '" class="btn btn-primary py-2 mr-1">Book Now</a>')
+            : ('<a href="#" class="btn btn-primary py-2 mr-1 disabled" style="pointer-events:none;opacity:.6;">Not Available</a>');
+
+          return (
+            '<div class="col-md-4">' +
+              '<div class="car-wrap rounded">' +
+                '<div class="img rounded d-flex align-items-end" style="background-image: url(\'' + esc(img) + '\');"></div>' +
+                '<div class="text">' +
+                  '<h2 class="mb-0"><a href="' + esc(detailsHref) + '">' + esc(name) + '</a></h2>' +
+                  '<div class="d-flex mb-3">' +
+                    '<span class="cat">' + esc(brand) + '</span>' +
+                    priceHtml +
+                  '</div>' +
+                  availHtml +
+                  '<p class="d-flex mb-0 d-block">' +
+                    bookBtn +
+                    '<a href="' + esc(detailsHref) + '" class="btn btn-secondary py-2 ml-1">Details</a>' +
+                  '</p>' +
+                "</div>" +
+              "</div>" +
+            "</div>"
+          );
+        }
+
+        row.innerHTML = data.cars.map(card).join("");
+      })
+      .catch(function () {
+        row.innerHTML = '<div class="col-12" style="padding:18px 0;text-align:center;color:#777;">Unable to load cars.</div>';
+      });
+  } catch (e) {
+    /* ignore */
+  }
+})();

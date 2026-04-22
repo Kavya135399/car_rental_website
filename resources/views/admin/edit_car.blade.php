@@ -155,14 +155,24 @@ transform:scale(1.03);
 </head>
 
 <body>
-@if($car->image)
-    <img src="{{ asset('images/'.$car->image) }}" width="100" style="margin-bottom:10px;">
+@php
+  $img = null;
+  if (!empty($car->image)) {
+    $img = \Illuminate\Support\Str::startsWith($car->image, ['cars_uploads/', 'cars/', 'public/'])
+      ? asset('storage/' . $car->image)
+      : asset('images/' . $car->image);
+  }
+@endphp
+@if($img)
+    <img src="{{ $img }}" width="120" style="margin:20px 0 0 260px;border-radius:12px;border:1px solid #1e293b;">
 @endif
 <!-- Sidebar -->
 <div class="sidebar">
     <h2>🚗 Admin</h2>
     <a href="/admin/dashboard">Dashboard</a>
     <a href="/admin/cars">Manage Cars</a>
+    <a href="/admin/rentals">Bookings</a>
+    <a href="/admin/drivers">Drivers</a>
     <a href="/admin/bookings">Customers</a>
     <a href="/admin/logout">Logout</a>
 </div>
@@ -180,6 +190,20 @@ transform:scale(1.03);
     <input type="text" name="name" value="{{$car->name}}" placeholder="Car Name" required>
 
     <input type="text" name="brand" value="{{$car->brand}}" placeholder="Brand" required>
+
+    <input type="number" name="price_per_day" value="{{$car->price_per_day ?? ''}}" placeholder="Price per day (₹)" step="1">
+
+    <input type="number" name="seats" value="{{$car->seats ?? ''}}" placeholder="Seats (e.g. 4, 6)" min="1">
+
+    <input type="text" name="fuel_type" value="{{$car->fuel_type ?? ''}}" placeholder="Fuel Type (Petrol/Diesel/Hybrid)">
+
+    <input type="text" name="transmission" value="{{$car->transmission ?? ''}}" placeholder="Transmission (Manual/Automatic)">
+
+    <label style="color:#94a3b8;font-size:14px;display:block;margin-top:6px;">
+      <input type="checkbox" name="featured" value="1" style="width:auto;margin-right:6px;" @if(!empty($car->featured)) checked @endif> Featured
+    </label>
+
+    <textarea name="description" placeholder="Description" style="width:100%;padding:12px;margin:10px 0;border-radius:6px;border:1px solid #1e293b;background:#0f172a;color:white;outline:none;min-height:90px;">{{$car->description ?? ''}}</textarea>
 
         <!-- <input type="file" name="image" value="{{$car->image}}"> -->
 <input type="file" name="image">

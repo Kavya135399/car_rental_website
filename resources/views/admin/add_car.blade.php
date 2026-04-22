@@ -122,8 +122,10 @@ transform:scale(1.03);
 
 <a href="/admin/dashboard">Dashboard</a>
 <a href="/admin/cars">Manage Cars</a>
+<a href="/admin/rentals">Bookings</a>
+<a href="/admin/drivers">Drivers</a>
 <a href="/admin/bookings">Customers</a>
-<a href="/admin">Logout</a>
+<a href="/admin/logout">Logout</a>
 
 </div>
 
@@ -153,6 +155,14 @@ transform:scale(1.03);
 
     <input type="text" name="name" placeholder="Car Name" required><br><br>
     <input type="text" name="brand" placeholder="Brand" required><br><br>
+    <input type="number" name="price_per_day" placeholder="Price per day (₹)" step="1"><br><br>
+    <input type="number" name="seats" placeholder="Seats (e.g. 4, 6)" min="1"><br><br>
+    <input type="text" name="fuel_type" placeholder="Fuel Type (Petrol/Diesel/Hybrid)"><br><br>
+    <input type="text" name="transmission" placeholder="Transmission (Manual/Automatic)"><br><br>
+    <label style="color:#cbd5f5;font-size:14px;display:block;margin-top:6px;">
+      <input type="checkbox" name="featured" value="1" style="width:auto;margin-right:6px;"> Featured
+    </label>
+    <textarea name="description" placeholder="Description" style="width:100%;padding:12px;margin:10px 0;border-radius:6px;border:1px solid #1e293b;background:#0f172a;color:white;outline:none;min-height:90px;"></textarea>
     <input type="file" name="image"><br><br>
 
     <button type="submit">Save Car</button>

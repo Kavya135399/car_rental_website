@@ -70,7 +70,7 @@ textarea.form-control{
 <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
-<li class="nav-item active"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li>
+<!-- <li class="nav-item active"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li> -->
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
 </ul>
@@ -115,6 +115,9 @@ textarea.form-control{
 @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
+@if(session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
 
 <form action="{{ url('/booking') }}" method="POST" enctype="multipart/form-data">
 
@@ -125,6 +128,7 @@ textarea.form-control{
 <div class="col-md-6">
 <label>Selected Car</label>
 <input type="text" name="car" value="{{ request('car') }}" class="form-control" readonly>
+<input type="hidden" name="car_id" value="{{ request('car_id') }}">
 </div>
 
 <div class="col-md-6">
@@ -188,6 +192,12 @@ textarea.form-control{
 <label>Return Date</label>
 <input type="date" name="return_date" class="form-control">
 </div>
+
+<!-- Drop Time -->
+<div class="col-md-6">
+<label>Drop Time</label>
+<input type="time" name="drop_time" class="form-control">
+</div>
 <!-- Price Per Day -->
 <!-- <div class="col-md-6">
 <label>Price Per Day (₹)</label>
@@ -205,6 +215,14 @@ textarea.form-control{
 <label>Total Amount (₹)</label>
 <input type="number" name="total_amount" id="total_amount" class="form-control" readonly>
 </div>
+
+
+
+<div class="col-md-6">
+  <label>Advance Payment (₹)</label>
+  <input type="number" id="advance_amount" class="form-control" readonly>
+</div>
+
 
 <!-- Payment Method -->
 <div class="col-md-6">
@@ -248,7 +266,8 @@ accept="image/*" required>
 </div>
 
 <div class="col-md-12 text-center mt-4">
-<button type="submit" class="btn-book">Confirm Booking</button>
+<p id="availabilityMsg" style="display:none;color:#dc2626;font-weight:700;margin-bottom:10px;"></p>
+<button type="submit" class="btn-book" id="confirmBookingBtn">Confirm Booking</button>
 </div>
 
 </div>
@@ -359,6 +378,7 @@ accept="image/*" required>
 <script src="{{ asset('js/jquery.timepicker.min.js') }}"></script>
 <script src="{{ asset('js/scrollax.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/booking-availability.js') }}"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -388,24 +408,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
 let pickupDate = document.querySelector("input[name='date']");
 let returnDate = document.querySelector("input[name='return_date']");
+let pickupTime = document.querySelector("input[name='pickup_time']");
+let dropTime = document.querySelector("input[name='drop_time']");
 let price = document.getElementById("price_per_day");
 let totalDays = document.getElementById("total_days");
 let totalAmount = document.getElementById("total_amount");
+let advanceAmount = document.getElementById("advance_amount");
 
+// ✅ ADD THESE (missing in your code)
+let paymentMethod = document.getElementById("payment_method");
+
+// ✅ Calculate function
 function calculateAmount(){
 
-    let start = new Date(pickupDate.value);
-    let end = new Date(returnDate.value);
+    if(pickupDate.value && returnDate.value){
 
-    if(start && end && end >= start){
+        let start = new Date(pickupDate.value + "T00:00:00");
+        let end = new Date(returnDate.value + "T00:00:00");
 
-        let diffTime = end - start;
-        let days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+        if(end >= start){
 
-        totalDays.value = days;
+            let diffTime = end.getTime() - start.getTime();
 
-        let amount = days * parseFloat(price.value || 0);
-        totalAmount.value = amount;
+            let days = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+            totalDays.value = days;
+
+            let amount = days * parseFloat(price.value || 0);
+            totalAmount.value = amount;
+
+            // ✅ AUTO UPDATE ADVANCE
+            if(paymentMethod.value === "UPI" || paymentMethod.value === "Online"){
+                advanceAmount.value = amount * 0.5;
+            } else {
+                advanceAmount.value = 0;
+            }
+        }
     }
 }
 
@@ -416,6 +454,24 @@ returnDate.addEventListener("change", calculateAmount);
 // auto set return date
 pickupDate.addEventListener("change", function(){
     returnDate.value = pickupDate.value;
+});
+
+// default drop time = pickup time (helps keep a valid range)
+pickupTime.addEventListener("change", function(){
+    if (!dropTime.value) dropTime.value = pickupTime.value;
+});
+
+// ✅ UPDATE ADVANCE WHEN PAYMENT METHOD CHANGES
+paymentMethod.addEventListener("change", function(){
+
+    let total = parseFloat(totalAmount.value || 0);
+
+    if(this.value === "UPI" || this.value === "Online"){
+        advanceAmount.value = total * 0.5;
+    } else {
+        advanceAmount.value = 0;
+    }
+
 });
 
 });

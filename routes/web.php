@@ -26,6 +26,7 @@ Route::post('/booking', [BookingController::class, 'store']);
 use App\Http\Controllers\CarController;
 
 Route::get('/cars',[CarController::class,'cars']);
+Route::get('/car/{id}',[CarController::class,'show']);
 
 Route::get('/', function () {
     return view('home');
@@ -217,6 +218,7 @@ Route::get('/car-single', function (Request $request) {
 Route::get('/admin', [AdminController::class,'login']);
 Route::post('/admin/login', [AdminController::class,'loginCheck']);
 Route::post('/admin/logout', [AdminController::class,'logout'])->name('admin.logout');
+Route::get('/admin/logout', [AdminController::class,'logout']);
 Route::get('/admin/dashboard', [AdminController::class,'dashboard']);
 Route::get('/admin/cars', [AdminController::class,'cars']);
 Route::get('/admin/cars/add', [AdminController::class,'addCar']);
@@ -229,6 +231,11 @@ Route::get('/admin/messages/delete/{id}', [AdminController::class,'deleteMessage
 
 // Password Reset
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\AdminCarUnitController;
+use App\Http\Controllers\AdminDriverController;
+use App\Http\Controllers\AdminRentalBookingController;
+use App\Http\Controllers\ApiCarsController;
+use App\Http\Controllers\ApiCarAvailabilityController;
 
 Route::get('/forgot-password', [PasswordResetController::class,'forgotForm']);
 Route::post('/send-otp', [PasswordResetController::class,'sendOtp']);
@@ -246,6 +253,35 @@ Route::get('/forgot', function() {
 // Route::post('/test2', [TestController::class, ]);
 Route::post('/test-forgot', function(Request $request) {
     dd('POST received!', $request->all());
+});
+
+// ======= Rental Admin Extensions (stock, drivers, bookings) =======
+Route::get('/admin/rentals', [AdminRentalBookingController::class, 'index']);
+Route::post('/admin/rentals/{id}/confirm', [AdminRentalBookingController::class, 'confirm']);
+Route::post('/admin/rentals/{id}/status', [AdminRentalBookingController::class, 'status']);
+
+Route::get('/admin/drivers', [AdminDriverController::class, 'index']);
+Route::post('/admin/drivers', [AdminDriverController::class, 'store']);
+Route::get('/admin/drivers/toggle/{id}', [AdminDriverController::class, 'toggle']);
+Route::get('/admin/drivers/delete/{id}', [AdminDriverController::class, 'delete']);
+
+Route::get('/admin/cars/{id}/units', [AdminCarUnitController::class, 'index']);
+Route::post('/admin/cars/{id}/units', [AdminCarUnitController::class, 'store']);
+Route::post('/admin/cars/{id}/units/bulk', [AdminCarUnitController::class, 'bulk']);
+Route::get('/admin/cars/{id}/units/delete/{unitId}', [AdminCarUnitController::class, 'delete']);
+
+// Frontend dynamic cars (used by public/js/main.js, keeps cars.blade.php unchanged)
+Route::get('/api/cars', [ApiCarsController::class, 'index']);
+Route::get('/api/cars/{id}/availability', [ApiCarAvailabilityController::class, 'show']);
+Route::get('/api/cars-debug', function () {
+    if (!config('app.debug')) {
+        abort(404);
+    }
+    $cars = \App\Models\Car::query()->orderByDesc('id')->limit(20)->get(['id', 'name', 'brand', 'image', 'price_per_day', 'seats']);
+    return response()->json([
+        'count' => \App\Models\Car::count(),
+        'cars' => $cars,
+    ]);
 });
 
 
