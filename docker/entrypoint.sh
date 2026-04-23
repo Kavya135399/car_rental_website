@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -u
 
-cd /app
+cd /var/www/html
 
 mkdir -p storage bootstrap/cache
 chmod -R ug+rwX storage bootstrap/cache || true
@@ -51,10 +51,19 @@ fi
 
 if [ "${RUN_OPTIMIZE:-true}" = "true" ]; then
   run_artisan "config:clear" >/dev/null 2>&1 || true
-  run_artisan "config:cache" || true
+run_artisan "config:cache" || true
   run_artisan "route:cache" >/dev/null 2>&1 || true
   run_artisan "view:cache" >/dev/null 2>&1 || true
 fi
 
 PORT_TO_BIND="${PORT:-8080}"
-exec php -S "0.0.0.0:${PORT_TO_BIND}" -t public
+
+# Configure Apache to listen on Railway's assigned $PORT.
+if [ -f /etc/apache2/ports.conf ]; then
+  sed -i "s/^Listen 80$/Listen ${PORT_TO_BIND}/" /etc/apache2/ports.conf || true
+fi
+if [ -f /etc/apache2/sites-available/000-default.conf ]; then
+  sed -i "s/<VirtualHost \\*:80>/<VirtualHost *:${PORT_TO_BIND}>/" /etc/apache2/sites-available/000-default.conf || true
+fi
+
+exec apache2-foreground

@@ -31,6 +31,13 @@ Optional toggles:
 
 - `RUN_MIGRATIONS=true` (set to `false` to skip migrations on startup)
 - `RUN_OPTIMIZE=true` (set to `false` to skip config/route/view caching)
+- `STRICT_STARTUP=false` (set to `true` to make startup fail fast if migrations/caching fails)
+
+### 2.1) Important Railway settings (avoids “Application failed to respond”)
+
+- Ensure the Railway service is building from the folder that contains the `Dockerfile` (this project’s backend is in `car-app`).
+- In the Railway Web service settings, do **not** override the Start Command (Docker `ENTRYPOINT` handles startup).
+- The container listens on Railway’s assigned `$PORT` automatically.
 
 ### 3) Get the live link
 
