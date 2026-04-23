@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-set -eu
+set -u
 
 cd /app
 
@@ -12,17 +12,37 @@ if [ -z "${APP_KEY:-}" ]; then
   echo "Set a permanent APP_KEY in Railway Variables (use: php artisan key:generate --show) to avoid session/login issues."
 fi
 
-php artisan storage:link >/dev/null 2>&1 || true
+STRICT_STARTUP="${STRICT_STARTUP:-false}"
 
-php artisan package:discover --ansi >/dev/null 2>&1 || true
+run_artisan() {
+  cmd="$1"
+  if php artisan $cmd; then
+    return 0
+  fi
+
+  echo "WARNING: php artisan ${cmd} failed."
+  if [ "$STRICT_STARTUP" = "true" ]; then
+    echo "ERROR: STRICT_STARTUP=true so exiting."
+    exit 1
+  fi
+  return 0
+}
+
+run_artisan "storage:link" >/dev/null 2>&1 || true
+
+run_artisan "package:discover --ansi" >/dev/null 2>&1 || true
 
 if [ "${RUN_MIGRATIONS:-true}" = "true" ] && [ -n "${DB_HOST:-${MYSQLHOST:-${MYSQL_HOST:-}}}" ]; then
   i=0
   until php artisan migrate --force; do
     i=$((i+1))
     if [ "$i" -ge 10 ]; then
-      echo "ERROR: Migrations failed after ${i} attempts."
-      exit 1
+      echo "WARNING: Migrations failed after ${i} attempts."
+      if [ "$STRICT_STARTUP" = "true" ]; then
+        echo "ERROR: STRICT_STARTUP=true so exiting."
+        exit 1
+      fi
+      break
     fi
     echo "Migrations failed, retrying in 3s... (${i}/10)"
     sleep 3
@@ -30,10 +50,10 @@ if [ "${RUN_MIGRATIONS:-true}" = "true" ] && [ -n "${DB_HOST:-${MYSQLHOST:-${MYS
 fi
 
 if [ "${RUN_OPTIMIZE:-true}" = "true" ]; then
-  php artisan config:clear >/dev/null 2>&1 || true
-  php artisan config:cache
-  php artisan route:cache || true
-  php artisan view:cache || true
+  run_artisan "config:clear" >/dev/null 2>&1 || true
+  run_artisan "config:cache" || true
+  run_artisan "route:cache" >/dev/null 2>&1 || true
+  run_artisan "view:cache" >/dev/null 2>&1 || true
 fi
 
 PORT_TO_BIND="${PORT:-8080}"
