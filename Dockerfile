@@ -1,33 +1,33 @@
-FROM php:8.2-apache
-
-ENV COMPOSER_ALLOW_SUPERUSER=1 \
-    COMPOSER_MEMORY_LIMIT=-1
+FROM php:8.2-cli
 
 RUN apt-get update && apt-get install -y \
-    git unzip curl \
-    libcurl4-openssl-dev \
-    libonig-dev \
-    libxml2-dev \
-    libzip-dev \
-    && docker-php-ext-install pdo pdo_mysql mbstring xml curl zip opcache \
-    && a2enmod rewrite headers \
-    && rm -rf /var/lib/apt/lists/*
+    git unzip libzip-dev zip curl \
+    && docker-php-ext-install pdo pdo_mysql zip
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-COPY composer.json composer.lock ./
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress --no-scripts
-
 COPY . .
 
-RUN cp docker/000-default.conf /etc/apache2/sites-available/000-default.conf \
-    && chmod +x docker/entrypoint.sh \
-    && chown -R www-data:www-data storage bootstrap/cache \
-    && chmod -R ug+rwX storage bootstrap/cache || true
+RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 80
+# Create Laravel writable folders
+RUN mkdir -p \
+    storage/framework/cache/data \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/logs \
+    bootstrap/cache \
+    /tmp/php-temp \
+ && chmod -R 777 storage bootstrap/cache /tmp/php-temp
 
-ENTRYPOINT ["./docker/entrypoint.sh"]
+# Use writable temp directory
+ENV TMPDIR=/tmp/php-temp
+ENV PHP_TEMP_DIR=/tmp/php-temp
 
+EXPOSE 10000
+
+CMD php artisan optimize:clear && \
+    php artisan config:cache && \
+    php artisan serve --host=0.0.0.0 --port=10000
