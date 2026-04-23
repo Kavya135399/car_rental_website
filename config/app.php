@@ -52,7 +52,12 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env(
+        'APP_URL',
+        env('RAILWAY_PUBLIC_DOMAIN')
+            ? 'https://'.env('RAILWAY_PUBLIC_DOMAIN')
+            : (env('RAILWAY_STATIC_URL') ? 'https://'.env('RAILWAY_STATIC_URL') : 'http://localhost')
+    ),
 
     /*
     |--------------------------------------------------------------------------

@@ -1,63 +1,41 @@
-<<<<<<< HEAD
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Car Rental (Laravel)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Deploy to Railway (Docker)
 
-## About Laravel
+This repository includes a `Dockerfile` and a startup script that will:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- create the `public/storage` symlink (`php artisan storage:link`)
+- run database migrations (`php artisan migrate --force`)
+- cache config/routes/views for production
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1) Create Railway services
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Create a new Railway project.
+2. Add a **MySQL** database to the project.
+3. Add a **Web** service from your GitHub repo (set the service root to `car-app` if this is a monorepo).
 
-## Learning Laravel
+### 2) Set Railway Variables
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+In the Web service, set these Variables (Environment Variables):
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- `APP_ENV=production`
+- `APP_DEBUG=false`
+- `APP_KEY` (generate locally: `php artisan key:generate --show`)
+- `APP_URL` (set to your Railway domain, example: `https://<your-domain>.up.railway.app`)
+- `DB_CONNECTION=mysql`
+- `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
 
-## Laravel Sponsors
+Note: `config/database.php` also supports Railway-style MySQL variables like `MYSQLHOST`, `MYSQLPORT`, etc., but setting `DB_*` explicitly is recommended.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Optional toggles:
 
-### Premium Partners
+- `RUN_MIGRATIONS=true` (set to `false` to skip migrations on startup)
+- `RUN_OPTIMIZE=true` (set to `false` to skip config/route/view caching)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 3) Get the live link
 
-## Contributing
+After the first successful deploy:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-=======
-# car_rental_website
->>>>>>> 6aa243e5d243d7fac7acdbd58a06900a16a5f1af
+1. Go to the Railway Web service → **Settings** → **Domains**.
+2. Generate a domain.
+3. Use the generated HTTPS URL as your live link (commonly ends with `.up.railway.app`).

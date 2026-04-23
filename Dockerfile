@@ -1,22 +1,23 @@
 FROM php:8.2-cli
 
 RUN apt-get update && apt-get install -y \
-    git unzip curl libsqlite3-dev sqlite3 \
-    && docker-php-ext-install pdo pdo_sqlite
+    git unzip curl \
+    && docker-php-ext-install pdo pdo_mysql \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader
+RUN chmod +x docker/entrypoint.sh \
+    && chmod -R ug+rwX storage bootstrap/cache || true
 
-RUN touch database/database.sqlite
+EXPOSE 8080
 
-RUN php artisan key:generate || true
-RUN php artisan config:clear || true
+ENTRYPOINT ["./docker/entrypoint.sh"]
 
-EXPOSE 10000
-
-CMD php -S 0.0.0.0:10000 -t public
