@@ -1,4 +1,4 @@
-<h2>Booking Confirmed</h2>
+﻿<h2>Booking Confirmed</h2>
 
 <p>Hi {{ $booking->name }},</p>
 
@@ -26,6 +26,18 @@
 
 <hr>
 
+@php
+  $code = $booking->booking_code ?: (string) $booking->id;
+  $phone = (string) ($booking->phone ?? '');
+  $receiptView = url('/booking/receipt?code=' . urlencode($code) . '&phone=' . urlencode($phone));
+  $receiptDownload = url('/booking/receipt?download=1&code=' . urlencode($code) . '&phone=' . urlencode($phone));
+@endphp
+
+<p><strong>Bill/Receipt:</strong></p>
+<ul>
+  <li><a href="{{ $receiptView }}" target="_blank" rel="noopener">View Bill</a></li>
+  <li><a href="{{ $receiptDownload }}" target="_blank" rel="noopener">Download Bill (HTML)</a></li>
+</ul>
+
 <p>Thank you,</p>
 <p><strong>Om Shanti Travels</strong></p>
-

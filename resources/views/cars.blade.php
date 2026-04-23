@@ -39,6 +39,7 @@
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
+<li class="nav-item"><a href="{{ url('/booking/status') }}" class="nav-link">Status</a></li>
 <!-- <li class="nav-item"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li> -->
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
@@ -251,6 +252,7 @@
             <!-- <li><a href="{{ url('/services') }}" class="py-2 d-block">Services</a></li> -->
             <li><a href="{{ url('/blog') }}" class="py-2 d-block">Blog</a></li>
             <li><a href="{{ url('/cars') }}" class="py-2 d-block">Cars</a></li>
+            <li><a href="{{ url('/booking/status') }}" class="py-2 d-block">Booking Status</a></li>
           </ul>
         </div>
       </div>
@@ -326,4 +328,3 @@
     
   </body>
 </html>
-

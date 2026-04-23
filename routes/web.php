@@ -68,12 +68,13 @@ Route::get('/admin/cars/edit/{id}',[AdminController::class,'editCar']);
 Route::post('/admin/cars/update/{id}',[AdminController::class,'updateCar']);
 /* CAR SINGLE PAGE */
 
-Route::get('/booking', function () {
-    return view('booking');
-});
-Route::post('/booking-submit', function () {
-    return "Booking Submitted Successfully!";
-});
+// NOTE: /booking is handled by BookingController. Keep only one route definition to avoid conflicts.
+// Route::get('/booking', function () {
+//     return view('booking');
+// });
+// Route::post('/booking-submit', function () {
+//     return "Booking Submitted Successfully!";
+// });
 Route::get('/car-single', function (Request $request) {
 
     $cars = [

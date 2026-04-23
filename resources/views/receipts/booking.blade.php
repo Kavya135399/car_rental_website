@@ -76,8 +76,19 @@
           @endif
         </div>
         <div class="btns">
-          <a class="btn" href="{{ url('/booking/status?code=' . urlencode($code) . '&phone=' . urlencode($phone)) }}">Back to Status</a>
-          <a class="btn" href="{{ url('/booking/receipt?download=1&code=' . urlencode($code) . '&phone=' . urlencode($phone)) }}">Download</a>
+          @php
+            $statusUrl = '/booking/status?code=' . urlencode((string) $code);
+            if (!empty($phone)) {
+              $statusUrl .= '&phone=' . urlencode((string) $phone);
+            }
+
+            $downloadUrl = '/booking/receipt?download=1&code=' . urlencode((string) $code);
+            if (!empty($phone)) {
+              $downloadUrl .= '&phone=' . urlencode((string) $phone);
+            }
+          @endphp
+          <a class="btn" href="{{ url($statusUrl) }}">Back to Status</a>
+          <a class="btn" href="{{ url($downloadUrl) }}">Download</a>
           <a class="btn primary" href="#" onclick="window.print();return false;">Print / Save PDF</a>
         </div>
       </div>
@@ -155,7 +166,7 @@
             <div style="font-weight:800;">Notes</div>
             <ul style="margin:10px 0 0 18px;color:var(--muted);font-size:13px;">
               <li>This receipt acknowledges payment received and may not be a GST/tax invoice unless explicitly stated.</li>
-              <li>Keep your Booking ID and phone number to re-download this receipt anytime.</li>
+              <li>Keep your Booking ID (Booking Code) to re-download this receipt anytime.</li>
               <li>Online payment terms: <a href="{{ url('/terms/online-payment') }}">{{ url('/terms/online-payment') }}</a></li>
             </ul>
           </div>

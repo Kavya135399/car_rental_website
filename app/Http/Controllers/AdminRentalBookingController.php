@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Driver;
 use App\Mail\BookingConfirmedMail;
+use App\Mail\PaymentRejectedMail;
 use App\Services\CarAvailability;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -142,10 +143,18 @@ class AdminRentalBookingController extends Controller
         }
 
         $data = $request->validate([
-            'admin_utr' => 'required|string|min:6|max:64|regex:/^[A-Za-z0-9]+$/',
+            'admin_utr' => 'required|string|size:12|regex:/^[0-9]{12}$/',
         ]);
 
         $booking = Booking::findOrFail($id);
+
+        if (($booking->payment_method ?? null) !== 'UPI') {
+            return back()->with('error', 'UTR verification is only for UPI bookings.');
+        }
+
+        if (($booking->payment_status ?? null) === 'Paid') {
+            return back()->with('success', 'Payment is already marked as Paid.');
+        }
 
         $userUtr = strtoupper(trim((string) ($booking->payment_utr ?? '')));
         $adminUtr = strtoupper(trim((string) $data['admin_utr']));
@@ -187,6 +196,19 @@ class AdminRentalBookingController extends Controller
             $booking->payment_verified_by = null;
         }
         $booking->save();
+
+        if (!empty($booking->email)) {
+            $mailer = config('mail.default');
+            try {
+                Mail::to($booking->email)->send(new PaymentRejectedMail($booking));
+            } catch (\Throwable $e) {
+                return back()->with('error', 'Payment marked as rejected, but email failed to send: ' . $e->getMessage());
+            }
+
+            if (in_array($mailer, ['log', 'array', 'null'], true)) {
+                return back()->with('success', "Payment marked as rejected. Email was not delivered because MAIL_MAILER={$mailer}. Check storage/logs/laravel.log or configure SMTP in .env.");
+            }
+        }
 
         return back()->with('success', 'Payment marked as rejected.');
     }

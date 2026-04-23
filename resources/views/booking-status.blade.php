@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Booking Status - Om Shanti Travels</title>
@@ -44,6 +44,7 @@
         <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
         <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
         <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
+        <li class="nav-item active"><a href="{{ url('/booking/status') }}" class="nav-link">Status</a></li>
         <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
         <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
       </ul>
@@ -72,14 +73,15 @@
             <div class="row">
               <div class="col-md-6">
                 <label>Booking ID</label>
-                <input class="form-control" name="code" value="{{ old('code', $code ?? '') }}" placeholder="BK-YYYYMMDD-XXXXXX or ID" required>
+                <input class="form-control" id="code_input" name="code" value="{{ old('code', $code ?? '') }}" placeholder="BK-YYYYMMDD-XXXXXX or ID" required>
               </div>
               <div class="col-md-6">
                 <label>Phone</label>
-                <input class="form-control" name="phone" value="{{ old('phone', $phone ?? '') }}" placeholder="10-digit phone" required>
+                <input class="form-control" id="phone_input" name="phone" value="{{ old('phone', $phone ?? '') }}" placeholder="10-digit phone (required for numeric ID)">
               </div>
               <div class="col-md-12" style="margin-top:14px;">
                 <button type="submit" class="btn btn-primary" style="border-radius:12px;">Check Status</button>
+                <button type="button" class="btn btn-outline-primary" id="downloadBillBtn" style="border-radius:12px;margin-left:8px;">Download Bill</button>
               </div>
             </div>
           </form>
@@ -97,9 +99,7 @@
               $hasUtr = !empty($booking->payment_utr);
               $payId = $booking->gateway_payment_id ?? null;
               $canReceipt =
-                ($ps === 'Paid') ||
-                ($ps === 'Cash') ||
-                (($pm === 'UPI' || $pm === 'Online') && $hasUtr && $ps !== 'Rejected');
+                in_array($ps, ['Paid', 'Cash', 'Refunded', 'Refund Initiated'], true);
             @endphp
 
             <div class="kv">
@@ -126,25 +126,39 @@
                 @if($pm === 'Online' && $payId)
                   <div class="muted" style="margin-top:8px;">Payment ID: {{ $payId }}</div>
                 @endif
+                @if(!empty($booking->refund_status) || in_array($ps, ['Refund Initiated', 'Refunded'], true))
+                  <div class="muted" style="margin-top:8px;">
+                    Refund: {{ $booking->refund_status ?: $ps }}
+                    @if($booking->refunded_at)
+                      ({{ $booking->refunded_at->format('d M Y, H:i') }})
+                    @endif
+                  </div>
+                @endif
               </div>
             </div>
 
-            @if($pm === 'Online' && $ps !== 'Paid' && $ps !== 'Rejected')
+            @if($pm === 'Online' && $ps !== 'Paid' && $ps !== 'Rejected' && !empty($phone))
               <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
                 <a class="btn btn-primary" style="border-radius:12px;" href="{{ url('/payment/online?code=' . urlencode($code) . '&phone=' . urlencode($phone)) }}">Pay Online Now</a>
               </div>
               <div class="muted" style="margin-top:8px;">After payment, status will update automatically and bill will be available.</div>
+            @elseif($pm === 'Online' && $ps !== 'Paid' && $ps !== 'Rejected' && empty($phone))
+              <div style="margin-top:14px;" class="pill warn">Enter your phone number above to continue online payment.</div>
             @endif
 
             @if($canReceipt)
               <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-                <a class="btn btn-primary" style="border-radius:12px;" href="{{ url('/booking/receipt?code=' . urlencode($code) . '&phone=' . urlencode($phone)) }}">View Bill</a>
-                <a class="btn btn-outline-primary" style="border-radius:12px;" href="{{ url('/booking/receipt?download=1&code=' . urlencode($code) . '&phone=' . urlencode($phone)) }}">Download Bill</a>
+                @php
+                  $receiptBase = '/booking/receipt?code=' . urlencode($code);
+                  $receiptBase .= !empty($phone) ? ('&phone=' . urlencode($phone)) : '';
+                @endphp
+                <a class="btn btn-primary" style="border-radius:12px;" href="{{ url($receiptBase) }}">View Bill</a>
+                <a class="btn btn-outline-primary" style="border-radius:12px;" href="{{ url($receiptBase . '&download=1') }}">Download Bill</a>
               </div>
               @if($ps === 'Paid' || $ps === 'Cash')
-                <div class="muted" style="margin-top:8px;">You can download this bill anytime using your Booking ID and phone number.</div>
+                <div class="muted" style="margin-top:8px;">You can download this bill anytime using your Booking Code (BK-...) or Booking ID + phone.</div>
               @else
-                <div class="muted" style="margin-top:8px;">Bill is provisional until admin verifies your payment/UTR.</div>
+                <div class="muted" style="margin-top:8px;">This bill includes the latest refund/payment updates.</div>
               @endif
             @endif
 
@@ -152,7 +166,10 @@
               @if($ps === 'Paid')
                 <div style="margin-top:14px;" class="pill ok">Payment succeeded ✅</div>
               @elseif($ps === 'Rejected')
-                <div style="margin-top:14px;" class="pill bad">Payment rejected. Please contact support.</div>
+                <div style="margin-top:14px;" class="pill bad">Payment failed / rejected. Please try again.</div>
+                <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+                  <a class="btn btn-primary" style="border-radius:12px;" href="{{ url('/booking') }}">Book Now</a>
+                </div>
               @else
                 <div style="margin-top:14px;" class="pill warn">Payment pending verification (admin will match your UTR in the UPI statement).</div>
                 <div class="muted" style="margin-top:10px;">If you haven’t paid yet, scan and pay:</div>
@@ -177,5 +194,24 @@
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script>
+  (function(){
+    const btn = document.getElementById('downloadBillBtn');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      const code = (document.getElementById('code_input')?.value || '').trim();
+      const phone = (document.getElementById('phone_input')?.value || '').trim();
+      if(!code){
+        alert('Please enter your Booking ID / Booking Code.');
+        return;
+      }
+      let url = '/booking/receipt?download=1&code=' + encodeURIComponent(code);
+      if(phone){
+        url += '&phone=' + encodeURIComponent(phone);
+      }
+      window.location.href = url;
+    });
+  })();
+</script>
 </body>
 </html>

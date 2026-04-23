@@ -33,12 +33,22 @@ class BookingController extends Controller
     {
         $data = $request->validate([
             'code' => 'required|string|max:40',
-            'phone' => 'required|digits:10',
+            'phone' => 'nullable|digits:10',
         ]);
 
         $code = trim((string) $data['code']);
 
-        $query = Booking::query()->where('phone', $data['phone']);
+        $query = Booking::query();
+        $phone = isset($data['phone']) ? (string) $data['phone'] : '';
+        if ($phone !== '') {
+            $query->where('phone', $phone);
+        } else {
+            // If phone isn't provided, only allow lookup by booking_code (BK-...) to reduce enumeration risk.
+            if (ctype_digit($code)) {
+                return back()->withErrors(['phone' => 'Phone number is required when using numeric Booking ID.'])->withInput();
+            }
+        }
+
         if (ctype_digit($code)) {
             $query->where('id', (int) $code);
         } else {
@@ -48,12 +58,13 @@ class BookingController extends Controller
         $booking = $query->first();
 
         if (!$booking) {
-            return back()->withErrors(['code' => 'Booking not found for this phone number.'])->withInput();
+            $msg = ($phone !== '') ? 'Booking not found for this phone number.' : 'Booking not found for this Booking Code.';
+            return back()->withErrors(['code' => $msg])->withInput();
         }
 
         return view('booking-status', [
             'code' => $code,
-            'phone' => $data['phone'],
+            'phone' => $phone,
             'booking' => $booking,
         ]);
     }
@@ -62,13 +73,23 @@ class BookingController extends Controller
     {
         $data = $request->validate([
             'code' => 'required|string|max:40',
-            'phone' => 'required|digits:10',
+            'phone' => 'nullable|digits:10',
             'download' => 'nullable|boolean',
         ]);
 
         $code = trim((string) $data['code']);
 
-        $query = Booking::query()->where('phone', $data['phone']);
+        $query = Booking::query();
+        $phone = isset($data['phone']) ? (string) $data['phone'] : '';
+        if ($phone !== '') {
+            $query->where('phone', $phone);
+        } else {
+            // If phone isn't provided, only allow lookup by booking_code (BK-...) to reduce enumeration risk.
+            if (ctype_digit($code)) {
+                abort(403, 'Phone number is required when using numeric Booking ID.');
+            }
+        }
+
         if (ctype_digit($code)) {
             $query->where('id', (int) $code);
         } else {
@@ -82,13 +103,16 @@ class BookingController extends Controller
 
         $paymentMethod = (string) ($booking->payment_method ?? '');
         $paymentStatus = (string) ($booking->payment_status ?? (($paymentMethod === 'Cash') ? 'Cash' : 'Unpaid'));
-        $receiptAllowed =
-            (in_array($paymentStatus, ['Paid', 'Cash', 'Refunded', 'Refund Initiated'], true)) ||
-            (in_array($paymentMethod, ['UPI', 'Online'], true) && !empty($booking->payment_utr) && $paymentStatus !== 'Rejected');
+        $receiptAllowed = in_array($paymentStatus, ['Paid', 'Cash', 'Refunded', 'Refund Initiated'], true);
 
         if (!$receiptAllowed) {
-            return redirect('/booking/status?code=' . urlencode($code) . '&phone=' . urlencode($data['phone']))
-                ->withErrors(['code' => 'Receipt is available after submitting a valid UTR (UPI/Online) or after payment is marked Paid/Cash.']);
+            $redirect = '/booking/status?code=' . urlencode($code);
+            if ($phone !== '') {
+                $redirect .= '&phone=' . urlencode($phone);
+            }
+
+            return redirect($redirect)
+                ->withErrors(['code' => 'Receipt is available only after payment is verified (Paid/Cash/Refunded).']);
         }
 
         if (Schema::hasColumn('bookings', 'receipt_number') && empty($booking->receipt_number)) {
@@ -113,9 +137,9 @@ class BookingController extends Controller
         $viewData = [
             'booking' => $booking,
             'code' => $code,
-            'phone' => $data['phone'],
+            'phone' => $phone,
             'payment_status' => $paymentStatus,
-            'is_provisional' => !in_array($paymentStatus, ['Paid', 'Cash'], true),
+            'is_provisional' => false,
         ];
 
         $filename = 'receipt-' . preg_replace('/[^A-Za-z0-9\\-_.]+/', '_', (string) ($booking->booking_code ?: $booking->id)) . '.html';
@@ -138,8 +162,9 @@ class BookingController extends Controller
             'email' => 'nullable|email',
             'passengers' => 'required|numeric|min:1',
             'payment_method' => 'required',
-            'payment_utr' => 'nullable|required_if:payment_method,UPI|string|min:6|max:64|regex:/^[A-Za-z0-9]+$/',
-            'amount_paid' => 'nullable|required_if:payment_method,UPI|numeric|min:1',
+            // Only validate/accept these fields for UPI. (Cash/Online submit a hidden amount_paid=0 from UI.)
+            'payment_utr' => 'exclude_unless:payment_method,UPI|required|string|size:12|regex:/^[0-9]{12}$/',
+            'amount_paid' => 'exclude_unless:payment_method,UPI|required|numeric|min:1',
             'online_payment_terms' => 'nullable|accepted_if:payment_method,UPI,Online',
             'price_per_day' => 'required|numeric|min:0',
             'total_days' => 'required|numeric|min:1',
@@ -174,6 +199,8 @@ class BookingController extends Controller
         // This project used to upload a payment screenshot. The new flow uses UTR only.
         $data['payment_proof'] = null;
         $data['payment_utr'] = isset($data['payment_utr']) ? strtoupper(trim($data['payment_utr'])) : null;
+        $data['payment_verified_at'] = null;
+        $data['payment_verified_by'] = null;
         if (($data['payment_method'] ?? null) === 'Cash') {
             $data['payment_utr'] = null;
             $data['payment_status'] = 'Cash';
@@ -186,7 +213,9 @@ class BookingController extends Controller
                 $data['payment_utr'] = null;
                 $data['amount_paid'] = round(((float) $data['total_amount']) * 0.5, 2); // advance
             } else {
-                $data['payment_status'] = $data['payment_utr'] ? 'UTR Submitted' : 'Unpaid';
+                // UPI: never auto-mark paid based on UTR (UTR must be verified by admin).
+                $utr = (string) ($data['payment_utr'] ?? '');
+                $data['payment_status'] = $utr !== '' ? 'UTR Submitted' : 'Unpaid';
                 $data['payment_gateway'] = null;
             }
         }
@@ -254,6 +283,8 @@ class BookingController extends Controller
                     'payment_utr' => $data['payment_utr'],
                     'payment_status' => $data['payment_status'],
                     'amount_paid' => $data['amount_paid'] ?? 0,
+                    'payment_verified_at' => $data['payment_verified_at'],
+                    'payment_verified_by' => $data['payment_verified_by'],
                     'online_payment_terms_accepted_at' => $data['online_payment_terms_accepted_at'],
                     'message' => $request->message,
 
@@ -308,6 +339,8 @@ class BookingController extends Controller
             'payment_utr' => $data['payment_utr'],
             'payment_status' => $data['payment_status'],
             'amount_paid' => $data['amount_paid'] ?? 0,
+            'payment_verified_at' => $data['payment_verified_at'],
+            'payment_verified_by' => $data['payment_verified_by'],
             'online_payment_terms_accepted_at' => $data['online_payment_terms_accepted_at'],
             'message' => $request->message,
             'pickup_at' => $pickupAt,

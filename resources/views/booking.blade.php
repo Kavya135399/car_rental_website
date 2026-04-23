@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Om Shanti Travels - Booking</title>
@@ -70,6 +70,7 @@ textarea.form-control{
 <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
+<li class="nav-item"><a href="{{ url('/booking/status') }}" class="nav-link">Status</a></li>
 <!-- <li class="nav-item active"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li> -->
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
@@ -102,6 +103,9 @@ textarea.form-control{
 <div class="booking-card">
 
 <h3>Car Booking Form</h3>
+<div style="margin:10px 0 14px 0;">
+  <a href="{{ url('/booking/status') }}" class="btn btn-outline-primary" style="border-radius:12px;">Check Status / Download Bill</a>
+</div>
 @if ($errors->any())
 <div class="alert alert-danger">
     <strong>⚠ Please fix the following errors:</strong>
@@ -232,8 +236,8 @@ textarea.form-control{
 <select name="payment_method" id="payment_method" class="form-control">
 <option value="">Select Payment Method</option>
 <option value="Cash">Cash</option>
-<option value="UPI">UPI</option>
-<option value="Online">Online</option>
+<option value="UPI">UPI (Manual UTR)</option>
+<!-- <option value="Online">Online (UPI/Card/Netbanking/Wallet)</option> -->
 </select>
 </div>
 </div>
@@ -257,7 +261,15 @@ After payment enter UTR ID below
 <div class="col-md-12" id="online_section" style="display:none;">
   <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:12px;">
     <div style="font-weight:800;">Online Payment</div>
-    <div style="color:#1f2937;margin-top:6px;">You will be redirected to secure checkout after booking submit. Payment will be verified automatically.</div>
+    <div style="color:#1f2937;margin-top:6px;">You will be redirected to secure checkout after booking submit. You can pay by UPI / Card / Netbanking / Wallet. Payment will be verified automatically.</div>
+  </div>
+</div>
+
+<!-- Cash Payment Section -->
+<div class="col-md-12" id="cash_section" style="display:none;">
+  <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:12px;">
+    <div style="font-weight:800;">Cash Payment</div>
+    <div style="color:#14532d;margin-top:6px;">Pay by cash at pickup time. Booking will be confirmed by admin.</div>
   </div>
 </div>
 
@@ -265,7 +277,7 @@ After payment enter UTR ID below
 <div class="col-md-12" id="payment_utr_section" style="display:none;">
 <label>UTR ID (Transaction ID)</label>
 <input type="text" name="payment_utr" id="payment_utr" class="form-control" placeholder="Enter UTR ID" autocomplete="off">
-<small style="color:#6b7280;">Example: 123456789012 (from your UPI app payment details)</small>
+<small style="color:#6b7280;">Example: 123456789012 (12-digit UPI UTR)</small>
 </div>
 
 <!-- Online payment terms acceptance (required for UPI/Online) -->
@@ -407,6 +419,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let paymentMethod = document.getElementById("payment_method");
     let upiSection = document.getElementById("upi_section");
     let onlineSection = document.getElementById("online_section");
+    let cashSection = document.getElementById("cash_section");
     let utrSection = document.getElementById("payment_utr_section");
     let utrInput = document.getElementById("payment_utr");
     let termsSection = document.getElementById("online_terms_section");
@@ -421,6 +434,7 @@ document.addEventListener("DOMContentLoaded", function () {
             termsSection.style.display = "block";
             termsCheckbox.required = true;
             onlineSection.style.display = "none";
+            cashSection.style.display = "none";
         }else if(this.value === "Online"){
             upiSection.style.display = "none";
             utrSection.style.display = "none";
@@ -429,6 +443,17 @@ document.addEventListener("DOMContentLoaded", function () {
             onlineSection.style.display = "block";
             termsSection.style.display = "block";
             termsCheckbox.required = true;
+            cashSection.style.display = "none";
+        }else if(this.value === "Cash"){
+            upiSection.style.display = "none";
+            utrSection.style.display = "none";
+            utrInput.required = false;
+            utrInput.value = "";
+            onlineSection.style.display = "none";
+            termsSection.style.display = "none";
+            termsCheckbox.required = false;
+            termsCheckbox.checked = false;
+            cashSection.style.display = "block";
         }else{
             upiSection.style.display = "none";
             utrSection.style.display = "none";
@@ -438,6 +463,7 @@ document.addEventListener("DOMContentLoaded", function () {
             termsSection.style.display = "none";
             termsCheckbox.required = false;
             termsCheckbox.checked = false;
+            cashSection.style.display = "none";
         }
 
     });
@@ -490,13 +516,6 @@ function calculateAmount(){
         }
     }
 
-    if(method === "Online"){
-        if(terms && !terms.checked){
-            alert("âš  Please accept the Online Payment Terms & Conditions to continue.");
-            e.preventDefault();
-            return;
-        }
-    }
 }
 
 // trigger events
@@ -575,20 +594,31 @@ document.querySelector("form").addEventListener("submit", function(e){
             e.preventDefault();
             return;
         }
-        if(!/^[A-Za-z0-9]{6,64}$/.test(utr)){
-            alert("⚠ Invalid UTR ID. Please enter only letters/numbers (6-64 characters).");
-            e.preventDefault();
-            return;
-        }
-
-        if(terms && !terms.checked){
-            alert("âš  Please accept the Online Payment Terms & Conditions to continue.");
+        if(!/^[0-9]{12}$/.test(utr)){
+            alert("⚠ Invalid UTR ID. Please enter 12 digits from your UPI payment.");
             e.preventDefault();
             return;
         }
 
     }
 
+    if(method === "UPI" || method === "Online"){
+        if(terms && !terms.checked){
+            alert("⚠ Please accept the Online Payment Terms & Conditions to continue.");
+            e.preventDefault();
+            return;
+        }
+    }
+
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let utrInput = document.getElementById("payment_utr");
+    if (!utrInput) return;
+    utrInput.addEventListener("input", function () {
+        this.value = (this.value || "").replace(/\\s+/g, "").toUpperCase();
+    });
 });
 </script>
 </body>

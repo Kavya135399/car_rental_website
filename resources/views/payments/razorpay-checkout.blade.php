@@ -53,7 +53,7 @@
       </div>
 
       <div class="muted" style="margin-top:12px;">
-        After successful payment, your booking will be marked <strong>Paid</strong> automatically and you can download the bill.
+        Choose any method (UPI / Card / Netbanking / Wallet) in checkout. After successful payment, your booking will be marked <strong>Paid</strong> automatically and you can download the bill.
       </div>
     </div>
   </div>
@@ -99,6 +99,14 @@
             booking_id: @json((string) $booking->id),
             booking_code: @json((string) ($booking->booking_code ?? '')),
           },
+          method: {
+            upi: true,
+            card: true,
+            netbanking: true,
+            wallet: true,
+            emi: true,
+            paylater: true
+          },
           theme: { color: "#2563eb" },
           handler: function (response){
             document.getElementById('razorpay_order_id').value = response.razorpay_order_id || '';
@@ -115,4 +123,3 @@
   </script>
 </body>
 </html>
-

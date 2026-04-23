@@ -162,7 +162,7 @@
                                 @if($ps !== 'Paid' && $utr !== '')
                                     <form method="POST" action="/admin/rentals/{{ $b->id }}/payment/verify" style="display:flex;gap:10px;align-items:center;margin-top:10px;">
                                         @csrf
-                                        <input name="admin_utr" placeholder="Enter UTR from statement" required>
+                                        <input name="admin_utr" placeholder="Enter 12-digit UTR from statement" inputmode="numeric" pattern="[0-9]{12}" required>
                                         <button type="submit" style="background:#22c55e;color:#0f172a;">Verify</button>
                                     </form>
 
