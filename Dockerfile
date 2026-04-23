@@ -1,5 +1,8 @@
 FROM php:8.2-cli
 
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
+    COMPOSER_MEMORY_LIMIT=-1
+
 RUN apt-get update && apt-get install -y \
     git unzip curl \
     libcurl4-openssl-dev \

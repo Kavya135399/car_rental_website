@@ -68,7 +68,7 @@
 <section class="ftco-section ftco-about">
 			<div class="container">
 				<div class="row no-gutters">
-					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('images/image_1.jpg');">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ asset('images/image_1.jpg') }}');">
 					</div>
 					<div class="col-md-6 wrap-about ftco-animate">
 	          <div class="heading-section heading-section-white pl-md-5">
@@ -97,7 +97,7 @@
     				<div class="carousel-car owl-carousel">
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/mount-abu.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/mount-abu.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Mount Abu</a></h2>
@@ -110,7 +110,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/kutch.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/kutch.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Rann of Kutch (White Desert)</a></h2>
@@ -124,7 +124,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/saputara.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/saputara.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Saputara Hill Station</a></h2>
@@ -138,7 +138,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/somnath.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/somnath.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Somnath Temple (Somnath)</a></h2>
@@ -160,7 +160,7 @@
  <section class="ftco-section ftco-about">
 			<div class="container">
 				<div class="row no-gutters">
-					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('images/image_1.jpg');">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ asset('images/image_1.jpg') }}');">
 					</div>
 					<div class="col-md-6 wrap-about ftco-animate">
 	          <div class="heading-section heading-section-white pl-md-5">
@@ -188,7 +188,7 @@
     				<div class="carousel-car owl-carousel">
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/comfort.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/comfort.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Comfortable Travel</a></h2>
@@ -201,7 +201,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/time.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/time.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Flexible Travel Timing</a></h2>
@@ -215,7 +215,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/family.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/family.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Perfect for Family Trips</a></h2>
@@ -229,7 +229,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/freedom.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/freedom.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Freedom to Explore More Places</a></h2>
@@ -252,7 +252,7 @@
  <section class="ftco-section ftco-about">
 			<div class="container">
 				<div class="row no-gutters">
-					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('images/image_1.jpg');">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ asset('images/image_1.jpg') }}');">
 					</div>
 					<div class="col-md-6 wrap-about ftco-animate">
 	          <div class="heading-section heading-section-white pl-md-5">
@@ -280,7 +280,7 @@
     				<div class="carousel-car owl-carousel">
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/document.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/document.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Carry Important Documents</a></h2>
@@ -293,7 +293,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/family1.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/family1.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Take Breaks During Long Trips</a></h2>
@@ -307,7 +307,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/weather.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/weather.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Check the Weather Forecast</a></h2>
@@ -321,7 +321,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/vehical.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/vehical.jpg') }}');">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Choose the Right Vehicle</a></h2>

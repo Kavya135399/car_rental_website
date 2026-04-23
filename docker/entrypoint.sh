@@ -7,19 +7,30 @@ mkdir -p storage bootstrap/cache
 chmod -R ug+rwX storage bootstrap/cache || true
 
 if [ -z "${APP_KEY:-}" ]; then
-  echo "ERROR: APP_KEY is not set. Set it in Railway Variables (use: php artisan key:generate --show)."
-  exit 1
+  export APP_KEY="$(php -r 'echo "base64:".base64_encode(random_bytes(32));')"
+  echo "WARNING: APP_KEY was not set. Generated a temporary key for this container run."
+  echo "Set a permanent APP_KEY in Railway Variables (use: php artisan key:generate --show) to avoid session/login issues."
 fi
 
 php artisan storage:link >/dev/null 2>&1 || true
 
 php artisan package:discover --ansi >/dev/null 2>&1 || true
 
-if [ "${RUN_MIGRATIONS:-true}" = "true" ]; then
-  php artisan migrate --force
+if [ "${RUN_MIGRATIONS:-true}" = "true" ] && [ -n "${DB_HOST:-${MYSQLHOST:-${MYSQL_HOST:-}}}" ]; then
+  i=0
+  until php artisan migrate --force; do
+    i=$((i+1))
+    if [ "$i" -ge 10 ]; then
+      echo "ERROR: Migrations failed after ${i} attempts."
+      exit 1
+    fi
+    echo "Migrations failed, retrying in 3s... (${i}/10)"
+    sleep 3
+  done
 fi
 
 if [ "${RUN_OPTIMIZE:-true}" = "true" ]; then
+  php artisan config:clear >/dev/null 2>&1 || true
   php artisan config:cache
   php artisan route:cache || true
   php artisan view:cache || true
