@@ -24,9 +24,7 @@ class AppServiceProvider extends ServiceProvider
         $appUrl = (string) env('APP_URL', '');
 
         if (
-            env('RAILWAY_PUBLIC_DOMAIN')
-            || env('RAILWAY_STATIC_URL')
-            || Str::startsWith($appUrl, 'https://')
+            Str::startsWith($appUrl, 'https://')
             || env('FORCE_HTTPS')
         ) {
             URL::forceScheme('https');

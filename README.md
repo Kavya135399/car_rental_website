@@ -1,6 +1,6 @@
 # Car Rental (Laravel)
 
-## Deploy to Railway (Docker)
+## Deploy (Docker)
 
 This repository includes a `Dockerfile` and a startup script that will:
 
@@ -8,41 +8,33 @@ This repository includes a `Dockerfile` and a startup script that will:
 - run database migrations (`php artisan migrate --force`)
 - cache config/routes/views for production
 
-### 1) Create Railway services
+### Platform options
 
-1. Create a new Railway project.
-2. Add a **MySQL** database to the project.
-3. Add a **Web** service from your GitHub repo (set the service root to `car-app` if this is a monorepo).
+- **Render / Fly.io / DigitalOcean App Platform**: easiest with Docker (recommended)
+- **Shared hosting (cPanel)**: cheapest, but manual setup
+- **VPS + Laravel Forge**: best control for production
 
-### 2) Set Railway Variables
+### Required environment variables
 
-In the Web service, set these Variables (Environment Variables):
+Set these env vars in your hosting dashboard:
 
 - `APP_ENV=production`
 - `APP_DEBUG=false`
 - `APP_KEY` (generate locally: `php artisan key:generate --show`)
-- `APP_URL` (set to your Railway domain, example: `https://<your-domain>.up.railway.app`)
+- `APP_URL` (set to your live domain, example: `https://your-domain.com`)
 - `DB_CONNECTION=mysql`
 - `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
 
 Note: `config/database.php` also supports Railway-style MySQL variables like `MYSQLHOST`, `MYSQLPORT`, etc., but setting `DB_*` explicitly is recommended.
 
-Optional toggles:
+Optional toggles (container startup):
 
 - `RUN_MIGRATIONS=true` (set to `false` to skip migrations on startup)
 - `RUN_OPTIMIZE=true` (set to `false` to skip config/route/view caching)
 - `STRICT_STARTUP=false` (set to `true` to make startup fail fast if migrations/caching fails)
 
-### 2.1) Important Railway settings (avoids “Application failed to respond”)
+## Preflight (verify before deploy)
 
-- Ensure the Railway service is building from the folder that contains the `Dockerfile` (this project’s backend is in `car-app`).
-- In the Railway Web service settings, do **not** override the Start Command (Docker `ENTRYPOINT` handles startup).
-- The container listens on Railway’s assigned `$PORT` automatically.
+Run this locally from `car-app` (Windows PowerShell):
 
-### 3) Get the live link
-
-After the first successful deploy:
-
-1. Go to the Railway Web service → **Settings** → **Domains**.
-2. Generate a domain.
-3. Use the generated HTTPS URL as your live link (commonly ends with `.up.railway.app`).
+- `powershell -ExecutionPolicy Bypass -File scripts/deploy-preflight.ps1`
