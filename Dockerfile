@@ -2,7 +2,11 @@ FROM php:8.2-cli
 
 RUN apt-get update && apt-get install -y \
     git unzip curl \
-    && docker-php-ext-install pdo pdo_mysql \
+    libcurl4-openssl-dev \
+    libonig-dev \
+    libxml2-dev \
+    libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql mbstring xml curl zip opcache \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -10,7 +14,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress --no-scripts
 
 COPY . .
 
