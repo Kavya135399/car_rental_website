@@ -222,6 +222,7 @@ textarea.form-control{
   <label>Advance Payment (₹)</label>
   <input type="number" id="advance_amount" class="form-control" readonly>
 </div>
+<input type="hidden" name="amount_paid" id="amount_paid" value="0">
 
 
 <!-- Payment Method -->
@@ -248,16 +249,37 @@ UPI ID : <strong>davekavya43@oksbi</strong>
 </p>
 
 <p style="color:green;">
-After payment upload screenshot below
+After payment enter UTR ID below
 </p>
 </div>
 
-<!-- Upload Payment Screenshot -->
-<div class="col-md-12" id="payment_proof" style="display:none;">
-<label>Upload Payment Screenshot</label>
-<input type="file" name="payment_proof"
-class="form-control"
-accept="image/*" required>
+<!-- Online Payment Section (auto verification via gateway) -->
+<div class="col-md-12" id="online_section" style="display:none;">
+  <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:12px;">
+    <div style="font-weight:800;">Online Payment</div>
+    <div style="color:#1f2937;margin-top:6px;">You will be redirected to secure checkout after booking submit. Payment will be verified automatically.</div>
+  </div>
+</div>
+
+<!-- UTR Input (only user input for UPI proof) -->
+<div class="col-md-12" id="payment_utr_section" style="display:none;">
+<label>UTR ID (Transaction ID)</label>
+<input type="text" name="payment_utr" id="payment_utr" class="form-control" placeholder="Enter UTR ID" autocomplete="off">
+<small style="color:#6b7280;">Example: 123456789012 (from your UPI app payment details)</small>
+</div>
+
+<!-- Online payment terms acceptance (required for UPI/Online) -->
+<div class="col-md-12" id="online_terms_section" style="display:none;margin-top:10px;">
+  <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:12px;">
+    <label style="display:flex;gap:10px;align-items:flex-start;margin:0;">
+      <input type="checkbox" name="online_payment_terms" id="online_payment_terms" value="1">
+      <span>
+        I agree to the
+        <a href="{{ url('/terms/online-payment') }}" target="_blank" rel="noopener">Online Payment Terms & Conditions</a>.
+      </span>
+    </label>
+    <small style="color:#6b7280;">Required for UPI/Online payments.</small>
+  </div>
 </div>
 <!-- Message -->
 <div class="col-md-12">
@@ -384,19 +406,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let paymentMethod = document.getElementById("payment_method");
     let upiSection = document.getElementById("upi_section");
-    let paymentProof = document.getElementById("payment_proof");
-    let paymentInput = document.querySelector("input[name='payment_proof']");
+    let onlineSection = document.getElementById("online_section");
+    let utrSection = document.getElementById("payment_utr_section");
+    let utrInput = document.getElementById("payment_utr");
+    let termsSection = document.getElementById("online_terms_section");
+    let termsCheckbox = document.getElementById("online_payment_terms");
 
     paymentMethod.addEventListener("change", function(){
 
-        if(this.value === "UPI" || this.value === "Online"){
+        if(this.value === "UPI"){
             upiSection.style.display = "block";
-            paymentProof.style.display = "block";
-            paymentInput.required = true; // ✅ make required
+            utrSection.style.display = "block";
+            utrInput.required = true;
+            termsSection.style.display = "block";
+            termsCheckbox.required = true;
+            onlineSection.style.display = "none";
+        }else if(this.value === "Online"){
+            upiSection.style.display = "none";
+            utrSection.style.display = "none";
+            utrInput.required = false;
+            utrInput.value = "";
+            onlineSection.style.display = "block";
+            termsSection.style.display = "block";
+            termsCheckbox.required = true;
         }else{
             upiSection.style.display = "none";
-            paymentProof.style.display = "none";
-            paymentInput.required = false; // ✅ not required
+            utrSection.style.display = "none";
+            utrInput.required = false;
+            utrInput.value = "";
+            onlineSection.style.display = "none";
+            termsSection.style.display = "none";
+            termsCheckbox.required = false;
+            termsCheckbox.checked = false;
         }
 
     });
@@ -414,6 +455,7 @@ let price = document.getElementById("price_per_day");
 let totalDays = document.getElementById("total_days");
 let totalAmount = document.getElementById("total_amount");
 let advanceAmount = document.getElementById("advance_amount");
+let amountPaid = document.getElementById("amount_paid");
 
 // ✅ ADD THESE (missing in your code)
 let paymentMethod = document.getElementById("payment_method");
@@ -443,6 +485,16 @@ function calculateAmount(){
             } else {
                 advanceAmount.value = 0;
             }
+
+            amountPaid.value = advanceAmount.value || 0;
+        }
+    }
+
+    if(method === "Online"){
+        if(terms && !terms.checked){
+            alert("âš  Please accept the Online Payment Terms & Conditions to continue.");
+            e.preventDefault();
+            return;
         }
     }
 }
@@ -471,6 +523,8 @@ paymentMethod.addEventListener("change", function(){
     } else {
         advanceAmount.value = 0;
     }
+
+    amountPaid.value = advanceAmount.value || 0;
 
 });
 
@@ -510,23 +564,27 @@ else{
 document.querySelector("form").addEventListener("submit", function(e){
 
     let method = document.getElementById("payment_method").value;
-    let fileInput = document.querySelector("input[name='payment_proof']");
-    let file = fileInput.files[0];
+    let utrInput = document.querySelector("input[name='payment_utr']");
+    let utr = (utrInput?.value || "").trim();
+    let terms = document.getElementById("online_payment_terms");
 
-    if(method === "UPI" || method === "Online"){
+    if(method === "UPI"){
 
-        if(!file){
-            alert("⚠ Please upload payment screenshot!");
+        if(!utr){
+            alert("⚠ Please enter UTR ID after payment!");
+            e.preventDefault();
+            return;
+        }
+        if(!/^[A-Za-z0-9]{6,64}$/.test(utr)){
+            alert("⚠ Invalid UTR ID. Please enter only letters/numbers (6-64 characters).");
             e.preventDefault();
             return;
         }
 
-        let allowedTypes = ["image/jpeg","image/png","image/jpg","image/webp"];
-
-        if(!allowedTypes.includes(file.type)){
-            alert("⚠ Only image files (JPG, PNG) are allowed!");
-            fileInput.value = "";
+        if(terms && !terms.checked){
+            alert("âš  Please accept the Online Payment Terms & Conditions to continue.");
             e.preventDefault();
+            return;
         }
 
     }

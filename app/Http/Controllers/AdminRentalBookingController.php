@@ -7,6 +7,7 @@ use App\Models\Driver;
 use App\Mail\BookingConfirmedMail;
 use App\Services\CarAvailability;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 
@@ -130,5 +131,141 @@ class AdminRentalBookingController extends Controller
         $booking->save();
 
         return back()->with('success', 'Status updated');
+    }
+
+    public function verifyPayment(Request $request, $id)
+    {
+        if ($redirect = $this->requireAdmin()) return $redirect;
+
+        if (!Schema::hasTable('bookings') || !Schema::hasColumn('bookings', 'payment_status')) {
+            return back()->with('error', 'Payment columns not found. Run migrations first.');
+        }
+
+        $data = $request->validate([
+            'admin_utr' => 'required|string|min:6|max:64|regex:/^[A-Za-z0-9]+$/',
+        ]);
+
+        $booking = Booking::findOrFail($id);
+
+        $userUtr = strtoupper(trim((string) ($booking->payment_utr ?? '')));
+        $adminUtr = strtoupper(trim((string) $data['admin_utr']));
+
+        if ($userUtr === '') {
+            return back()->with('error', 'User has not submitted a UTR for this booking.');
+        }
+
+        if ($userUtr !== $adminUtr) {
+            return back()->with('error', 'UTR mismatch. Please double-check your UPI statement and the user UTR.');
+        }
+
+        $booking->payment_status = 'Paid';
+        if (Schema::hasColumn('bookings', 'payment_verified_at')) {
+            $booking->payment_verified_at = now();
+        }
+        if (Schema::hasColumn('bookings', 'payment_verified_by')) {
+            $booking->payment_verified_by = (int) session('admin');
+        }
+        $booking->save();
+
+        return back()->with('success', 'Payment verified (UTR matched).');
+    }
+
+    public function rejectPayment(Request $request, $id)
+    {
+        if ($redirect = $this->requireAdmin()) return $redirect;
+
+        if (!Schema::hasTable('bookings') || !Schema::hasColumn('bookings', 'payment_status')) {
+            return back()->with('error', 'Payment columns not found. Run migrations first.');
+        }
+
+        $booking = Booking::findOrFail($id);
+        $booking->payment_status = 'Rejected';
+        if (Schema::hasColumn('bookings', 'payment_verified_at')) {
+            $booking->payment_verified_at = null;
+        }
+        if (Schema::hasColumn('bookings', 'payment_verified_by')) {
+            $booking->payment_verified_by = null;
+        }
+        $booking->save();
+
+        return back()->with('success', 'Payment marked as rejected.');
+    }
+
+    public function refundPayment(Request $request, $id)
+    {
+        if ($redirect = $this->requireAdmin()) return $redirect;
+
+        if (!Schema::hasTable('bookings') || !Schema::hasColumn('bookings', 'payment_status')) {
+            return back()->with('error', 'Payment columns not found. Run migrations first.');
+        }
+
+        $data = $request->validate([
+            'refund_amount' => 'nullable|numeric|min:1',
+        ]);
+
+        $booking = Booking::findOrFail($id);
+
+        if (($booking->payment_status ?? null) !== 'Paid' && ($booking->payment_status ?? null) !== 'Cash') {
+            return back()->with('error', 'Refund can be initiated only for Paid/Cash bookings.');
+        }
+
+        $amount = isset($data['refund_amount']) ? (float) $data['refund_amount'] : 0.0;
+        if ($amount <= 0) {
+            $amount = (float) ($booking->amount_paid ?? 0);
+            if ($amount <= 0) {
+                $amount = (float) ($booking->total_amount ?? 0);
+            }
+        }
+
+        // Automatic refund only for Razorpay online payments
+        $gateway = (string) ($booking->payment_gateway ?? '');
+        $paymentId = (string) ($booking->gateway_payment_id ?? '');
+        if ($gateway !== 'razorpay' || $paymentId === '') {
+            if (Schema::hasColumn('bookings', 'refund_amount')) $booking->refund_amount = $amount;
+            if (Schema::hasColumn('bookings', 'refund_status')) $booking->refund_status = 'manual';
+            if (Schema::hasColumn('bookings', 'refunded_at')) $booking->refunded_at = now();
+            $booking->payment_status = 'Refunded';
+            $booking->save();
+
+            return back()->with('success', 'Refund marked as Refunded (manual).');
+        }
+
+        $keyId = (string) config('payments.razorpay.key_id');
+        $secret = (string) config('payments.razorpay.key_secret');
+        if ($keyId === '' || $secret === '') {
+            return back()->with('error', 'Razorpay not configured. Set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET.');
+        }
+
+        try {
+            $payload = [];
+            $amountPaise = (int) round($amount * 100);
+            if ($amountPaise > 0) {
+                $payload['amount'] = $amountPaise;
+            }
+
+            $resp = Http::withBasicAuth($keyId, $secret)
+                ->acceptJson()
+                ->post('https://api.razorpay.com/v1/payments/' . urlencode($paymentId) . '/refund', $payload);
+
+            if (!$resp->successful()) {
+                return back()->with('error', 'Refund failed. Please try again later.');
+            }
+
+            $json = $resp->json();
+            $refundId = (string) ($json['id'] ?? '');
+            $refundStatus = (string) ($json['status'] ?? 'created');
+
+            if (Schema::hasColumn('bookings', 'refund_id')) $booking->refund_id = $refundId !== '' ? $refundId : null;
+            if (Schema::hasColumn('bookings', 'refund_amount')) $booking->refund_amount = $amount;
+            if (Schema::hasColumn('bookings', 'refund_status')) $booking->refund_status = $refundStatus;
+            if (Schema::hasColumn('bookings', 'refunded_at')) $booking->refunded_at = now();
+
+            $booking->payment_status = ($refundStatus === 'processed') ? 'Refunded' : 'Refund Initiated';
+            $booking->save();
+
+            return back()->with('success', 'Refund initiated successfully.');
+        } catch (\Throwable $e) {
+            return back()->with('error', 'Refund error: ' . $e->getMessage());
+        }
     }
 }

@@ -23,6 +23,15 @@ use App\Http\Controllers\BookingController;
 
 Route::get('/booking', [BookingController::class, 'index']);
 Route::post('/booking', [BookingController::class, 'store']);
+Route::get('/booking/status', [BookingController::class, 'statusForm']);
+Route::post('/booking/status', [BookingController::class, 'statusLookup']);
+Route::get('/booking/receipt', [BookingController::class, 'receipt']);
+Route::get('/payment/online', [BookingController::class, 'onlineCheckout']);
+Route::post('/payment/razorpay/verify', [BookingController::class, 'razorpayVerify']);
+
+Route::get('/terms/online-payment', function () {
+    return view('terms.online-payment');
+});
 use App\Http\Controllers\CarController;
 
 Route::get('/cars',[CarController::class,'cars']);
@@ -236,6 +245,8 @@ use App\Http\Controllers\AdminDriverController;
 use App\Http\Controllers\AdminRentalBookingController;
 use App\Http\Controllers\ApiCarsController;
 use App\Http\Controllers\ApiCarAvailabilityController;
+use App\Http\Controllers\PremiumSiteController;
+use App\Http\Controllers\AdminContentController;
 
 Route::get('/forgot-password', [PasswordResetController::class,'forgotForm']);
 Route::post('/send-otp', [PasswordResetController::class,'sendOtp']);
@@ -259,6 +270,9 @@ Route::post('/test-forgot', function(Request $request) {
 Route::get('/admin/rentals', [AdminRentalBookingController::class, 'index']);
 Route::post('/admin/rentals/{id}/confirm', [AdminRentalBookingController::class, 'confirm']);
 Route::post('/admin/rentals/{id}/status', [AdminRentalBookingController::class, 'status']);
+Route::post('/admin/rentals/{id}/payment/verify', [AdminRentalBookingController::class, 'verifyPayment']);
+Route::post('/admin/rentals/{id}/payment/reject', [AdminRentalBookingController::class, 'rejectPayment']);
+Route::post('/admin/rentals/{id}/payment/refund', [AdminRentalBookingController::class, 'refundPayment']);
 
 Route::get('/admin/drivers', [AdminDriverController::class, 'index']);
 Route::post('/admin/drivers', [AdminDriverController::class, 'store']);
@@ -273,6 +287,25 @@ Route::get('/admin/cars/{id}/units/delete/{unitId}', [AdminCarUnitController::cl
 // Frontend dynamic cars (used by public/js/main.js, keeps cars.blade.php unchanged)
 Route::get('/api/cars', [ApiCarsController::class, 'index']);
 Route::get('/api/cars/{id}/availability', [ApiCarAvailabilityController::class, 'show']);
+
+// ===== Premium 3D site (add-on, does not replace existing pages) =====
+Route::get('/premium', [PremiumSiteController::class, 'home']);
+Route::get('/premium/about', [PremiumSiteController::class, 'about']);
+Route::get('/premium/services', [PremiumSiteController::class, 'services']);
+Route::get('/premium/portfolio', [PremiumSiteController::class, 'portfolio']);
+Route::get('/premium/testimonials', [PremiumSiteController::class, 'testimonials']);
+Route::get('/premium/pricing', [PremiumSiteController::class, 'pricing']);
+Route::get('/premium/blog', [PremiumSiteController::class, 'blog']);
+Route::get('/premium/faq', [PremiumSiteController::class, 'faq']);
+Route::get('/premium/contact', [PremiumSiteController::class, 'contact']);
+
+// Admin content manager for /premium (keeps existing admin intact)
+Route::get('/admin/content', [AdminContentController::class, 'index']);
+Route::get('/admin/content/create', [AdminContentController::class, 'create']);
+Route::post('/admin/content/store', [AdminContentController::class, 'store']);
+Route::get('/admin/content/edit/{id}', [AdminContentController::class, 'edit']);
+Route::post('/admin/content/update/{id}', [AdminContentController::class, 'update']);
+Route::get('/admin/content/delete/{id}', [AdminContentController::class, 'delete']);
 Route::get('/api/cars-debug', function () {
     if (!config('app.debug')) {
         abort(404);

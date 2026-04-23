@@ -8,7 +8,7 @@ class Booking extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+protected $fillable = [
     'booking_code',
     'car_id',
     'car_unit_id',
@@ -26,8 +26,24 @@ class Booking extends Model
     'return_date',
     'total_days',
     'total_amount',
+    'amount_paid',
     'payment_method',
+    'payment_gateway',
     'payment_proof',
+    'payment_utr',
+    'payment_status',
+    'online_payment_terms_accepted_at',
+    'receipt_number',
+    'receipt_generated_at',
+    'gateway_order_id',
+    'gateway_payment_id',
+    'gateway_signature',
+    'refund_id',
+    'refund_amount',
+    'refund_status',
+    'refunded_at',
+    'payment_verified_at',
+    'payment_verified_by',
     'message',
     'pickup_at',
     'dropoff_at',
@@ -39,6 +55,10 @@ class Booking extends Model
     protected $casts = [
         'pickup_at' => 'datetime',
         'dropoff_at' => 'datetime',
+        'payment_verified_at' => 'datetime',
+        'online_payment_terms_accepted_at' => 'datetime',
+        'receipt_generated_at' => 'datetime',
+        'refunded_at' => 'datetime',
     ];
 
     public function carModel()

@@ -15,18 +15,20 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-height:100vh;
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 background:#0f172a; /* ❌ no image */
+padding:16px;
 }
 
 /* card */
 .login-box{
 background:rgba(2,6,23,0.9);
 padding:40px;
-width:350px;
+width:100%;
+max-width:350px;
 border-radius:12px;
 box-shadow:0 15px 40px rgba(0,0,0,0.6);
 text-align:center;
@@ -97,6 +99,21 @@ transform:scale(1.05);
 a{
 color:#3b82f6;
 text-decoration:none;
+}
+
+@media (max-width: 480px){
+body{
+align-items:flex-start;
+padding-top:20px;
+}
+.site-title{
+position:static;
+margin-bottom:12px;
+text-align:center;
+}
+.login-box{
+padding:24px;
+}
 }
 
 </style>

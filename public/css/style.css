@@ -9979,3 +9979,41 @@ transition:0.3s;
 .whatsapp-float img:hover{
 transform:scale(1.1);
 }
+
+/* === Mobile-friendly overrides (project) === */
+html, body {
+  overflow-x: hidden;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 575.98px) {
+  .navbar-brand {
+    font-size: 18px;
+    white-space: normal;
+  }
+
+  .hero-wrap .slider-text h1,
+  .hero-wrap-2 .slider-text h1 {
+    font-size: 34px;
+    line-height: 1.15;
+  }
+
+  .hero-wrap .slider-text p {
+    font-size: 15px !important;
+  }
+
+  .ftco-section {
+    padding: 3em 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .car-list {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

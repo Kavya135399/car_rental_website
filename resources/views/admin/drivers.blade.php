@@ -23,17 +23,27 @@
         .bad{color:#fecaca;}
         .link{color:#93c5fd;text-decoration:none;}
         .link:hover{text-decoration:underline;}
+
+        @media (max-width: 768px){
+            body{flex-direction:column;}
+            .sidebar{position:relative;width:100%;height:auto;}
+            .main{margin-left:0;padding:16px;}
+            .card{padding:14px;overflow-x:auto;}
+            table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:720px;}
+            th,td{white-space:nowrap;}
+        }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>🚗 Admin</h2>
-        <a href="/admin/dashboard">Dashboard</a>
-        <a href="/admin/cars">Manage Cars</a>
-        <a href="/admin/rentals">Bookings</a>
-        <a href="/admin/drivers">Drivers</a>
-        <a href="/admin/logout">Logout</a>
-    </div>
+<h2>🚗 Admin</h2>
+<a href="/admin/dashboard">Dashboard</a>
+<a href="/admin/cars">Manage Cars</a>
+<a href="/admin/rentals">Bookings</a>
+<a href="/admin/drivers">Drivers</a>
+<a href="/admin/bookings">Customers</a>
+<a href="/admin/logout">Logout</a>
+</div>
 
     <div class="main">
         <h1 style="font-weight:500;margin-bottom:14px;">Drivers</h1>

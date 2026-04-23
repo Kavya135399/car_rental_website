@@ -19,23 +19,35 @@
         .ok{color:#bbf7d0;}
         .warn{color:#fde68a;}
         .bad{color:#fecaca;}
+        input{padding:10px;border-radius:10px;border:1px solid #1e293b;background:#0f172a;color:white;outline:none;}
         select{padding:10px;border-radius:10px;border:1px solid #1e293b;background:#0f172a;color:white;outline:none;}
         button{padding:10px 12px;border:none;border-radius:10px;background:#fbbf24;color:#0f172a;font-weight:800;cursor:pointer;}
         button:hover{filter:brightness(1.04);}
         .link{color:#93c5fd;text-decoration:none;}
         .link:hover{text-decoration:underline;}
+
+        @media (max-width: 768px){
+            body{flex-direction:column;}
+            .sidebar{position:relative;width:100%;height:auto;}
+            .main{margin-left:0;padding:16px;}
+            .card{padding:14px;overflow-x:auto;}
+            table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:720px;}
+            th,td{white-space:nowrap;}
+            form[style*="display:flex"]{flex-direction:column;align-items:stretch;}
+            input,select,button{width:100%;}
+        }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>🚗 Admin</h2>
-        <a href="/admin/dashboard">Dashboard</a>
-        <a href="/admin/cars">Manage Cars</a>
-        <a href="/admin/rentals">Bookings</a>
-        <a href="/admin/drivers">Drivers</a>
-        <a href="/admin/logout">Logout</a>
-    </div>
-
+<h2>🚗 Admin</h2>
+<a href="/admin/dashboard">Dashboard</a>
+<a href="/admin/cars">Manage Cars</a>
+<a href="/admin/rentals">Bookings</a>
+<a href="/admin/drivers">Drivers</a>
+<a href="/admin/bookings">Customers</a>
+<a href="/admin/logout">Logout</a>
+</div>
     <div class="main">
         <h1 style="font-weight:500;margin-bottom:14px;">Rental Bookings</h1>
 
@@ -65,6 +77,7 @@
                         <th>Car</th>
                         <th>Schedule</th>
                         <th>Status</th>
+                        <th>Payment</th>
                         <th>Driver</th>
                         <th>Actions</th>
                     </tr>
@@ -107,6 +120,63 @@
                                 <span class="pill">{{ $st }}</span>
                             @endif
                         </td>
+                        <td style="min-width:260px;">
+                            @php
+                                $pm = $b->payment_method ?: '—';
+                                $gw = $b->payment_gateway ?: '';
+                                $ps = $b->payment_status ?: (($pm === 'Cash') ? 'Cash' : 'Unpaid');
+                                $utr = $b->payment_utr ?: '';
+                                $pid = $b->gateway_payment_id ?: '';
+                                $rid = $b->refund_id ?: '';
+                            @endphp
+
+                            <div style="font-weight:700;">{{ $pm }}</div>
+
+                            @if($ps === 'Paid' || $ps === 'Cash')
+                                <span class="pill ok">{{ $ps }}</span>
+                            @elseif($ps === 'Rejected')
+                                <span class="pill bad">{{ $ps }}</span>
+                            @else
+                                <span class="pill warn">{{ $ps }}</span>
+                            @endif
+
+                            @if($pm === 'Online')
+                                <div style="margin-top:8px;font-size:12px;color:#cbd5f5;">
+                                    Gateway: <span style="font-weight:700;">{{ $gw !== '' ? $gw : '—' }}</span>
+                                </div>
+                                <div style="margin-top:6px;font-size:12px;color:#cbd5f5;">
+                                    Payment ID: <span style="font-weight:700;">{{ $pid !== '' ? $pid : '—' }}</span>
+                                </div>
+                                @if($rid !== '')
+                                    <div style="margin-top:6px;font-size:12px;color:#cbd5f5;">
+                                        Refund ID: <span style="font-weight:700;">{{ $rid }}</span>
+                                    </div>
+                                @endif
+                            @endif
+
+                            @if($pm === 'UPI')
+                                <div style="margin-top:8px;font-size:12px;color:#cbd5f5;">
+                                    UTR: <span style="font-weight:700;">{{ $utr !== '' ? $utr : '—' }}</span>
+                                </div>
+
+                                @if($ps !== 'Paid' && $utr !== '')
+                                    <form method="POST" action="/admin/rentals/{{ $b->id }}/payment/verify" style="display:flex;gap:10px;align-items:center;margin-top:10px;">
+                                        @csrf
+                                        <input name="admin_utr" placeholder="Enter UTR from statement" required>
+                                        <button type="submit" style="background:#22c55e;color:#0f172a;">Verify</button>
+                                    </form>
+
+                                    <form method="POST" action="/admin/rentals/{{ $b->id }}/payment/reject" style="display:flex;gap:10px;align-items:center;margin-top:10px;">
+                                        @csrf
+                                        <button type="submit" style="background:#ef4444;color:white;">Reject</button>
+                                    </form>
+                                @elseif($ps === 'Paid' && $b->payment_verified_at)
+                                    <div style="margin-top:8px;font-size:12px;color:#94a3b8;">
+                                        Verified: {{ $b->payment_verified_at->format('d M Y, H:i') }}
+                                    </div>
+                                @endif
+                            @endif
+                        </td>
                         <td>
                             <div style="font-weight:700;">{{ $b->driver?->name ?: '—' }}</div>
                             <div style="color:#94a3b8;font-size:12px;">{{ $b->driver?->mobile ?: '' }}</div>
@@ -132,6 +202,14 @@
                                 </select>
                                 <button type="submit" style="background:#3b82f6;color:white;">Update</button>
                             </form>
+
+                            @if(($ps === 'Paid' || $ps === 'Cash') && $ps !== 'Refunded' && $ps !== 'Refund Initiated')
+                                <form method="POST" action="/admin/rentals/{{ $b->id }}/payment/refund" style="display:flex;gap:10px;align-items:center;margin-top:10px;">
+                                    @csrf
+                                    <input name="refund_amount" placeholder="Refund amount (INR)" inputmode="decimal">
+                                    <button type="submit" style="background:#a855f7;color:white;">Refund</button>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
