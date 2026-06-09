@@ -106,7 +106,7 @@ style="background-image: url('{{ asset('images/b10.jpg') }}');">
 <section class="ftco-section ftco-about">
 			<div class="container">
 				<div class="row no-gutters">
-					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ asset('images/about.jpg') }}');">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ asset('images/b4.webp') }}');">
 					</div>
 					<div class="col-md-6 wrap-about ftco-animate">
 	          <div class="heading-section heading-section-white pl-md-5">
@@ -308,7 +308,7 @@ Om Shanti Travels is a trusted provider of reliable chauffeur services across In
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
-<li class="nav-item"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li>
+<!-- <li class="nav-item"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li> -->
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
           </ul>
