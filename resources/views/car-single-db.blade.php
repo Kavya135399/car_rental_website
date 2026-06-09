@@ -23,7 +23,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Om Shanti<span> Travels</span></a>
+        <a class="navbar-brand" href="{{ url('/') }}"><img class="navbar-brand-icon" src="{{ asset('images/om-shanti-mark.png') }}" alt="">Om Shanti<span style="color: #f81c1c;"> Travels</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
           <span class="oi oi-menu"></span> Menu
         </button>
@@ -81,9 +81,6 @@
               <h2 class="mb-2">{{ $car->name }}</h2>
               <div class="d-flex mb-3">
                 <span class="cat">{{ $car->brand }}</span>
-                @if(!is_null($car->price_per_day))
-                  <p class="price ml-auto">₹{{ number_format($car->price_per_day) }} <span>/day</span></p>
-                @endif
               </div>
               <ul style="padding-left:18px;color:#555;">
                 <li>Seats: {{ $car->seats ?? '—' }}</li>
@@ -94,7 +91,7 @@
                 <p style="margin-top:10px;color:#666;">{{ $car->description }}</p>
               @endif
               <div style="margin-top:18px;">
-                <a href="{{ $bookingUrl }}" class="btn btn-primary py-2 mr-1">Book Now</a>
+                <a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
                 <a href="{{ url('/cars') }}" class="btn btn-secondary py-2 ml-1">Back</a>
               </div>
             </div>

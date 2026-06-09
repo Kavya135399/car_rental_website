@@ -29,7 +29,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container">
-<a class="navbar-brand" href="{{ url('/') }}">Om Shanti <span> Travels</span></a>        
+<a class="navbar-brand" href="{{ url('/') }}"><img class="navbar-brand-icon" src="{{ asset('images/om-shanti-mark.png') }}" alt="">Om Shanti <span style="color: #f81c1c;"> Travels</span></a>        
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
           <span class="oi oi-menu"></span> Menu
         </button>
@@ -39,7 +39,7 @@
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
-<li class="nav-item"><a href="{{ url('/booking/status') }}" class="nav-link">Status</a></li>
+<!-- <li class="nav-item"><a href="{{ url('/booking/status') }}" class="nav-link">Status</a></li> -->
 <!-- <li class="nav-item"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li> -->
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
@@ -49,7 +49,7 @@
     </nav>
     <!-- END nav -->
     
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/about.jpg') }}');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/b15.jpg') }}');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">

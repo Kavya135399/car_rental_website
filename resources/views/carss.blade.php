@@ -11,7 +11,7 @@
         <h3>{{ $car->name }}</h3>
         <p>{{ $car->brand }}</p>
 
-        <button>Book Now</button>
+        <button><a href="{{ url('contact') }}" style="color: white; text-decoration: none;">Contact Us</a></button>
     </div>
 @endforeach
 </div>

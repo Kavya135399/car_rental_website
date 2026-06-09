@@ -29,7 +29,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Om Shanti<span> Travels</span></a>
+        <a class="navbar-brand" href="{{ url('/') }}"><img class="navbar-brand-icon" src="{{ asset('images/om-shanti-mark.png') }}" alt="">Om Shanti<span style="color: #f81c1c;"> Travels</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="oi oi-menu"></span> Menu
         </button>
@@ -39,7 +39,7 @@
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
-<li class="nav-item"><a href="{{ url('/booking/status') }}" class="nav-link">Status</a></li>
+<!-- <li class="nav-item"><a href="{{ url('/booking/status') }}" class="nav-link">Status</a></li> -->
 <!-- <li class="nav-item"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li> -->
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
@@ -50,7 +50,7 @@
     <!-- END nav -->
      
     
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/car-10.jpg') }}');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/b11.jpg') }}');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
@@ -75,7 +75,7 @@
                   <span class="cat">Maruti</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Swift Dzire&price=3000&seats=4') }}" class="btn btn-primary py-2 mr-1">Book Now</a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
 
               <a href="{{ url('car-single?id=1') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
@@ -94,7 +94,7 @@
                   <span class="cat">Honda</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Honda City&price=3000&seats=4') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a></a>
               <a href="{{ url('car-single?id=2') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -110,7 +110,7 @@
                   <span class="cat">Honda</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Honda Amaze&price=30000&seats=4') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a></a>
               <a href="{{ url('car-single?id=3') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -125,7 +125,7 @@
                   <span class="cat">Kia</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Kia Carens&price=5500&seats=6') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a></a>
               <a href="{{ url('car-single?id=4') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -140,7 +140,7 @@
                   <span class="cat">Toyota</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Innova Crysta&price=5500&seats=6') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a></a>
               <a href="{{ url('car-single?id=5') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -155,7 +155,7 @@
                   <span class="cat">Toyota</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Innova Hycross&price=5500&seats=6') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a></a>
               <a href="{{ url('car-single?id=6') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -171,7 +171,7 @@
                   <span class="cat">Toyota</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Fortuner&price=6000&seats=6') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a></a>
               <a href="{{ url('car-single?id=7') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -189,7 +189,7 @@
                   <span class="cat">Toyota</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Camry&price=6000&seats=4') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a></a>
               <a href="{{ url('car-single?id=8') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
@@ -208,7 +208,7 @@
                   <span class="cat">Maruti</span>
                   <!-- <p class="price ml-auto">$500 <span>/day</span></p> -->
                 </div>
-                    <p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Invicto&price=5500&seats=6') }}" class="btn btn-primary py-2 mr-1">Book Now</a></a>
+                    <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a></a>
               <a href="{{ url('car-single?id=9') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>

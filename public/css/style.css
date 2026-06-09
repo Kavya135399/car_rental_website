@@ -10017,3 +10017,33 @@ img, video, iframe {
     -webkit-overflow-scrolling: touch;
   }
 }
+
+/* === Navbar brand icon === */
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-brand-icon {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 10px 20px rgba(216, 11, 36, 0.2);
+  transform: perspective(700px) rotateX(4deg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.navbar-brand:hover .navbar-brand-icon {
+  transform: perspective(700px) rotateX(4deg) rotateY(-10deg) translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 575.98px) {
+  .navbar-brand-icon {
+    width: 42px;
+    height: 42px;
+  }
+}

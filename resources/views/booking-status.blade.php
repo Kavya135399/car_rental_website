@@ -34,7 +34,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
   <div class="container">
-    <a class="navbar-brand" href="{{ url('/') }}">Om Shanti<span> Travels</span></a>
+    <a class="navbar-brand" href="{{ url('/') }}"><img class="navbar-brand-icon" src="{{ asset('images/om-shanti-mark.png') }}" alt="">Om Shanti<span> Travels</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="oi oi-menu"></span> Menu
     </button>
@@ -44,7 +44,7 @@
         <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
         <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
         <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
-        <li class="nav-item active"><a href="{{ url('/booking/status') }}" class="nav-link">Status</a></li>
+        <!-- <li class="nav-item active"><a href="{{ url('/booking/status') }}" class="nav-link">Status</a></li> -->
         <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
         <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
       </ul>
@@ -168,7 +168,7 @@
               @elseif($ps === 'Rejected')
                 <div style="margin-top:14px;" class="pill bad">Payment failed / rejected. Please try again.</div>
                 <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
-                  <a class="btn btn-primary" style="border-radius:12px;" href="{{ url('/booking') }}">Book Now</a>
+                  <a class="btn btn-primary" style="border-radius:12px;" href="{{ url('/contact') }}">Contact Us</a>
                 </div>
               @else
                 <div style="margin-top:14px;" class="pill warn">Payment pending verification (admin will match your UTR in the UPI statement).</div>

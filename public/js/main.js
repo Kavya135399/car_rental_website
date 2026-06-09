@@ -53,14 +53,14 @@
 
             var detailsHref = "/car/" + encodeURIComponent(car.id);
 
-            var priceHtml = price ? ('<p class="price ml-auto">₹' + esc(price) + ' <span>/day</span></p>') : "";
+            var priceHtml = "";
             var availHtml = "";
             if (stockReady) {
               availHtml = '<div style="margin-top:6px;font-size:12px;color:#01d28e;font-weight:600;">Available: ' + esc(avail) + " / " + esc(total) + "</div>";
             }
 
             var bookBtn = isAvailable
-              ? ('<a href="' + esc(bookingHref) + '" class="btn btn-primary py-2 mr-1">Book Now</a>')
+              ? '<a href="/contact" class="btn btn-primary py-2 mr-1">Contact Us</a>'
               : ('<a href="#" class="btn btn-primary py-2 mr-1 disabled" style="pointer-events:none;opacity:.6;">Not Available</a>');
             var loading = car.__index === 0 ? "eager" : "lazy";
             var fetchPriority = car.__index === 0 ? "high" : "auto";
@@ -488,14 +488,14 @@
 
           var detailsHref = "/car/" + encodeURIComponent(car.id);
 
-          var priceHtml = price ? ('<p class="price ml-auto">₹' + esc(price) + ' <span>/day</span></p>') : "";
+          var priceHtml = "";
           var availHtml = "";
           if (stockReady) {
             availHtml = '<div style="margin-top:6px;font-size:12px;color:#01d28e;font-weight:600;">Available: ' + esc(avail) + " / " + esc(total) + "</div>";
           }
 
           var bookBtn = isAvailable
-            ? ('<a href="' + esc(bookingHref) + '" class="btn btn-primary py-2 mr-1">Book Now</a>')
+            ? '<a href="/contact" class="btn btn-primary py-2 mr-1">Contact Us</a>'
             : ('<a href="#" class="btn btn-primary py-2 mr-1 disabled" style="pointer-events:none;opacity:.6;">Not Available</a>');
 
           return (

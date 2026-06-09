@@ -30,7 +30,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 <div class="container">
 
-<a class="navbar-brand" href="{{ url('/') }}">om shanti<span> travels</span></a>
+<a class="navbar-brand" href="{{ url('/') }}"><img class="navbar-brand-icon" src="{{ asset('images/om-shanti-mark.png') }}" alt="">om shanti<span style="color: #f81c1c;"> travels</span></a>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
 <span class="oi oi-menu"></span> Menu
@@ -52,9 +52,9 @@
 <li class="nav-item">
 <a href="{{ url('/cars') }}" class="nav-link">Cars</a>
 </li>
-<li class="nav-item">
-<a href="{{ url('/booking/status') }}" class="nav-link">Status</a>
-</li>
+<!-- <li class="nav-item"> -->
+<!-- <a href="{{ url('/booking/status') }}" class="nav-link">Status</a> -->
+<!-- </li> -->
 <!-- <li class="nav-item">
 <a href="{{ url('/booking') }}" class="nav-link">Booking</a>
 </li> -->
@@ -76,7 +76,7 @@
 
 <!-- HERO SECTION -->
 <section class="hero-wrap hero-wrap-2 js-fullheight"
-style="background-image: url('{{ asset('images/about1.jpg') }}');">
+style="background-image: url('{{ asset('images/b10.jpg') }}');">
 
 <div class="overlay"></div>
 

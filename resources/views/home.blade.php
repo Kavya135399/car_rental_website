@@ -26,7 +26,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
 <div class="container">
 
-<a class="navbar-brand" href="{{ url('/') }}">Om Shanti <span>Travels</span></a>
+<a class="navbar-brand" href="{{ url('/') }}"><img class="navbar-brand-icon" src="{{ asset('images/om-shanti-mark.png') }}" alt="">Om Shanti <span style="color: #f81c1c;">Travels</span></a>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
 <span class="oi oi-menu"></span> Menu
@@ -39,7 +39,7 @@
 <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
 <li class="nav-item"><a href="{{ url('/cars') }}" class="nav-link">Cars</a></li>
-<li class="nav-item"><a href="{{ url('/booking/status') }}" class="nav-link">Status</a></li>
+<!-- <li class="nav-item"><a href="{{ url('/booking/status') }}" class="nav-link">Status</a></li> -->
 <!-- <li class="nav-item"><a href="{{ url('/booking') }}" class="nav-link">Booking</a></li> -->
 <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
 <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
@@ -50,8 +50,7 @@
 </div>
 </nav>
 
-
-<section class="hero-wrap js-fullheight" style="background-image: url('{{ asset('images/bg_1.jpg') }}');">
+<section class="hero-wrap js-fullheight" style="background-image: url('{{ asset('images/home2.jpg') }}');">
 
 <div class="overlay"></div>
 
@@ -255,7 +254,7 @@
 			    						<span class="cat">Maruti</span>
 			    					  <!-- <span>/day</span></p> -->
 		    						</div>
-<p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Swift Dzire&price=3000&seats=4') }}" class="btn btn-primary py-2 mr-1">Book Now</a>
+<p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
               <a href="{{ url('car-single?id=1') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
 		    				</div>
     					</div>
@@ -269,7 +268,7 @@
 			    						<span class="cat">Honda</span>
 			    					  <!-- <span>/day</span></p> -->
 		    						</div>
-<p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Honda City&price=3000&seats=4') }}" class="btn btn-primary py-2 mr-1">Book Now</a>
+<p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
               <a href="{{ url('car-single?id=2') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
 		    				</div>
     					</div>
@@ -283,7 +282,7 @@
 			    						<span class="cat">Honda</span>
 			    					  <!-- <span>/day</span></p> -->
 		    						</div>
-<p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Honda Amaze&price=3000&seats=4') }}" class="btn btn-primary py-2 mr-1">Book Now</a>
+<p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
               <a href="{{ url('car-single?id=3') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
 		    				</div>
     					</div>
@@ -297,7 +296,7 @@
 			    						<span class="cat">Kia</span>
 			    					  <!-- <span>/day</span></p> -->
 		    						</div>
-<p class="d-flex mb-0 d-block"><a href="{{ url('booking?car=Kia Carens&price=5500&seats=6') }}" class="btn btn-primary py-2 mr-1">Book Now</a>
+<p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
               <a href="{{ url('car-single?id=4') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
 		    				</div>
     					</div>
@@ -315,7 +314,7 @@
 <section class="ftco-section ftco-about">
 			<div class="container">
 				<div class="row no-gutters">
-					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ asset('images/about.jpg') }}');">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ asset('images/b4.webp') }}');">
 					</div>
 					<div class="col-md-6 wrap-about ftco-animate">
 	          <div class="heading-section heading-section-white pl-md-5">
@@ -500,7 +499,7 @@
           </div>
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="blog.blade.php" class="block-20" style="background-image: url('{{ asset('images/home.jpg') }}');">
+              <a href="blog.blade.php" class="block-20" style="background-image: url('{{ asset('images/b7.webp') }}');">
               </a>
               <div class="text pt-4">
               	<div class="meta mb-3">
@@ -515,7 +514,7 @@
           </div>
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry">
-              <a href="blog.blade.php" class="block-20" style="background-image: url('{{ asset('images/image_3.jpg') }}');">
+              <a href="blog.blade.php" class="block-20" style="background-image: url('{{ asset('images/b8.avif') }}');">
               </a>
               <div class="text pt-4">
               	<div class="meta mb-3">
@@ -540,7 +539,7 @@
 			<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
 				<div class="block-18">
 					<div class="text text-border d-flex align-items-center">
-						<strong class="number" data-number="30">0</strong>
+						<strong class="number" data-number="40">0</strong>
 						<span>Years <br>Experience</span>
 					</div>
 				</div>
@@ -549,7 +548,7 @@
 			<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
 				<div class="block-18">
 					<div class="text text-border d-flex align-items-center">
-						<strong class="number" data-number="20">0</strong>
+						<strong class="number" data-number="50">0</strong>
 						<span>Total <br>Cars</span>
 					</div>
 				</div>
@@ -558,7 +557,7 @@
 			<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
 				<div class="block-18">
 					<div class="text text-border d-flex align-items-center">
-						<strong class="number" data-number="800">0</strong>
+						<strong class="number" data-number="8000">0</strong>
 						<span>Happy <br>Customers</span>
 					</div>
 				</div>
@@ -567,7 +566,7 @@
 			<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
 				<div class="block-18">
 					<div class="text d-flex align-items-center">
-						<strong class="number" data-number="1200">0</strong>
+						<strong class="number" data-number="12000">0</strong>
 						<span>Successful <br>Trips</span>
 					</div>
 				</div>

@@ -358,8 +358,8 @@ form[style*="display:flex"] select{flex:1!important;min-width:140px!important;}
 <h2>🚗 Admin</h2>
 <a href="/admin/dashboard">Dashboard</a>
 <a href="/admin/cars">Manage Cars</a>
-<a href="/admin/rentals" class="active">Bookings</a>
-<a href="/admin/drivers">Drivers</a>
+<!-- <a href="/admin/rentals" class="active">Bookings</a> -->
+<!-- <a href="/admin/drivers">Drivers</a> -->
 <a href="/admin/bookings">Customers</a>
 <a href="/admin/logout">Logout</a>
 </div>
@@ -387,14 +387,14 @@ form[style*="display:flex"] select{flex:1!important;min-width:140px!important;}
             <table>
                 <thead>
                     <tr>
-                        <th>Booking</th>
+                        <!-- <th>Booking</th> -->
                         <th>Customer</th>
                         <th>Car</th>
-                        <th>Schedule</th>
-                        <th>Status</th>
-                        <th>Payment</th>
-                        <th>Driver</th>
-                        <th>Actions</th>
+                        <!-- <th>Schedule</th> -->
+                        <!-- <th>Status</th> -->
+                        <!-- <th>Payment</th> -->
+                        <!-- <th>Driver</th> -->
+                        <!-- <th>Actions</th> -->
                     </tr>
                 </thead>
                 <tbody>

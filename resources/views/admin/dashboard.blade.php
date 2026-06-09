@@ -299,8 +299,8 @@ body {
 <h2>🚗 Admin</h2>
 <a href="/admin/dashboard">Dashboard</a>
 <a href="/admin/cars">Manage Cars</a>
-<a href="/admin/rentals">Bookings</a>
-<a href="/admin/drivers">Drivers</a>
+<!-- <a href="/admin/rentals">Bookings</a> -->
+<!-- <a href="/admin/drivers">Drivers</a> -->
 <a href="/admin/bookings">Customers</a>
 <a href="/admin/logout">Logout</a>
 </div>
