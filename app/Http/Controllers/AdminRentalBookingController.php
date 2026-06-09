@@ -9,11 +9,33 @@ use App\Mail\PaymentRejectedMail;
 use App\Services\CarAvailability;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 
 class AdminRentalBookingController extends Controller
 {
+    private function sendMailSafely(string $email, $mailable): bool
+    {
+        $mailer = config('mail.default');
+        if (in_array($mailer, ['log', 'array', 'null'], true)) {
+            return false;
+        }
+
+        try {
+            Mail::to($email)->send($mailable);
+            return true;
+        } catch (\Throwable $e) {
+            Log::warning('Booking email failed to send.', [
+                'email' => $email,
+                'mailer' => $mailer,
+                'error' => $e->getMessage(),
+            ]);
+
+            return false;
+        }
+    }
+
     private function requireAdmin()
     {
         if (!session()->has('admin')) {
@@ -95,21 +117,11 @@ class AdminRentalBookingController extends Controller
         $booking->load(['carModel', 'unit', 'driver']);
 
         if (!empty($booking->email)) {
-            $mailer = config('mail.default');
-            try {
-                Mail::to($booking->email)->send(new BookingConfirmedMail($booking));
-            } catch (\Throwable $e) {
-                return back()->with('error', 'Booking confirmed, but email failed to send: ' . $e->getMessage());
+            if ($this->sendMailSafely($booking->email, new BookingConfirmedMail($booking))) {
+                return back()->with('success', 'Booking confirmed and driver assigned. Confirmation email sent.');
             }
 
-            // Laravel default in this project is MAIL_MAILER=log, which does not actually deliver email.
-            if (in_array($mailer, ['log', 'array', 'null'], true)) {
-                return back()->with('success', "Booking confirmed and driver assigned. Email was not delivered because MAIL_MAILER={$mailer}. Check storage/logs/laravel.log or configure SMTP in .env.");
-            }
-        }
-
-        if (!empty($booking->email)) {
-            return back()->with('success', 'Booking confirmed and driver assigned. Confirmation email sent.');
+            return back()->with('success', 'Booking confirmed and driver assigned. Email could not be delivered from this server, so check MAIL_* settings on Render/Railway.');
         }
 
         return back()->with('success', 'Booking confirmed and driver assigned. (No customer email on booking)');
@@ -198,15 +210,8 @@ class AdminRentalBookingController extends Controller
         $booking->save();
 
         if (!empty($booking->email)) {
-            $mailer = config('mail.default');
-            try {
-                Mail::to($booking->email)->send(new PaymentRejectedMail($booking));
-            } catch (\Throwable $e) {
-                return back()->with('error', 'Payment marked as rejected, but email failed to send: ' . $e->getMessage());
-            }
-
-            if (in_array($mailer, ['log', 'array', 'null'], true)) {
-                return back()->with('success', "Payment marked as rejected. Email was not delivered because MAIL_MAILER={$mailer}. Check storage/logs/laravel.log or configure SMTP in .env.");
+            if (!$this->sendMailSafely($booking->email, new PaymentRejectedMail($booking))) {
+                return back()->with('success', 'Payment marked as rejected. Email could not be delivered from this server, so check MAIL_* settings on Render/Railway.');
             }
         }
 

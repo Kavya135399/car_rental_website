@@ -12,9 +12,49 @@ use App\Models\CarUnit;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
+    private function storeOptimizedCarImage($file): string
+    {
+        if (!function_exists('imagecreatefromstring')) {
+            return $file->store('cars_uploads', 'public');
+        }
+
+        $contents = file_get_contents($file->getRealPath());
+        $source = @imagecreatefromstring($contents);
+
+        if (!$source) {
+            return $file->store('cars_uploads', 'public');
+        }
+
+        $sourceWidth = imagesx($source);
+        $sourceHeight = imagesy($source);
+        $scale = min(900 / $sourceWidth, 600 / $sourceHeight, 1);
+        $targetWidth = (int) max(1, round($sourceWidth * $scale));
+        $targetHeight = (int) max(1, round($sourceHeight * $scale));
+        $target = imagecreatetruecolor($targetWidth, $targetHeight);
+
+        imagecopyresampled($target, $source, 0, 0, 0, 0, $targetWidth, $targetHeight, $sourceWidth, $sourceHeight);
+
+        $path = 'cars_uploads/' . Str::uuid() . '.webp';
+        ob_start();
+        $encoded = function_exists('imagewebp') && imagewebp($target, null, 75);
+        $optimized = ob_get_clean();
+
+        imagedestroy($source);
+        imagedestroy($target);
+
+        if (!$encoded || $optimized === false || $optimized === '') {
+            return $file->store('cars_uploads', 'public');
+        }
+
+        Storage::disk('public')->put($path, $optimized);
+        return $path;
+    }
+
     public function login() {
         return view('admin.login');
     }
@@ -136,9 +176,7 @@ public function dashboard() {
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            // Store on the public disk (storage/app/public). Works reliably on Windows.
-            // Make sure `php artisan storage:link` exists so `/storage/...` serves it.
-            $imagePath = $request->file('image')->store('cars_uploads', 'public');
+            $imagePath = $this->storeOptimizedCarImage($request->file('image'));
         }
 
         $insert = [
@@ -188,7 +226,11 @@ public function dashboard() {
         ]);
 
         if ($request->hasFile('image')) {
-            $car->image = $request->file('image')->store('cars_uploads', 'public');
+            if ($car->image && Str::startsWith($car->image, 'cars_uploads/')) {
+                Storage::disk('public')->delete($car->image);
+            }
+
+            $car->image = $this->storeOptimizedCarImage($request->file('image'));
         }
 
         $car->name = $data['name'];

@@ -1,43 +1,38 @@
 FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
-    git unzip libzip-dev zip libicu-dev \
+    git unzip libzip-dev zip \
     && docker-php-ext-install pdo pdo_mysql zip \
     && a2enmod rewrite
 
 WORKDIR /var/www/html
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY . /var/www/html
+COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-# Apache root -> public
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
-    /etc/apache2/sites-available/*.conf \
-    /etc/apache2/apache2.conf \
-    /etc/apache2/conf-available/*.conf
+ /etc/apache2/sites-available/*.conf \
+ /etc/apache2/apache2.conf \
+ /etc/apache2/conf-available/*.conf
 
-# Create writable folders
+# Create ALL required dirs + ownership
 RUN mkdir -p \
-    /tmp/php-temp \
-    storage/framework/views \
-    storage/framework/cache/data \
-    storage/framework/sessions \
-    storage/logs \
-    bootstrap/cache \
- && chown -R www-data:www-data /var/www/html /tmp/php-temp \
- && chmod -R 777 /tmp/php-temp \
+ storage/framework/views \
+ storage/framework/cache/data \
+ storage/framework/sessions \
+ storage/logs \
+ bootstrap/cache \
+ /tmp \
+ && chown -R www-data:www-data /var/www/html \
  && chmod -R 775 storage bootstrap/cache
 
-# Force PHP temp dirs
-ENV TMPDIR=/tmp/php-temp
-ENV TEMP=/tmp/php-temp
-ENV TMP=/tmp/php-temp
-
+# Pre-cache views during build
 RUN php artisan optimize:clear || true
+RUN php artisan view:cache || true
 
 EXPOSE 80
 CMD ["apache2-foreground"]

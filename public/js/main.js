@@ -4,6 +4,8 @@
     try {
       var path = window.location.pathname || "";
       if (!/^\/cars\/?$/.test(path)) return;
+      if (window.__carsPageRendered) return;
+      window.__carsPageRendered = true;
 
       var row = document.querySelector(".ftco-section.bg-light .container .row");
       if (!row) return;
@@ -60,11 +62,15 @@
             var bookBtn = isAvailable
               ? ('<a href="' + esc(bookingHref) + '" class="btn btn-primary py-2 mr-1">Book Now</a>')
               : ('<a href="#" class="btn btn-primary py-2 mr-1 disabled" style="pointer-events:none;opacity:.6;">Not Available</a>');
+            var loading = car.__index === 0 ? "eager" : "lazy";
+            var fetchPriority = car.__index === 0 ? "high" : "auto";
 
             return (
               '<div class="col-md-4">' +
                 '<div class="car-wrap rounded">' +
-                  '<div class="img rounded d-flex align-items-end" style="background-image: url(\'' + esc(img) + '\');"></div>' +
+                  '<div class="img rounded d-flex align-items-end" style="height:220px;overflow:hidden;background:#f2f2f2;">' +
+                    '<img src="' + esc(img) + '" alt="' + esc(name) + '" loading="' + loading + '" decoding="async" fetchpriority="' + fetchPriority + '" width="640" height="420" style="width:100%;height:220px;object-fit:cover;display:block;">' +
+                  '</div>' +
                   '<div class="text">' +
                     '<h2 class="mb-0"><a href="' + esc(detailsHref) + '">' + esc(name) + '</a></h2>' +
                     '<div class="d-flex mb-3">' +
@@ -82,7 +88,10 @@
             );
           }
 
-          row.innerHTML = data.cars.map(card).join("");
+          row.innerHTML = data.cars.map(function (car, index) {
+            car.__index = index;
+            return card(car);
+          }).join("");
         })
         .catch(function () {
           row.innerHTML = '<div class="col-12" style="padding:18px 0;text-align:center;color:#777;">Unable to load cars.</div>';
@@ -428,6 +437,8 @@
   try {
     var path = window.location.pathname || "";
     if (!/^\/cars\/?$/.test(path)) return;
+    if (window.__carsPageRendered) return;
+    window.__carsPageRendered = true;
 
     var row = document.querySelector(".ftco-section.bg-light .container .row");
     if (!row) return;
