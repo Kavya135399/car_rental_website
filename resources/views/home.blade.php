@@ -19,6 +19,77 @@
 <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
 <link rel="stylesheet" href="{{ asset('css/icomoon.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+<!-- Custom Styles for Attractive Form -->
+<style>
+    /* New Contact Form Style - Dark Transparent/Grey */
+    .modern-contact-form {
+        background: rgba(0, 0, 0, 0.85); /* Dark transparent background */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modern-contact-form h2 {
+        color: #ffffff;
+        font-weight: 700;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #f81c1c;
+        display: inline-block;
+        padding-bottom: 10px;
+    }
+
+    .modern-contact-form .label {
+        color: #e0e0e0; /* Light grey text for labels */
+        font-weight: 500;
+    }
+
+    .modern-contact-form .form-control {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid transparent;
+        border-radius: 5px;
+        color: #333;
+        padding: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .modern-contact-form .form-control:focus {
+        background: #ffffff;
+        border-color: #f81c1c; /* Red focus border matching logo */
+        box-shadow: 0 0 0 3px rgba(248, 28, 28, 0.2);
+    }
+
+    .modern-contact-form .btn-secondary {
+        background: #f81c1c; /* Brand Red Button */
+        border: none;
+        padding: 12px 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        border-radius: 5px;
+    }
+
+    .modern-contact-form .btn-secondary:hover {
+        background: #d31515;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(248, 28, 28, 0.4);
+    }
+
+    /* Enhancing the right side text section */
+    .services-wrap {
+        background: #fff;
+        padding: 40px;
+        border-radius: 0 10px 10px 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Hero text shadow for better readability */
+    .hero-wrap h1, .hero-wrap p {
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+</style>
+
 </head>
 
 <body>
@@ -62,7 +133,7 @@
 
 <h1 class="mb-4">Your journey begins with Om Shanti Travels.</h1>
 <p style="font-size: 18px;">Om Shanti Travels provides premium car rental services for city tours, airport transfers, and outstation trips. Our goal is to make your travel safe, comfortable, and enjoyable</p>
-	            
+                
 </div>
 
 </div>
@@ -70,79 +141,17 @@
 </section>
 
      <section class="ftco-section ftco-no-pt bg-light">
-    	<div class="container">
-    		<div class="row no-gutters">
-    			<div class="col-md-12	featured-top">
-    				<!-- <div class="row no-gutters">
-	  					<div class="col-md-4 d-flex align-items-center">
-	  						<form action="#" class="request-form ftco-animate bg-primary">
-		          		<h2>Make your trip</h2>
-			    				<div class="form-group">
-			    					<label for="" class="label">Pick-up location</label>
-			    					<input type="text" class="form-control" placeholder="City, Airport, Station, etc">
-			    				</div>
-			    				<div class="form-group">
-			    					<label for="" class="label">Drop-off location</label>
-			    					<input type="text" class="form-control" placeholder="City, Airport, Station, etc">
-			    				</div>
-			    				<div class="d-flex">
-			    					<div class="form-group mr-2">
-			                <label for="" class="label">Pick-up date</label>
-			                <input type="text" class="form-control" id="book_pick_date" placeholder="Date">
-			              </div>
-			              <div class="form-group ml-2">
-			                <label for="" class="label">Drop-off date</label>
-			                <input type="text" class="form-control" id="book_off_date" placeholder="Date">
-			              </div>
-		              </div>
-		              <div class="form-group">
-		                <label for="" class="label">Pick-up time</label>
-		                <input type="text" class="form-control" id="time_pick" placeholder="Time">
-		              </div>
-			            <div class="form-group">
-			              <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
-			            </div>
-			    			</form>
-	  					</div>
-	  					<div class="col-md-8 d-flex align-items-center">
-	  						<div class="services-wrap rounded-right w-100">
-	  							<h3 class="heading-section mb-4">Better Way to Rent Your Perfect Cars</h3>
-	  							<div class="row d-flex mb-4">
-					          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-					            <div class="services w-100 text-center">
-				              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-route"></span></div>
-				              	<div class="text w-100">
-					                <h3 class="heading mb-2">Contact Us</h3>
-				                </div>
-					            </div>      
-					          </div>
-					          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-					            <div class="services w-100 text-center">
-				              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-handshake"></span></div>
-				              	<div class="text w-100">
-					                <h3 class="heading mb-2">Select the Best Deal</h3>
-					              </div>
-					            </div>      
-					          </div>
-					          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-					            <div class="services w-100 text-center">
-				              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-rent"></span></div>
-				              	<div class="text w-100">
-					                <h3 class="heading mb-2">Reserve Your Rental Car</h3>
-					              </div>
-					            </div>      
-					          </div>
-					        </div>
-					        <p><a href="#" class="btn btn-primary py-3 px-4">Reserve Your Perfect Car</a></p>
-	  						</div>
-	  					</div>
-	  				</div> -->
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-12	featured-top">
+                    <!-- <div class="row no-gutters"> ... (Commented out section hidden for brevity) ... </div> -->
                 <br>
 <br>
 <br>    
 <div class="row no-gutters">
   <div class="col-md-4 d-flex align-items-center">
-    <form action="{{ route('contact.send') }}" method="POST" class="request-form ftco-animate bg-primary">
+    <!-- Updated Form Class -->
+    <form action="{{ route('contact.send') }}" method="POST" class="request-form ftco-animate modern-contact-form">
 
 @csrf
 
@@ -157,11 +166,6 @@
 <label class="label">Email</label>
 <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
 </div>
-
-<!-- <div class="form-group">
-<label class="label">Phone Number</label>
-<input type="text" name="phone" class="form-control" placeholder="Enter phone number" required>
-</div> -->
 
 <div class="form-group">
 <label class="label">Subject</label>
@@ -229,263 +233,183 @@
 </div>
 
 
-				</div>
-  		</div>
+                </div>
+          </div>
     </section>
 
 <section class="ftco-section ftco-no-pt bg-light">
-    	<div class="container">
-    		<div class="row justify-content-center">
+        <div class="container">
+            <div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-          	<span class="subheading">What we offer</span>
+              <span class="subheading">What we offer</span>
             <h2 class="mb-2">Feeatured Vehicles</h2>
           </div>
         </div>
-    		<div class="row">
-    			<div class="col-md-12">
-    				<div class="carousel-car owl-carousel">
-    					<div class="item">
-    						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/swift.jpg') }}');">
-		    					</div>
-		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Swift Dzire</a></h2>
-		    						<div class="d-flex mb-3">
-			    						<span class="cat">Maruti</span>
-			    					  <!-- <span>/day</span></p> -->
-		    						</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="carousel-car owl-carousel">
+                        <div class="item">
+                            <div class="car-wrap rounded ftco-animate">
+            					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/swift.jpg') }}');">
+            					</div>
+            					<div class="text">
+            						<h2 class="mb-0"><a href="#">Swift Dzire</a></h2>
+            						<div class="d-flex mb-3">
+                						<span class="cat">Maruti</span>
+                					  <!-- <span>/day</span></p> -->
+            						</div>
 <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
               <a href="{{ url('car-single?id=1') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
-		    				</div>
-    					</div>
-    					<div class="item">
-    						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/honda.jpg') }}');">
-		    					</div>
-		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Honda City</a></h2>
-		    						<div class="d-flex mb-3">
-			    						<span class="cat">Honda</span>
-			    					  <!-- <span>/day</span></p> -->
-		    						</div>
+            				</div>
+                        </div>
+                        <div class="item">
+                            <div class="car-wrap rounded ftco-animate">
+            					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/honda.jpg') }}');">
+            					</div>
+            					<div class="text">
+            						<h2 class="mb-0"><a href="#">Honda City</a></h2>
+            						<div class="d-flex mb-3">
+                						<span class="cat">Honda</span>
+                					  <!-- <span>/day</span></p> -->
+            						</div>
 <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
               <a href="{{ url('car-single?id=2') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
-		    				</div>
-    					</div>
-    					<div class="item">
-    						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/amaze.jpg') }}');">
-		    					</div>
-		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Honda Amaze</a></h2>
-		    						<div class="d-flex mb-3">
-			    						<span class="cat">Honda</span>
-			    					  <!-- <span>/day</span></p> -->
-		    						</div>
+            				</div>
+                        </div>
+                        <div class="item">
+                            <div class="car-wrap rounded ftco-animate">
+            					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/amaze.jpg') }}');">
+            					</div>
+            					<div class="text">
+            						<h2 class="mb-0"><a href="#">Honda Amaze</a></h2>
+            						<div class="d-flex mb-3">
+                						<span class="cat">Honda</span>
+                					  <!-- <span>/day</span></p> -->
+            						</div>
 <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
               <a href="{{ url('car-single?id=3') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
-		    				</div>
-    					</div>
-    					<div class="item">
-    						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/kia.jpg') }}');">
-		    					</div>
-		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Kia Carens</a></h2>
-		    						<div class="d-flex mb-3">
-			    						<span class="cat">Kia</span>
-			    					  <!-- <span>/day</span></p> -->
-		    						</div>
+            				</div>
+                        </div>
+                        <div class="item">
+                            <div class="car-wrap rounded ftco-animate">
+            					<div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('images/kia.jpg') }}');">
+            					</div>
+            					<div class="text">
+            						<h2 class="mb-0"><a href="#">Kia Carens</a></h2>
+            						<div class="d-flex mb-3">
+                						<span class="cat">Kia</span>
+                					  <!-- <span>/day</span></p> -->
+            						</div>
 <p class="d-flex mb-0 d-block"><a href="{{ url('contact') }}" class="btn btn-primary py-2 mr-1">Contact Us</a>
               <a href="{{ url('car-single?id=4') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>		    					</div>
-		    				</div>
-    					</div>
-    				</div>
+            				</div>
+                        </div>
+                    </div>
 
 
             
             
 
-    			</div>
-    		</div>
-    	</div>
+                </div>
+            </div>
+        </div>
 </section>
 
 <section class="ftco-section ftco-about">
-			<div class="container">
-				<div class="row no-gutters">
-					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ asset('images/b4.webp') }}');">
-					</div>
-					<div class="col-md-6 wrap-about ftco-animate">
-	          <div class="heading-section heading-section-white pl-md-5">
-	          	<span class="subheading">About us</span>
-	            <h2 class="mb-4">Welcome to Om Shanti Travels</h2>
+            <div class="container">
+                <div class="row no-gutters">
+                    <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ asset('images/b4.webp') }}');">
+                    </div>
+                    <div class="col-md-6 wrap-about ftco-animate">
+              <div class="heading-section heading-section-white pl-md-5">
+              	<span class="subheading">About us</span>
+                <h2 class="mb-4">Welcome to Om Shanti Travels</h2>
 
-	            <p>Om Shanti Travels has been a trusted travel service provider since 1989, offering reliable and comfortable travel solutions. With years of experience in the travel industry, we are committed to providing safe, convenient, and affordable journeys for our customers.</p>
+                <p>Om Shanti Travels has been a trusted travel service provider since 1989, offering reliable and comfortable travel solutions. With years of experience in the travel industry, we are committed to providing safe, convenient, and affordable journeys for our customers.</p>
 
                 <p>Whether you need a car rental, city travel, or long-distance trip, our goal is to make every journey smooth and enjoyable.</p>
                 <p>Let us show you the way — travel with us!</p>
                 <p>Contact Us</p>   
                 <p>📞 Mobile: +91 90990 35336 / 90999 82336 </p>
                 <p>📧 Email: omshanti.amd@gmail.com</p>
-	            <p><a  href="{{ url('/about') }}" class="btn btn-primary py-3 px-4">Read More</a></p>
-	          </div>
-			</div>
-		</div>
-	</div>
+                <p><a  href="{{ url('/about') }}" class="btn btn-primary py-3 px-4">Read More</a></p>
+              </div>
+            </div>
+        </div>
+    </div>
 </section>
 
-     		<section class="ftco-section">
-			<div class="container">
-				<div class="row justify-content-center mb-5">
+             <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center heading-section ftco-animate">
-          	<span class="subheading">Services</span>
+              <span class="subheading">Services</span>
             <h2 class="mb-3">Our Latest Services</h2>
           </div>
         </div>
-				<div class="row">
-					<div class="col-md-3">
-						<div class="services services-2 w-100 text-center">
-            	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-wedding-car"></span></div>
-            	<div class="text w-100">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="services services-2 w-100 text-center">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-wedding-car"></span></div>
+                <div class="text w-100">
                 <h3 class="heading mb-2">🚗 Car Rental Services</h3>
                 <p>Comfortable and well-maintained cars for local and outstation travel.</p>
               </div>
             </div>
-					</div>
-					<div class="col-md-3">
-						<div class="services services-2 w-100 text-center">
-            	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-transportation"></span></div>
-            	<div class="text w-100">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="services services-2 w-100 text-center">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-transportation"></span></div>
+                <div class="text w-100">
                 <h3 class="heading mb-2">✈️ Airport Transfers</h3>
                 <p>Easy and reliable pick-up and drop services to and from the airport.</p>
               </div>
             </div>
-					</div>
-					<div class="col-md-3">
-						<div class="services services-2 w-100 text-center">
-            	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-car"></span></div>
-            	<div class="text w-100">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="services services-2 w-100 text-center">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-car"></span></div>
+                <div class="text w-100">
                 <h3 class="heading mb-2">🌍 Tour & Travel Assistance</h3>
                 <p>Helping you plan trips with convenience and comfort.</p>
               </div>
             </div>
-					</div>
-					<div class="col-md-3">
-						<div class="services services-2 w-100 text-center">
-            	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-transportation"></span></div>
-            	<div class="text w-100">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="services services-2 w-100 text-center">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-transportation"></span></div>
+                <div class="text w-100">
                 <h3 class="heading mb-2">🛣️ Outstation Travel</h3>
                 <p>Safe and affordable travel for long-distance journeys.</p>
               </div>
             </div>
-					</div>
-				</div>
-			</div>
-		</section>
-        
-        
-    		<!-- <section class="ftco-section ftco-intro" style="background-image: url('{{ asset('images/bg_3.jpg') }}');">
-			<div class="overlay"></div>
-			<div class="container">
-				<div class="row justify-content-end">
-					<div class="col-md-6 heading-section heading-section-white ftco-animate">
-            <h2 class="mb-3">Do You Want To Earn With Us? So Don't Be Late.</h2>
-            <a href="#" class="btn btn-primary btn-lg">Become A Driver</a>
-          </div>
-				</div>
-			</div>
-		</section> -->
-        
-        
-        <!-- <section class="ftco-section testimony-section bg-light">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center heading-section ftco-animate">
-          	<span class="subheading">Testimonial</span>
-            <h2 class="mb-3">Happy Clients</h2>
-          </div>
-        </div>
-        <div class="row ftco-animate">
-          <div class="col-md-12">
-            <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item">
-                <div class="testimony-wrap rounded text-center py-4 pb-5">
-                  <div class="user-img mb-2" style="background-image: url('{{ asset('images/person_1.jpg') }}')">
-                  </div>
-                  <div class="text pt-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Marketing Manager</span>
-                  </div>
+                    </div>
                 </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap rounded text-center py-4 pb-5">
-                  <div class="user-img mb-2" style="background-image: url('{{ asset('images/person_2.jpg') }}')">
-                  </div>
-                  <div class="text pt-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Interface Designer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap rounded text-center py-4 pb-5">
-                  <div class="user-img mb-2" style="background-image: url('{{ asset('images/person_3.jpg') }}')">
-                  </div>
-                  <div class="text pt-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">UI Designer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap rounded text-center py-4 pb-5">
-                  <div class="user-img mb-2" style="background-image: url('{{ asset('images/person_1.jpg') }}')">
-                  </div>
-                  <div class="text pt-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Web Developer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap rounded text-center py-4 pb-5">
-                  <div class="user-img mb-2" style="background-image: url('{{ asset('images/person_1.jpg') }}')">
-                  </div>
-                  <div class="text pt-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">System Analyst</span>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
+        </section>
+        
+        
+            <!-- <section class="ftco-section ftco-intro" style="background-image: url('{{ asset('images/bg_3.jpg') }}');"> ... </section> -->
+        
+        
+        <!-- <section class="ftco-section testimony-section bg-light"> ... </section> -->
     
     
   <section class="ftco-section">
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
-          	<span class="subheading">Blog</span>
+              <span class="subheading">Blog</span>
             <h2>Recent Blog</h2>
           </div>
         </div>
         <div class="row d-flex">
           <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
+              <div class="blog-entry justify-content-end">
               <a href="blog.blade.php" class="block-20" style="background-image: url('{{ asset('images/image_1.jpg') }}');">
               </a>
               <div class="text pt-4">
-              	<div class="meta mb-3">
+                  <div class="meta mb-3">
                   <div><a href="#">Oct. 29, 2019</a></div>
                   <div><a href="#">Admin</a></div>
                   <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
@@ -498,11 +422,11 @@
             </div>
           </div>
           <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
+              <div class="blog-entry justify-content-end">
               <a href="blog.blade.php" class="block-20" style="background-image: url('{{ asset('images/b7.webp') }}');">
               </a>
               <div class="text pt-4">
-              	<div class="meta mb-3">
+                  <div class="meta mb-3">
                   <div><a href="#">Oct. 29, 2019</a></div>
                   <div><a href="#">Admin</a></div>
                   <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
@@ -513,11 +437,11 @@
             </div>
           </div>
           <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
+              <div class="blog-entry">
               <a href="blog.blade.php" class="block-20" style="background-image: url('{{ asset('images/b8.avif') }}');">
               </a>
               <div class="text pt-4">
-              	<div class="meta mb-3">
+                  <div class="meta mb-3">
                   <div><a href="#">Oct. 29, 2019</a></div>
                   <div><a href="#">Admin</a></div>
                   <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
@@ -532,48 +456,48 @@
     </section>	
 
 <section class="ftco-counter ftco-section img bg-light" id="section-counter">
-	<div class="overlay"></div>
-	<div class="container">
-		<div class="row">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
 
-			<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-				<div class="block-18">
-					<div class="text text-border d-flex align-items-center">
-						<strong class="number" data-number="40">0</strong>
-						<span>Years <br>Experience</span>
-					</div>
-				</div>
-			</div>
+            <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18">
+                    <div class="text text-border d-flex align-items-center">
+                        <strong class="number" data-number="40">0</strong>
+                        <span>Years <br>Experience</span>
+                    </div>
+                </div>
+            </div>
 
-			<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-				<div class="block-18">
-					<div class="text text-border d-flex align-items-center">
-						<strong class="number" data-number="50">0</strong>
-						<span>Total <br>Cars</span>
-					</div>
-				</div>
-			</div>
+            <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18">
+                    <div class="text text-border d-flex align-items-center">
+                        <strong class="number" data-number="50">0</strong>
+                        <span>Total <br>Cars</span>
+                    </div>
+                </div>
+            </div>
 
-			<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-				<div class="block-18">
-					<div class="text text-border d-flex align-items-center">
-						<strong class="number" data-number="8000">0</strong>
-						<span>Happy <br>Customers</span>
-					</div>
-				</div>
-			</div>
+            <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18">
+                    <div class="text text-border d-flex align-items-center">
+                        <strong class="number" data-number="8000">0</strong>
+                        <span>Happy <br>Customers</span>
+                    </div>
+                </div>
+            </div>
 
-			<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-				<div class="block-18">
-					<div class="text d-flex align-items-center">
-						<strong class="number" data-number="12000">0</strong>
-						<span>Successful <br>Trips</span>
-					</div>
-				</div>
-			</div>
+            <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18">
+                    <div class="text d-flex align-items-center">
+                        <strong class="number" data-number="12000">0</strong>
+                        <span>Successful <br>Trips</span>
+                    </div>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </section>
 
   
