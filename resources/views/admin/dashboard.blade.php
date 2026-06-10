@@ -287,6 +287,45 @@ body {
     .hero h2 { font-size: 24px; }
     .charts { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 768px) {
+    body { overflow-x: hidden; }
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 12px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+    .sidebar h2 { display: none; }
+    .sidebar a {
+        padding: 10px 12px;
+        margin: 0;
+        font-size: 14px;
+        border-left: 0;
+        white-space: nowrap;
+    }
+    .sidebar a::before { margin-right: 8px; font-size: 14px; }
+    .sidebar a:hover, .sidebar a.active {
+        transform: translateY(-2px);
+        border-left: 0;
+        border-bottom: 3px solid var(--accent);
+    }
+    .main { margin-left: 0; padding: 16px; width: 100%; }
+    .hero { padding: 22px 16px; }
+    .cards { grid-template-columns: 1fr; gap: 16px; }
+    .card { min-height: auto; padding: 20px; }
+    .card:hover, .chart-box:hover { transform: none !important; }
+    .charts { gap: 16px; }
+    .chart-box { min-height: 260px; padding: 16px; }
+    .review-card { padding: 14px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .review-table { min-width: 620px; }
+}
 </style>
 </head>
 

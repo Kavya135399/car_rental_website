@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Edit Content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
@@ -20,10 +21,11 @@
         .back{display:inline-block;margin-top:14px;color:#93c5fd;text-decoration:none;}
 
         @media (max-width: 768px){
-            body{flex-direction:column;}
+            body{flex-direction:column;overflow-x:hidden;}
             .sidebar{position:relative;width:100%;height:auto;}
             .main{margin-left:0;padding:16px;}
             .card{padding:14px;max-width:none;}
+            .btn{width:100%;}
         }
     </style>
 </head>

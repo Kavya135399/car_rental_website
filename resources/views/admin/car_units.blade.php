@@ -327,6 +327,42 @@ tr td:last-child { border-radius: 0 8px 8px 0; }
     .main { margin-left: 80px; width: calc(100% - 80px); padding: 20px; }
     table { display: block; overflow-x: auto; }
 }
+
+@media (max-width: 768px) {
+    body { overflow-x: hidden; }
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 12px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+    .sidebar h2 { display: none; }
+    .sidebar a {
+        padding: 10px 12px;
+        margin: 0;
+        font-size: 14px;
+        border-left: 0;
+        white-space: nowrap;
+    }
+    .sidebar a::before { margin-right: 8px; font-size: 14px; }
+    .sidebar a:hover, .sidebar a.active {
+        transform: translateY(-2px);
+        border-left: 0;
+        border-bottom: 3px solid var(--accent);
+    }
+    .main { margin-left: 0; width: 100%; padding: 16px; }
+    .page-header h1 { font-size: 28px; }
+    .grid-container { gap: 16px; }
+    .form-card, .table-card { padding: 18px; border-radius: 12px; }
+    .table-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { min-width: 680px; }
+}
 </style>
 </head>
 <body>

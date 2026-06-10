@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Admin Login - Om Shanti Travels</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -186,8 +187,9 @@ transform: translateY(-2px);
 @media (max-width: 480px){
 body{
 align-items:flex-start;
-padding-top:40px;
+padding:24px 14px;
 perspective: none; /* Disable 3D on mobile */
+overflow:auto;
 }
 .site-title{
 position:static;
@@ -197,12 +199,13 @@ width: 100%;
 left: 0;
 }
 .login-box{
-padding:30px 25px;
+padding:28px 20px;
 border-radius: 20px;
 animation: none; /* Disable float on mobile */
 transform: none !important;
 box-shadow: 0 15px 30px rgba(0,0,0,0.5);
 }
+.login-box h2{font-size:24px;margin-bottom:20px;}
 .login-box:hover {
 transform: none;
 }

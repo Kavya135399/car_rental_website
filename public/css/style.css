@@ -10227,3 +10227,149 @@ table {
     flex: 0 0 38px;
   }
 }
+
+/* === Site-wide responsive polish === */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.form-control,
+.btn,
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
+}
+
+.booking-card,
+.contact-form,
+.car-wrap,
+.ftco-footer-widget {
+  overflow-wrap: anywhere;
+}
+
+.booking-card .row,
+.contact-section .row,
+.ftco-footer .row {
+  min-width: 0;
+}
+
+.whatsapp-float {
+  z-index: 999;
+}
+
+@media (max-width: 991.98px) {
+  .ftco-footer .ftco-footer-widget {
+    margin-bottom: 28px;
+  }
+
+  .car-single .btn,
+  .car-wrap .btn,
+  .booking-card .btn,
+  .booking-card .btn-book,
+  .contact-form .btn {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .booking-card,
+  .contact-form,
+  .car-wrap,
+  .ftco-footer-widget {
+    border-radius: 12px;
+  }
+
+  .booking-card {
+    padding: 22px 16px !important;
+  }
+
+  .contact-form {
+    padding: 24px 18px !important;
+  }
+
+  .form-control {
+    min-height: 46px;
+    font-size: 16px;
+  }
+
+  textarea.form-control {
+    min-height: 130px;
+  }
+
+  .booking-card .col-md-6,
+  .booking-card .col-md-12,
+  .contact-section .col-md-4,
+  .contact-section .col-md-8,
+  .car-single .col-md-6,
+  .car-single .col-md-7,
+  .car-single .col-md-5 {
+    margin-bottom: 14px;
+  }
+
+  .booking-card .btn-book,
+  .booking-card .btn,
+  .contact-form .btn,
+  .car-single .btn,
+  .car-wrap .btn {
+    display: block;
+    width: 100%;
+    margin: 0 0 10px !important;
+    text-align: center;
+  }
+
+  .contact-info .border {
+    min-height: auto;
+  }
+
+  .ftco-footer {
+    text-align: left;
+  }
+
+  .whatsapp-float {
+    width: 54px !important;
+    height: 54px !important;
+    right: 16px !important;
+    bottom: 16px !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .breadcrumbs {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .heading-section h2,
+  .ftco-heading-2 {
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .heading-section h2 {
+    font-size: 26px;
+  }
+
+  .car-wrap .text h2 {
+    font-size: 19px;
+    line-height: 1.3;
+  }
+
+  .car-wrap .text .price {
+    font-size: 16px;
+  }
+
+  .contact-section .contact-info .border {
+    padding: 18px !important;
+  }
+
+  .ftco-footer {
+    padding: 3em 0;
+  }
+}

@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Manage Content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
@@ -15,6 +16,7 @@
         .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
         .tab{padding:10px 12px;border-radius:10px;border:1px solid #1e293b;color:#cbd5f5;text-decoration:none;}
         .tab.active{background:#1e293b;color:white;}
+        .page-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:14px;}
         table{width:100%;border-collapse:collapse;margin-top:14px;}
         th,td{padding:12px;text-align:left;border-bottom:1px solid #1e293b;}
         th{background:#0b1324;}
@@ -25,9 +27,11 @@
         .muted{color:#94a3b8;}
 
         @media (max-width: 768px){
-            body{flex-direction:column;}
+            body{flex-direction:column;overflow-x:hidden;}
             .sidebar{position:relative;width:100%;height:auto;}
             .main{margin-left:0;padding:16px;}
+            .page-actions{flex-direction:column;align-items:stretch;}
+            .btn-add{text-align:center;}
             .card{padding:14px;overflow-x:auto;}
             table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:720px;}
             th,td{white-space:nowrap;}
@@ -46,7 +50,7 @@
     </div>
 
     <div class="main">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+        <div class="page-actions">
             <div>
                 <h1 style="font-weight:500;">Content Manager</h1>
                 <div class="muted" style="margin-top:6px;">This powers the `/premium` site sections.</div>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Contact Messages - Om Shanti Travels</title>
+    <title>Contact Messages - Om Shanti Travels</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -307,6 +308,16 @@ color:white;
     .table-box{padding:14px;}
     table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:960px;}
     th,td{white-space:nowrap;}
+}
+
+@media(max-width:768px){
+    body{overflow-x:hidden;}
+    .sidebar{min-width:0;gap:8px;padding:12px;}
+    .sidebar a{margin:0;padding:10px 12px;white-space:nowrap;}
+    .main{margin-left:0;width:100%;min-width:0;padding:16px;}
+    .main>h1{font-size:26px;}
+    .table-box{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px;}
+    table{min-width:760px;}
 }
 
 </style>

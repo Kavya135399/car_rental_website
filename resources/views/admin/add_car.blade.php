@@ -366,6 +366,42 @@ input:checked + .slider:before { transform: translateX(24px); }
     /* Main fills space */
     .main { margin-left: 80px; width: calc(100% - 80px); padding: 20px; }
 }
+
+@media (max-width: 768px) {
+    body { overflow-x: hidden; }
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 12px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+    .sidebar h2 { display: none; }
+    .sidebar a {
+        padding: 10px 12px;
+        margin: 0;
+        font-size: 14px;
+        border-left: 0;
+        white-space: nowrap;
+    }
+    .sidebar a::before { margin-right: 8px; font-size: 14px; }
+    .sidebar a:hover, .sidebar a.active {
+        transform: translateY(-2px);
+        border-left: 0;
+        border-bottom: 3px solid var(--accent);
+    }
+    .main { margin-left: 0; width: 100%; padding: 16px; }
+    .page-header h1 { font-size: 28px; }
+    .form-card { padding: 18px; border-radius: 12px; }
+    .form-grid { gap: 16px; margin-bottom: 16px; }
+    .toggle-container { align-items: flex-start; gap: 12px; }
+    .upload-wrapper { min-height: 220px; }
+}
 </style>
 </head>
 <body>
